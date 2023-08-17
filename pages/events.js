@@ -9,6 +9,7 @@ import EventItem from '../components/EventItem'
 
 const Events = () => {
     const [events, setEvents] = useState([])
+    const eventp = [{is_active: true, name: "LAURA", start_time: "12-08-2023", end_time: "18-08-2023", venue: "nahi", desciption: "nahi", max_team_size: 1, id: 20}]
 
     useEffect(() => {
         let host = process.env.NEXT_PUBLIC_HOST
@@ -44,6 +45,7 @@ const Events = () => {
                     {events.map((event, index) => {
                         return <EventItem event={event} key={index} />
                     })}
+                    <EventItem event={eventp}/>
                 </div>
             </div>
         </div>
