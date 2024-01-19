@@ -26,7 +26,7 @@ const Modal = (props) => {
                     router,
                     props.closeHandler
                 )
-                // console.log(userData.state.user)
+                console.log(userData.state.user)
             } else {
                 // router.replace(props.body.registration_link)
                 router.push({
@@ -139,26 +139,49 @@ const Modal = (props) => {
                             <div className={styles.date_venue}>
                                 <span className={styles.date_text}>Date:</span>
                                 <span className={styles.date_value}>
+
+                                    {props.body.start_time.substring(5, 7) !== props.body.end_time.substring(5, 7) ? (
+                                        <> {new Date(
+                                            props.body.start_time
+                                        ).toLocaleString('default', {
+                                            day: 'numeric',
+                                        })}
+                                            {' '}
+                                            {new Date(
+                                                props.body.start_time
+                                            ).toLocaleString('default', {
+                                                month: 'long',
+                                            })}
+                                            {' - '}
+                                        </>
+                                    ) :
+                                        <>
+                                            {props.body.start_time.substring(8, 10) !== props.body.end_time.substring(8, 10) ?
+                                                (<>
+                                                    {
+                                                        new Date(
+                                                            props.body.start_time
+                                                        ).toLocaleString('default', {
+                                                            day: 'numeric',
+                                                        })
+                                                    }
+                                                    {' - '}
+                                                </>) : null
+                                            }
+                                        </>
+                                    }
                                     {new Date(
-                                        props.body.start_time
+                                        props.body.end_time
                                     ).toLocaleString('default', {
                                         day: 'numeric',
                                     })}
                                     {' '}
-                                    {props.body.start_time.substring(0, 10) !== props.body.end_time.substring(0, 10) ? (
-                                        <>
-                                            {'- '}
-                                            {new Date(props.body.end_time).toLocaleString('default', {
-                                                day: 'numeric',
-                                            })}
-                                        </>
-                                    ) : null}
-                                    {' '}
                                     {new Date(
-                                        props.body.start_time
+                                        props.body.end_time
                                     ).toLocaleString('default', {
                                         month: 'long',
                                     })}
+
                                 </span>
                                 <br />
                                 <span className={styles.date_text}>Venue:</span>
