@@ -35,8 +35,3 @@
         background-size: cover, cover;
     }
 }
-@media only screen and (max-width: 450px) {
-    .container {
-        align-items: center;
-    }
-}

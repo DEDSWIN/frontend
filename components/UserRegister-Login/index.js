@@ -320,7 +320,7 @@ const UserRegisterForm = () => {
                             <button className={styles.fancyButton}>
                                 <span>REGISTER</span>
                                 <Image
-                                    src={require('../../public/assets/Subtract.svg')}
+                                    src={'/assets/Subtract.svg'}
                                     height={220}
                                     width={220}
                                     alt="register"

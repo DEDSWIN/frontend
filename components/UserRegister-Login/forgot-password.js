@@ -118,71 +118,80 @@ const ForgotPassword = () => {
                 theme="light"
             />
 
-            <div className={styles.form}>
-                <motion.form
-                    className={styles.mainForm}
-                    initial={{ opacity: 0, x: '-20%' }}
-                    whileInView={{ opacity: 1, x: '0%' }}
-                    transition={{ duration: 1 }}
-                >
-                    <h2
-                        style={{
-                            fontSize: '2rem',
-                            fontFamily: 'Anavio Small Capitals W01 Bold',
-                            margin: ' -1rem 0 2rem 0',
-                            textAlign: 'center',
-                        }}
-                    >
-                        Password Reset
-                    </h2>
-                    <div className={styles.field}>
-                        <label htmlFor="email_id">Email ID</label>
-                        <br />
-                        <input
-                            type="email"
-                            name="Email_Id"
-                            placeholder="Eg: vineet@gmail.com"
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                        />
-                        <br />
-                    </div>
-
-                    <div
-                        style={{
-                            display: 'flex',
-                            flexDirection: 'column',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                        }}
-                    >
-                        <br />
-                        <div style={{ display: 'flex', flexDirection: 'row' }}>
-                            <Link
-                                href="/userLogin"
-                                style={{ color: '#ffffff', fontWeight: 600 }}
-                            >
-                                Login Here
-                            </Link>
-                        </div>
-                    </div>
-                    <motion.div
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.8 }}
-                    >
-                        <button className={styles.fancyButton}>
-                            <span>SUBMIT</span>
-                            <Image
-                                src={require('../../public/assets/Subtract.svg')}
-                                className={styles.memberImage}
-                                height={220}
-                                width={220}
-                                alt="register"
+            <motion.form
+                initial={{ opacity: 0, x: '-20%' }}
+                whileInView={{ opacity: 1, x: '0%' }}
+                transition={{ duration: 1 }}
+            >
+                <div className={styles.container_login}>
+                    <div className={styles.form}>
+                        <h2
+                            style={{
+                                fontSize: '2rem',
+                                fontFamily: 'Anavio Small Capitals W01 Bold',
+                                margin: ' -1rem 0 2rem 0',
+                                textAlign: 'center',
+                            }}
+                        >
+                            Password Reset
+                        </h2>
+                        <div className={styles.field}>
+                            <label htmlFor="email_id">Email ID</label>
+                            <br />
+                            <input
+                                type="email"
+                                name="Email_Id"
+                                placeholder="Eg: vineet@gmail.com"
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
                             />
-                        </button>
-                    </motion.div>
-                </motion.form>
-            </div>
+                            <br />
+                        </div>
+
+                        <div
+                            style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                            }}
+                        >
+                            <br />
+                            <div
+                                style={{
+                                    display: 'flex',
+                                    flexDirection: 'row',
+                                }}
+                            >
+                                <Link
+                                    href="/userLogin"
+                                    style={{
+                                        color: '#ffffff',
+                                        fontWeight: 600,
+                                    }}
+                                >
+                                    Login Here
+                                </Link>
+                            </div>
+                        </div>
+                        <motion.div
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.8 }}
+                        >
+                            <button className={styles.fancyButton}>
+                                <span>SUBMIT</span>
+                                <Image
+                                    src={'/assets/Subtract.svg'}
+                                    className={styles.memberImage}
+                                    height={220}
+                                    width={220}
+                                    alt="register"
+                                />
+                            </button>
+                        </motion.div>
+                    </div>
+                </div>
+            </motion.form>
         </div>
     )
 }

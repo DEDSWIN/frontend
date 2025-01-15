@@ -3,12 +3,12 @@
 
 @font-face {
     font-family: 'BroadwayShadow';
-    src: url('../../styles/fonts/BroadwayShadow.ttf');
+    src: url('/font/BroadwayShadow.ttf') format('truetype');
 }
 
 @font-face {
     font-family: 'SF Ironside';
-    src: url('../../fonts/SF_Ironsides.ttf');
+    src: url('/font/SF_Ironsides.ttf') format('truetype');
 }
 
 .container {
@@ -20,16 +20,23 @@
     padding: 0px 20px;
     width: 100%;
 }
+.container_login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 80px 0px 120px 0px;
+    padding: 0px 20px;
+    width: 100%;
+}
 
 .form {
     font-family: 'EB Garamond';
     display: flex;
     flex-direction: column;
-
     align-content: center;
     max-width: 400px;
     color: #ffffff;
-    margin: auto;
     width: 100%;
     align-items: center;
 }
@@ -243,6 +250,9 @@
     .container {
         margin: 100px 0px;
     }
+    .container_login {
+        margin: 20px 0px;
+    }
     .iitp_email_ext {
         font-size: 13px;
     }
@@ -262,15 +272,17 @@
 }
 @media only screen and (max-width: 426px) {
     .mainForm {
-        margin: 10px auto; /* Center form with vertical space */
-        width: 90vw; /* Ensure the form takes up 90% of the viewport width */
-        max-width: 400px; /* Optional: Set a max width for better control */
-        padding: 10px; /* Provide consistent padding inside the form */
-        background: rgba(57, 74, 114, 0.85);
-        box-sizing: border-box; /* Include padding in the total width */
+        margin: 0px auto;
+        width: 90vw;
+        max-width: 400px;
+        padding: 10px;
+        box-sizing: border-box;
     }
     .container {
-        margin: 50px 0px;
+        margin: 100px 0px;
+    }
+    .container_login {
+        margin: 20px 0px;
     }
     .row {
         flex-wrap: wrap;

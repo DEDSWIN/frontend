@@ -1,16 +1,13 @@
 @font-face {
     font-family: 'SF Ironside';
-    src: url('../fonts/SF_Ironsides.ttf');
+    src: url('/font/SF_Ironsides.ttf') format('truetype');
 }
 
 @font-face {
     font-family: 'laila';
-    src: url('../fonts/Laila-Medium.ttf');
+    src: url('/font/Laila-Medium.ttf') format('truetype');
 }
-@font-face {
-    font-family: ;
-    src: url();
-}
+
 /* OUR SPONSORS */
 
 .parentContainer {
@@ -41,9 +38,10 @@
     font-family: 'SF Ironside';
     line-height: normal;
     text-transform: capitalize;
+    margin-top: 10px;
     margin-bottom: 50px;
     @media screen and (max-width: 750px) {
-        font-size: 10vw;
+        font-size: 12vw;
     }
 }
 
@@ -150,8 +148,9 @@
 }
 
 .dropdownContainer {
+    font-family: 'SF Ironside';
     position: absolute;
-    top: 90px;
+    top: 100px;
     right: 40px;
     z-index: 1;
     background-color: rgb(20, 20, 20);
@@ -159,6 +158,7 @@
 
 /* Dropdown button */
 .dropdownButton {
+    font-family: 'SF Ironside';
     display: flex;
     align-items: center;
     gap: 12px;
@@ -167,9 +167,8 @@
     padding: 10px 20px;
     border: none;
     border-bottom: solid 1px rgb(80, 255, 0);
-
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 18px;
     text-align: center;
     transition: background-color 0.3s ease;
 }
@@ -187,7 +186,6 @@
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     width: 100%;
     z-index: 10;
-    font-size: 0.75rem;
     padding-top: 5px;
     overflow: hidden; /* Prevents overflow for rounded edges */
 }
@@ -198,7 +196,7 @@
     padding: 10px 20px;
     text-decoration: none;
     display: block;
-    font-size: 0.75rem;
+    font-size: 16px;
     border-bottom: solid 1px rgb(80, 255, 0);
 }
 
@@ -295,7 +293,7 @@
         margin-left: 4px;
     }
     .teamImage {
-        width: 150px;
-        height: 150px;
+        width: 220px;
+        height: 220px;
     }
 }

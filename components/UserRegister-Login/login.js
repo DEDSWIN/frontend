@@ -163,7 +163,7 @@ const UserLoginForm = () => {
                 whileInView={{ opacity: 1, x: '0%' }}
                 transition={{ duration: 1 }}
             >
-                <div className={styles.container}>
+                <div className={styles.container_login}>
                     <div className={styles.form}>
                         <h1
                             style={{
@@ -224,7 +224,7 @@ const UserLoginForm = () => {
                             <button className={styles.fancyButton}>
                                 <span>LOGIN</span>
                                 <Image
-                                    src={require('../../public/assets/Subtract.svg')}
+                                    src={'/assets/Subtract.svg'}
                                     className={styles.memberImage}
                                     height={220}
                                     width={220}

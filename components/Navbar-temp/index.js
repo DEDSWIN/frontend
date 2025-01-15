@@ -48,9 +48,8 @@ function Navigation() {
         if (refNav.current && !refNav.current.contains(event.target)) {
             document.getElementById('drawer').style.opacity = 0
             setTimeout(function () {
-                ;(document.getElementById('drawer').style.display = 'none'),
-                    (document.getElementById('nav_div').style.backgroundColor =
-                        '#010031')
+                ;(document.getElementById('drawer').style.display = 'none')
+                  
             }, 300)
             setDrawerOpen(false)
             if (onClickInput) {
@@ -337,7 +336,7 @@ function Navigation() {
                     <button className={styles.fancyButton}>
                         <span>PROFILE</span>
                         <Image
-                            src={require('../../public/assets/navSubtract.svg')}
+                            src={'/assets/navSubtract.svg'}
                             height={42}
                             width={120}
                             alt="register"
@@ -346,7 +345,7 @@ function Navigation() {
                     <button className={styles.fancyButton}>
                         <span>GET PASSES</span>
                         <Image
-                            src={require('../../public/assets/Subtract.svg')}
+                            src={'/assets/Subtract.svg'}
                             height={42}
                             width={120}
                             alt="register"
