@@ -6,25 +6,35 @@ import 'react-toastify/dist/ReactToastify.css'
 const host = process.env.NEXT_PUBLIC_HOST
 
 const AuthContext = React.createContext()
-
 const { Provider } = AuthContext
 
 const PrivateRoute = ({ children }) => {
     const router = useRouter()
-    const { user } = React.useContext(AuthContext)
+    const authContext = React.useContext(AuthContext)
 
     useEffect(() => {
-        if (!user && ['/profile', '/event-registration'].includes(router.pathname)) {
+        if (
+            authContext.state.user === null &&
+            ['/profile', '/event-registration'].includes(router.pathname)
+        ) {
             router.push('/userLogin')
-        } else if (user && ['/userLogin', '/userRegister'].includes(router.pathname)) {
-            router.push('/registration')
-        } else if (!user && router.pathname.includes('/event-registrations')) {
+        }else if (
+            authContext.state.user !== null &&
+            ['/userLogin', '/userRegister'].includes(router.pathname)
+        ) {
+            router.push('/userLogin')
+        } else if (
+            authContext.state.user === null &&
+            router.pathname.includes('/event-registrations')
+        ) {
             router.push('/userLogin')
         }
-    }, [user, router.pathname])
+    })
 
     return children
 }
+
+    
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
