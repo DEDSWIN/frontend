@@ -13,6 +13,7 @@ import Image from 'next/image'
 const Modal = (props) => {
     const router = useRouter()
     const userData = useContext(AuthContext)
+    console.log(userData);
 
     function handleRagister() {
         if (userData.isAuth) {
@@ -169,7 +170,7 @@ const Modal = (props) => {
                                     className={styles.btn}
                                     id={styles.rulebtn}
                                     href={props.body.video}
-                                    // onClick={(e) => props.closeHandler()}
+                                // onClick={(e) => props.closeHandler()}
                                 >
                                     Rulebook
                                 </a>
@@ -187,7 +188,7 @@ const Modal = (props) => {
                                 <span className={styles.date_text}>Date:</span>
                                 <span className={styles.date_value}>
                                     {props.body.start_time.substring(5, 7) !==
-                                    props.body.end_time.substring(5, 7) ? (
+                                        props.body.end_time.substring(5, 7) ? (
                                         <>
                                             {' '}
                                             {new Date(
@@ -208,10 +209,10 @@ const Modal = (props) => {
                                                 8,
                                                 10
                                             ) !==
-                                            props.body.end_time.substring(
-                                                8,
-                                                10
-                                            ) ? (
+                                                props.body.end_time.substring(
+                                                    8,
+                                                    10
+                                                ) ? (
                                                 <>
                                                     {new Date(
                                                         props.body.start_time
@@ -255,19 +256,19 @@ const Modal = (props) => {
                                     {props.body.max_team_size === 1
                                         ? 'Individual Participation'
                                         : props.body.min_team_size ===
-                                          props.body.max_team_size
-                                        ? props.body.min_team_size + ' members'
-                                        : props.body.min_team_size +
-                                          ' - ' +
-                                          props.body.max_team_size +
-                                          ' members'}
+                                            props.body.max_team_size
+                                            ? props.body.min_team_size + ' members'
+                                            : props.body.min_team_size +
+                                            ' - ' +
+                                            props.body.max_team_size +
+                                            ' members'}
                                 </div>
                                 {props.body.registration_fee ? (
                                     !userData.isAuth ||
-                                    userData.state.user.user_type !==
+                                        userData.state.user.user_type !==
                                         'iitp_student' ||
-                                    props.body.id == 'EVT68cb3' ||
-                                    props.body.id == 'EVT49870' ? (
+                                        props.body.id == 'EVT68cb3' ||
+                                        props.body.id == 'EVT49870' ? (
                                         <p>
                                             Registration Fee&nbsp;
                                             {/* <img src="/assets/payment.svg" /> */}
@@ -281,7 +282,7 @@ const Modal = (props) => {
                             {props.body.registration_deadline ? (
                                 <div
                                     className={styles.team_pay}
-                                    // style={{ flexDirection: 'row' }}
+                                // style={{ flexDirection: 'row' }}
                                 >
                                     <p>
                                         {/* <img src="/assets/alert.svg" /> */}
@@ -329,9 +330,9 @@ const Modal = (props) => {
                                                             e[1]
                                                                 ? null
                                                                 : {
-                                                                      pointerEvents:
-                                                                          'none',
-                                                                  }
+                                                                    pointerEvents:
+                                                                        'none',
+                                                                }
                                                         }
                                                         target="_blank"
                                                         rel="noreferrer"

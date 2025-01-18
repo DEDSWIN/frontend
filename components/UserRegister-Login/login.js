@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import Link from 'next/link'
+import { cookies } from 'next/headers'
 import styles from './style.module.css'
 import { motion } from 'framer-motion'
 import { ToastContainer, toast } from 'react-toastify'
@@ -79,18 +80,23 @@ const UserLoginForm = () => {
             // console.log(response.status)
             if (response.status === 200 || response.status === 201) {
                 const data = await response.json()
+                console.log(data);
+                console.log(document.cookie);
+
                 if (data.success === true) {
-                    // toast.success('You are successfully logged in', {
-                    //     position: 'top-right',
-                    //     autoClose: 3000,
-                    //     hideProgressBar: false,
-                    //     closeOnClick: true,
-                    //     pauseOnHover: true,
-                    //     draggable: true,
-                    //     progress: undefined,
-                    //     theme: 'light',
-                    // })
-                    context.getUser()
+                    toast.success('You are successfully logged in', {
+                        position: 'top-right',
+                        autoClose: 3000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: 'light',
+                    })
+                    console.log(data.token);
+
+                    context.getUser();
                 } else {
                     toast.error(data.message, {
                         position: 'top-right',
@@ -162,6 +168,7 @@ const UserLoginForm = () => {
                 initial={{ opacity: 0, x: '-20%' }}
                 whileInView={{ opacity: 1, x: '0%' }}
                 transition={{ duration: 1 }}
+                onSubmit={handleSubmit}
             >
                 <div className={styles.container_login}>
                     <div className={styles.form}>
@@ -221,7 +228,7 @@ const UserLoginForm = () => {
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.8 }}
                         >
-                            <button className={styles.fancyButton}>
+                            <button className={styles.fancyButton} type='submit'>
                                 <span>LOGIN</span>
                                 <Image
                                     src={'/assets/Subtract.svg'}

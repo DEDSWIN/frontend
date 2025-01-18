@@ -23,10 +23,9 @@ const UserRegisterForm = () => {
     const [college, setCollege] = React.useState('')
     const [cnfPassword, setCnfPassword] = React.useState('')
     const [passwordShown, setPasswordShown] = React.useState(false)
-    const [usertype, setUserType] = React.useState('iitp_student')
+    const [usertype, setUserType] = React.useState('')
     const [college_name, setCollegeName] = React.useState('')
     const [newsletter, setNewsletter] = React.useState(true)
-    const [terms, setTerms] = React.useState(false)
     const [loading, setLoading] = React.useState(false)
     const handleChange = (e) => {
         setUserType(e.target.value)
@@ -90,21 +89,6 @@ const UserRegisterForm = () => {
                 progress: undefined,
                 theme: 'light',
             })
-            return
-        } else if (!terms) {
-            toast.warning(
-                'Please accept the terms and conditions to continue',
-                {
-                    position: 'top-right',
-                    autoClose: 3000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: 'light',
-                }
-            )
             return
         }
         let isproff = ''
@@ -214,6 +198,7 @@ const UserRegisterForm = () => {
                 initial={{ opacity: 0, x: '-20%' }}
                 whileInView={{ opacity: 1, x: '0%' }}
                 transition={{ duration: 1 }}
+                onSubmit={handleSubmit}
             >
                 <div className={styles.container}>
                     <div className={styles.form}>
@@ -253,9 +238,7 @@ const UserRegisterForm = () => {
                                 <br />
                             </div>
                             <div className={styles.field}>
-                                <label htmlFor="Phone_number">
-                                    Phone Number
-                                </label>
+                                <label htmlFor="Phone_number">Phone Number</label>
                                 <br />
                                 <input
                                     type="text"
@@ -269,17 +252,96 @@ const UserRegisterForm = () => {
                             </div>
                         </div>
                         <br />
-                        <div className={styles.field}>
-                            <label htmlFor="College">College</label>
-                            <br />
-                            <input
-                                name="College"
-                                placeholder="Enter your College name"
-                                onChange={(e) => setCollege(e.target.value)}
-                                required
-                            />
-                            <br />
-                        </div>
+
+                        {(() => {
+                            switch (usertype) {
+                                case 'iitp_student':
+                                    return (
+                                        <div className={styles.field}>
+                                            <label htmlFor="email_id">
+                                                IITP Mail ID
+                                            </label>
+                                            <br />
+                                            <input
+                                                type="email"
+                                                name="IITP_Mail_Id"
+                                                onChange={(e) =>
+                                                    setEmail(
+                                                        e.target.value.toLowerCase() +
+                                                        '@iitp.ac.in'
+                                                    )
+                                                }
+                                                required
+                                                placeholder="Eg: rishiraj_2001ME85"
+                                                className={styles.iitp_email}
+                                            />
+                                            <span className={styles.iitp_email_ext}>
+                                                @iitp.ac.in
+                                            </span>
+                                            <br />
+                                        </div>
+                                    );
+                                default:
+                                    return null;
+                            }
+                        })()}
+
+                        {(
+                            <div className={styles.field}>
+                                <label>Select user type:</label>
+                                <br />
+                                <select
+                                    name="userType"
+                                    id="userType"
+                                    value={usertype}
+                                    onChange={(e) => handleChange(e)}
+                                >
+                                    <option value="student">Student( including online IITP student)</option>
+                                    <option value="non-student">Non Student</option>
+                                    <option value="alumni">Alumni</option>
+                                    <option value="faculty">Faculty</option>
+                                    <option value="iitp_student">IITP Student</option>
+                                </select>
+                            </div>
+                        )}
+
+                        {usertype !== 'iitp_student' ? (
+                            <div className={styles.field}>
+                                <label htmlFor="email_id">Email ID</label>
+                                <br />
+                                <input
+                                    type="email"
+                                    name="Email_Id"
+                                    placeholder="Eg: vineet@gmail.com"
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    required
+                                />
+                                <br />
+                            </div>
+                        ) : null}
+
+                        {usertype !== 'iitp_student' ? (
+                            <div className={styles.field}>
+                                <label htmlFor="college_name">
+                                    Institute/Organization Name:{' '}
+                                </label>
+                                <br />
+                                <input
+                                    type="text"
+                                    name="college_name"
+                                    placeholder="Eg: NIT Patna"
+                                    value={
+                                        usertype === 'iitp_student'
+                                            ? 'IIT Patna'
+                                            : college_name
+                                    }
+                                    disabled={usertype === 'iitp_student'}
+                                    onChange={(e) => setCollegeName(e.target.value)}
+                                    required
+                                />
+                            </div>
+                        ) : null}
+
                         <div className={styles.row}>
                             <div className={styles.field}>
                                 <label htmlFor="password">Password</label>
@@ -296,9 +358,7 @@ const UserRegisterForm = () => {
                                 <br />
                             </div>
                             <div className={styles.field}>
-                                <label htmlFor="password">
-                                    Confirm Password
-                                </label>
+                                <label htmlFor="password">Confirm Password</label>
                                 <br />
                                 <input
                                     type={passwordShown ? 'text' : 'password'}
@@ -317,7 +377,7 @@ const UserRegisterForm = () => {
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.8 }}
                         >
-                            <button className={styles.fancyButton}>
+                            <button className={styles.fancyButton} type="submit">
                                 <span>REGISTER</span>
                                 <Image
                                     src={'/assets/Subtract.svg'}
@@ -345,5 +405,6 @@ const UserRegisterForm = () => {
         </div>
     )
 }
+
 
 export default UserRegisterForm

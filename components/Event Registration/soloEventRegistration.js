@@ -53,16 +53,19 @@ async function soloEventRegistration(
         redirect: 'follow',
         credentials: 'include',
     }
+    console.log(raw);
 
     const data = await fetch(`${host}/atompay/`, requestOptions)
         .then((response) => response.json())
         .catch((error) => {
             console.error(error)
         })
+    console.log("ldkfjdlf')");
+    console.log(data);
 
     const res = await loadScript(
         'https://psa.atomtech.in/staticdata/ots/js/atomcheckout.js?v=' +
-            data.atomTokenId
+        data.atomTokenId
     )
     openPay(data)
 }
