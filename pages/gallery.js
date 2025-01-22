@@ -49,43 +49,15 @@ export default function GalleryPage({ folderLinks }) {
                         fadeOut ? styles.fadeOut : ''
                     }`}
                 >
-                    <div
-                        style={{
-                            fontSize: '130px',
-                            color: 'white',
-                            textAlign: 'left',
-                            marginRight: '350px',
-                            marginBottom: '0',
-                            marginTop: '30vh',
-                            fontFamily: 'Anavio Small Capitals W01 Rg',
-                        }}
-                    >
+                    <div className={styles.glimpse}>
                         GLIMPSE
                     </div>
-                    <div
-                        style={{
-                            fontSize: '150px',
-                            color: 'white',
-                            marginTop: '0',
-                            fontFamily: 'Anavio Small Capitals W01 Rg',
-                            display: 'flex',
-                        }}
-                    >
-                        <span
-                            style={{
-                                fontSize: '250px',
-                                transform: 'translateY(-32%)',
-                            }}
-                        >
+                    <div className={styles.anwesha}>
+                        <span className={styles.anweshaA}>
                             A
                         </span>
                         NWESHA
-                        <span
-                         style={{
-                            fontSize: '230px',
-                            transform: 'translateY(-27%)',
-                        }}
-                        >
+                        <span className={styles.anwesha24}>
                           '24
                         </span>
                     </div>
@@ -197,3 +169,4 @@ export async function getServerSideProps() {
 
     return { props: { folderLinks } }
 }
+/* vi: set et sw=4: */

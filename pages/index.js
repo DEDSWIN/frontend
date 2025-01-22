@@ -810,7 +810,7 @@ const index = () => {
             </section >
 
             {/* The Aftermovie */}
-            <section section className={styles.aftermovie} >
+            <section className={styles.aftermovie} >
                 <div className={styles.sexy_title}>
                     <h2>Anwesha 2024: The Aftermovie</h2>
                     <h3>Last Year's Magic in 3 Minutes</h3>
@@ -825,7 +825,7 @@ const index = () => {
             </section >
 
             {/* CTA or This Year's Theme */}
-            <section section className={styles.cta} >
+            <section className={styles.cta} >
                 <div className={styles.sexy_title}>
                     <h2>This Year's Theme</h2>
                     <h3>Echoes Of the Abyss</h3>
@@ -873,7 +873,7 @@ const index = () => {
 
             {/* Sponsors */}
 
-            <section section className={styles.sponsors} >
+            <section className={styles.sponsors} >
                 <div className={styles.sponsors_title}>
                     <h2>Our Proud Sponsors</h2>
                     <h3>Strengthening the Vision Together</h3>
@@ -884,18 +884,18 @@ const index = () => {
             </section >
 
             {/* NewsLetter */}
-            <section section className={styles.newsletter} >
+            <section className={styles.newsletter} >
                 <p style={{ color: 'white' }}>Subscribe to our newsletter</p>
                 <iframe
                     src="https://embeds.beehiiv.com/255bda27-7d9d-4f91-9f9c-edca5ce5d90a?slim=true"
                     data-test-id="beehiiv-embed"
                     height="52"
-                    frameborder="0"
+                    frameBorder="0"
                     scrolling="no"
                 // style="margin: 0; border-radius: 0px !important; background-color: transparent;"
 
                 />
-            </section >
+            </section>
 
         </div >
     </>
