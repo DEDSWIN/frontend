@@ -26,7 +26,7 @@
     "framer-motion": "^7.10.2",
     "googleapis": "^109.0.1",
     "lucide-react": "^0.263.1",
-    "next": "^13.0.2",
+    "next": "^13.5.8",
     "prettier": "^2.8.1",
     "react": "^18.3.1",
     "react-awesome-slider": "^4.1.0",
