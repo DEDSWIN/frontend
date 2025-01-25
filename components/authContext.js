@@ -17,13 +17,21 @@ const PrivateRoute = ({ children }) => {
         // Redirect to login if the user is unauthenticated and trying to access protected routes
         if (
             !authContext.isAuth &&
-            ['/profile', '/event-registration', '/event-registrations'].includes(router.pathname)
+            [
+                '/event-registration',
+                '/event-registrations',
+                '/profile',
+            ].includes(router.pathname) // temporarily removed '/profile'
         ) {
             router.push('/userLogin')
         }
         // Redirect logged-in users away from the login page
-        if (authContext.isAuth && (router.pathname === '/userLogin' || router.pathname === '/userRegister')) {
-            router.push('/profile');
+        if (
+            authContext.isAuth &&
+            (router.pathname === '/userLogin' ||
+                router.pathname === '/userRegister')
+        ) {
+            router.push('/profile')
         }
     }, [authContext.isAuth, router.pathname]) // Dependency array ensures this effect runs on changes to auth status or path
 
@@ -46,14 +54,22 @@ const AuthProvider = ({ children }) => {
 
             // Check for specific unauthenticated messages
             if (
-                result.message === 'You are unauthenticated. Please log in first.' ||
-                result.message === 'Your token is expired. Please generate a new one.' ||
+                result.message ===
+                    'You are unauthenticated. Please log in first.' ||
+                result.message ===
+                    'Your token is expired. Please generate a new one.' ||
                 result.message === 'Your token is expired. Please log in again.'
             ) {
                 setUser(null) // Mark the user as unauthenticated
 
                 // Show error message if accessing restricted routes
-                if (['/profile', '/event-registration', '/event-registrations'].includes(router.pathname)) {
+                if (
+                    [
+                        '/profile',
+                        '/event-registration',
+                        '/event-registrations',
+                    ].includes(router.pathname)
+                ) {
                     toast.error(result.message, {
                         position: 'top-right',
                         autoClose: 3000,
