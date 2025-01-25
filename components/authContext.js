@@ -20,7 +20,7 @@ const PrivateRoute = ({ children }) => {
             [
                 '/event-registration',
                 '/event-registrations',
-                // '/profile',
+                '/profile',
             ].includes(router.pathname) // temporarily removed '/profile'
         ) {
             router.push('/userLogin')
