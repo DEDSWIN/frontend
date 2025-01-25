@@ -81,10 +81,9 @@
 } */
 
 .form {
-    background: rgba(0, 0, 0, 0.4); /* Reduced opacity for more transparency */
+    background: rgba(0, 0, 0, 0.6); /* Reduced opacity for more transparency */
     border-radius: 15px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
-
     font-family: 'EB Garamond';
     display: flex;
     flex-direction: column;

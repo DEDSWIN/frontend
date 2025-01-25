@@ -18,7 +18,7 @@ const UserLoginForm = () => {
     const [email, setEmail] = React.useState('')
     const [password, setPassword] = React.useState('')
     const [passwordShown, setPasswordShown] = React.useState(false)
-    const [loaded, setloaded] = React.useState(false);
+    const [loaded, setloaded] = React.useState(false)
 
     useEffect(() => {
         const frame = document.createElement('iframe')
@@ -54,7 +54,7 @@ const UserLoginForm = () => {
     }, [])
 
     const handleSubmit = async (event) => {
-        setloaded(true);
+        setloaded(true)
         event.preventDefault()
         let body = { username: email, password: password }
         // user input validation
@@ -83,7 +83,7 @@ const UserLoginForm = () => {
 
             //check if request is successful
             // console.log(response.status)
-            setloaded(false);
+            setloaded(false)
             if (response.status === 200 || response.status === 201) {
                 const data = await response.json()
                 if (data.success === true) {
@@ -122,8 +122,7 @@ const UserLoginForm = () => {
                     progress: undefined,
                     theme: 'light',
                 })
-            }
-            else if (response.status === 403) {
+            } else if (response.status === 403) {
                 const data = await response.json()
                 toast.error(`${data.message} (check in Spam folder)`, {
                     position: 'top-right',
@@ -135,8 +134,7 @@ const UserLoginForm = () => {
                     progress: undefined,
                     theme: 'light',
                 })
-            }
-            else {
+            } else {
                 const data = await response.json()
                 toast.error(data.message, {
                     position: 'top-right',
@@ -213,6 +211,7 @@ const UserLoginForm = () => {
                             <label htmlFor="password">Password</label>
                             <br />
                             <input
+                                type="password"
                                 id="pwd"
                                 name="Password"
                                 placeholder="Enter your password"

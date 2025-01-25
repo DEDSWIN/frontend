@@ -22,9 +22,8 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     overflow: hidden;
-    height: fit-content;
+    height: 100vh;
 }
 
 .subContainer::before {
@@ -50,11 +49,7 @@
 .mainContainer {
     margin-top: 65px;
     font-family: 'SF Ironside', sans-serif;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    overflow: hidden;
-    height: fit-content;
+    background-size: cover;
 }
 
 .welcome {

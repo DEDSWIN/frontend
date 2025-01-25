@@ -245,7 +245,6 @@ const UserRegisterForm = () => {
                             <label>Select user type:</label>
                             <br />
                             <select
-                               
                                 name="userType"
                                 id="userType"
                                 value={usertype}
@@ -263,8 +262,8 @@ const UserRegisterForm = () => {
                                 }}
                                 required
                                 style={{
-                                    color: 'white', 
-                                    padding: '8px', // Add padding for better readability
+                                    color: 'white',
+                                    padding: '0px 20px', // Add padding for better readability
                                 }}
                             >
                                 <option value="iitp_student">
@@ -356,7 +355,6 @@ const UserRegisterForm = () => {
                                 />
                                 <br />
                             </div> */}
-
                             <div className={styles.field}>
                                 <label htmlFor="Phone_number">
                                     Phone Number
@@ -372,16 +370,26 @@ const UserRegisterForm = () => {
                                 />
                                 <br />
                             </div>
-
                             <div className={styles.field}>
                                 <label htmlFor="College">College</label>
                                 <br />
-                                <input
-                                    name="College"
-                                    placeholder="Enter your College name"
-                                    onChange={(e) => setCollege(e.target.value)}
-                                    required
-                                />
+                                {college_name === 'IIT Patna' ? (
+                                    <input
+                                        name="College"
+                                        value="IIT Patna"
+                                        readOnly
+                                    />
+                                ) : (
+                                    <input
+                                        name="College"
+                                        placeholder="Enter your College name"
+                                        value={college_name}
+                                        onChange={(e) =>
+                                            setCollegeName(e.target.value)
+                                        }
+                                        required
+                                    />
+                                )}
                                 <br />
                             </div>
                         </div>

@@ -104,7 +104,7 @@ function profile() {
                                     }}
                                 >
                                     <h1 className={styles.anwesha_username}>
-                                        {profDetails.anwesha_id}
+                                        {profDetails.full_name}
                                     </h1>
                                     <button className={styles.copy}>
                                         <motion.div
@@ -166,13 +166,7 @@ function profile() {
                             </div>
                         </div>
                         <div className={styles.qrcode}>
-                            {/* <img src={qrcode} alt="" /> */}
-                            <Image
-                                src={qrcode}
-                                alt=""
-                                width={150}
-                                height={150}
-                            />
+                            <img src={qrcode} alt="" />
                             <Link
                                 href="/anweshapass"
                                 style={{ color: 'black', fontWeight: 'bold' }}
@@ -191,7 +185,7 @@ function profile() {
                                     Mail ID
                                 </h1>
                                 <h1 className={styles.userDetailsContent}>
-                                    mail@anwesha.com
+                                    {profDetails.email_id}
                                 </h1>
                             </div>
                             <div>
@@ -199,25 +193,25 @@ function profile() {
                                     Mobile Number
                                 </h1>
                                 <h1 className={styles.userDetailsContent}>
-                                    1234567890
+                                    {profDetails.phone_number}
                                 </h1>
                             </div>
                         </div>
                         <div>
-                            <div>
+                            {/* <div>
                                 <h1 className={styles.userDetailsHeading}>
                                     Gender
                                 </h1>
                                 <h1 className={styles.userDetailsContent}>
                                     Male
                                 </h1>
-                            </div>
+                            </div> */}
                             <div>
                                 <h1 className={styles.userDetailsHeading}>
                                     Institute/Organization
                                 </h1>
                                 <h1 className={styles.userDetailsContent}>
-                                    IIT Patna
+                                    {profDetails.college_name}
                                 </h1>
                             </div>
                         </div>
