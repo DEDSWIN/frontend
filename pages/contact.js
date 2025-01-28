@@ -70,75 +70,75 @@ const Contact = () => {
                                 </div>
                             </div>
 
-                            <form
+                            {/*<div
                                 ref={form}
                                 onSubmit={sendEmail}
                                 className={styles.forms}
                             >
-                                <div className={styles.namebox}>
-                                    <label className={styles.texts}>Name</label>
-                                    <div className={styles.nameinput}>
+                                {<div className={styles.namebox}>
+                                <label className={styles.texts}>Name</label>
+                                <div className={styles.nameinput}>
+                                    <input
+                                        className={styles.inputs}
+                                        type="text"
+                                        name="user_name"
+                                        placeholder="Enter your name"
+                                    />
+                                </div>
+                            </div>
+                            <div className={styles.emailandnumberbox}>
+                                <div className={styles.emailbox}>
+                                    <label className={styles.texts}>
+                                        Email ID
+                                    </label>
+                                    <div className={styles.emailinput}>
+                                    <input
+                                        className={styles.inputs}
+                                        type="email"
+                                        placeholder="Enter your email address"
+                                        name="user_email"
+                                    />
+                                    </div>
+                                </div>
+                                <div className={styles.numberbox}>
+                                    <label className={styles.texts}>
+                                        Phone Number
+                                    </label>
+                                    <div className={styles.numberinput}>
                                         <input
                                             className={styles.inputs}
                                             type="text"
-                                            name="user_name"
-                                            placeholder="Enter your name"
+                                            placeholder="Enter your phone number"
+                                            name="user_number"
                                         />
                                     </div>
                                 </div>
-                                <div className={styles.emailandnumberbox}>
-                                    <div className={styles.emailbox}>
-                                        <label className={styles.texts}>
-                                            Email ID
-                                        </label>
-                                        <div className={styles.emailinput}>
-                                            <input
-                                                className={styles.inputs}
-                                                type="email"
-                                                placeholder="Enter your email address"
-                                                name="user_email"
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className={styles.numberbox}>
-                                        <label className={styles.texts}>
-                                            Phone Number
-                                        </label>
-                                        <div className={styles.numberinput}>
-                                            <input
-                                                className={styles.inputs}
-                                                type="text"
-                                                placeholder="Enter your phone number"
-                                                name="user_number"
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className={styles.messagebox}>
-                                    <label className={styles.texts}>Message</label>
-                                    <div className={styles.messageinput}>
-                                        <textarea
-                                            className={styles.inputs}
-                                            name="message"
-                                            placeholder='Type your message here'
-                                        />
-                                    </div>
-                                </div>
-                                <div className={styles.buttonbox}>
-                                    <input
-                                        className={styles.button}
-                                        type="submit"
-                                        onClick={(e) => Notify}
-                                        value="SUBMIT"
+                            </div>
+                            <div className={styles.messagebox}>
+                                <label className={styles.texts}>Message</label>
+                                <div className={styles.messageinput}>
+                                    <textarea
+                                        className={styles.inputs}
+                                        name="message"
+                                        placeholder='Type your message here'
                                     />
                                 </div>
-                            </form>
+                            </div> */}
+                            <div className={styles.buttonbox}>
+                                <input
+                                    className={styles.button}
+                                    type="button"
+                                    onClick={() => window.open("https://forms.gle/MVtBKRRqqWEtkFag7", "_blank")}
+                                    value="Google Form"
+                                />
+                            </div>
                         </div>
                         <ToastContainer />
                     </div>
                 </div>
             </div>
         </div>
+
     )
 }
 export default Contact

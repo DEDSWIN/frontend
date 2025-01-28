@@ -463,6 +463,12 @@ export default function ourteam() {
                 instagram: 'https://www.instagram.com/username',
                 linkedin: 'https://www.linkedin.com/in/venkata-sai-ritvik-kadiri-178a5022a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
                 email: 'kadiri_2101mc24@iitp.ac.in'
+            },
+            {
+                name: 'Suryansh Bansal', image: '/team/suryansh.jpg',
+                instagram: 'https://www.instagram.com/username',
+                linkedin: 'https://www.linkedin.com/in/suryansh-bansal-09507b241?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app',
+                email: 'suryansh_2101cb58@iitp.ac.in'
             }
         ],
         PnDAdvisory: [
