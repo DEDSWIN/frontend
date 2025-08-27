@@ -1,108 +1,223 @@
-import React, { useState } from "react";
-import { useAuthUser } from "../../context/AuthUserContext.jsx";
-import { Eye, EyeOff, Mail, Lock } from "lucide-react";
-import { useNavigate } from "react-router-dom"; 
-import toast from "react-hot-toast";
+import React, { useState } from 'react'
+import { useAuthUser } from '../context/AuthUserContext'
+import { Eye, EyeOff, Mail, Lock } from 'lucide-react'
 
-export default function Step1EmailPassword({ formData, setFormData, next }) {
-  const [email, setEmail] = useState(formData.email || "");
-  const [password, setPassword] = useState(formData.password || "");
-  const [isDisabled, setDisabled] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
+import toast from 'react-hot-toast'
 
-  const navigate = useNavigate();
-  const { registerUser } = useAuthUser();
+export default function Step1EmailPassword({
+    formData = {},
+    setFormData,
+    next,
+}) {
+    const [email, setEmail] = useState(formData?.email || '')
+    const [password, setPassword] = useState(formData?.password || '')
+    const [isDisabled, setDisabled] = useState(false)
+    const [showPassword, setShowPassword] = useState(false)
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setDisabled(true);
+    const { registerUser } = useAuthUser()
 
-    try {
-      const userDoc = await registerUser(email, password);
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        setDisabled(true)
 
-      if (userDoc) {
-        localStorage.setItem("uid", userDoc.uid);
-        setFormData({ ...formData, email, password });
-        next();
-      }
-    } catch (error) {
-      toast.error(error.message || "Something went wrong. Please try again.");
-    } finally {
-      setDisabled(false); // re-enable form after error
+        try {
+            const userDoc = await registerUser(email, password)
+
+            if (userDoc) {
+                if (typeof window !== 'undefined') {
+                    localStorage.setItem('uid', userDoc.uid)
+                }
+                setFormData({ ...(formData || {}), email, password })
+                next()
+            }
+        } catch (error) {
+            toast.error(
+                error.message || 'Something went wrong. Please try again.'
+            )
+        } finally {
+            setDisabled(false) // re-enable form after error
+        }
     }
-  };
 
-  return (
-    <div className="flex items-center justify-center mb-14  sm:px-6">
-      <div className="rounded-3xl shadow-2xl border p-10 w-full max-w-md bg-white/80 text-center animate-fade-in">
-        <h3 className="text-4xl font-extrabold mb-8 bg-gradient-to-l from-[#095DB7] to-[#41D7B7] bg-clip-text text-transparent">
-          Dive into Multicity
-        </h3>
-
-        <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-
-          {/* Email Input */}
-          <div className="relative">
-            <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-600" size={20} />
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Email Address"
-              className="w-full pl-12 pr-4 py-3 rounded-xl text-black bg-white/60 outline-none border-2 border-transparent 
-                         focus:border-blue-400 focus:ring-2 focus:ring-blue-200 placeholder-gray-500"
-              required
-            />
-          </div>
-
-          {/* Password Input */}
-          <div className="relative">
-            <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-600" size={20} />
-            <input
-              type={showPassword ? "text" : "password"}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Password"
-              className="w-full pl-12 pr-12 py-3 rounded-xl text-black bg-white/60 outline-none border-2 border-transparent 
-                         focus:border-green-400 focus:ring-2 focus:ring-green-200 placeholder-gray-500"
-              disabled={isDisabled}
-              required
-            />
-            <button
-              type="button"
-              onClick={() => setShowPassword((prev) => !prev)}
-              className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-700 hover:text-black transition"
+    return (
+        <div
+            style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginBottom: '3.5rem',
+                paddingLeft: '1.5rem',
+                paddingRight: '1.5rem',
+            }}
+        >
+            <div
+                style={{
+                    borderRadius: '1.5rem',
+                    boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+                    border: '1px solid rgba(255, 255, 255, 0.3)',
+                    padding: '2.5rem',
+                    width: '100%',
+                    maxWidth: '28rem',
+                    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                    textAlign: 'center',
+                    animation: 'fadeIn 0.5s ease-in-out',
+                }}
             >
-              {showPassword ? <Eye size={20} /> : <EyeOff size={20} />}
-            </button>
-          </div>
+                <h3
+                    style={{
+                        fontSize: '2.25rem',
+                        fontWeight: '800',
+                        marginBottom: '2rem',
+                        background:
+                            'linear-gradient(to left, #095DB7, #41D7B7)',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        backgroundClip: 'text',
+                    }}
+                >
+                    Dive into Multicity
+                </h3>
 
-          <p className="text-xs text-left text-gray-800">
-            Password must be <span className="font-semibold">8+ characters</span>, include <span className="font-semibold">a letter</span> and <span className="font-semibold">a number</span>.
-          </p>
+                <form
+                    onSubmit={handleSubmit}
+                    style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '1.5rem',
+                    }}
+                >
+                    {/* Email Input */}
+                    <div style={{ position: 'relative' }}>
+                        <Mail
+                            style={{
+                                position: 'absolute',
+                                left: '1rem',
+                                top: '50%',
+                                transform: 'translateY(-50%)',
+                                color: '#6b7280',
+                            }}
+                            size={20}
+                        />
+                        <input
+                            type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            placeholder="Email Address"
+                            style={{
+                                width: '100%',
+                                paddingLeft: '3rem',
+                                paddingRight: '1rem',
+                                paddingTop: '0.75rem',
+                                paddingBottom: '0.75rem',
+                                borderRadius: '0.75rem',
+                                color: 'black',
+                                backgroundColor: 'rgba(255, 255, 255, 0.6)',
+                                outline: 'none',
+                                border: '2px solid transparent',
+                                transition: 'all 0.3s ease',
+                            }}
+                            onFocus={(e) => {
+                                e.target.style.borderColor = '#60a5fa'
+                                e.target.style.boxShadow =
+                                    '0 0 0 3px rgba(96, 165, 250, 0.2)'
+                            }}
+                            onBlur={(e) => {
+                                e.target.style.borderColor = 'transparent'
+                                e.target.style.boxShadow = 'none'
+                            }}
+                            required
+                        />
+                    </div>
 
-          {/* Submit Button */}
-          <button
-            type="submit"
-            className="bg-gradient-to-r from-[#41D7B7] to-[#095DB7] hover:from-[#095DB7] hover:to-[#41D7B7] 
-                       text-white font-bold py-3 rounded-xl w-full shadow-lg transition-all duration-300 
-                       transform hover:scale-105 hover:shadow-blue-400/50 disabled:opacity-50 disabled:cursor-not-allowed"
-            disabled={isDisabled}
-          >
-            {isDisabled ? "Processing..." : "Next →"}
-          </button>
-        </form>
+                    {/* Password Input */}
+                    <div style={{ position: 'relative' }}>
+                        <Lock
+                            style={{
+                                position: 'absolute',
+                                left: '1rem',
+                                top: '50%',
+                                transform: 'translateY(-50%)',
+                                color: '#6b7280',
+                            }}
+                            size={20}
+                        />
+                        <input
+                            type={showPassword ? 'text' : 'password'}
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            placeholder="Password"
+                            style={{
+                                width: '100%',
+                                paddingLeft: '3rem',
+                                paddingRight: '1rem',
+                                paddingTop: '0.75rem',
+                                paddingBottom: '0.75rem',
+                                borderRadius: '0.75rem',
+                                color: 'black',
+                                backgroundColor: 'rgba(255, 255, 255, 0.6)',
+                                outline: 'none',
+                                border: '2px solid transparent',
+                                transition: 'all 0.3s ease',
+                            }}
+                            disabled={isDisabled}
+                            required
+                        />
+                        <button
+                            type="button"
+                            onClick={() => setShowPassword((prev) => !prev)}
+                            style={{
+                                position: 'absolute',
+                                right: '1rem',
+                                top: '50%',
+                                transform: 'translateY(-50%)',
+                                color: '#6b7280',
+                                transition: 'all 0.3s ease',
+                            }}
+                        >
+                            {showPassword ? (
+                                <Eye size={20} />
+                            ) : (
+                                <EyeOff size={20} />
+                            )}
+                        </button>
+                    </div>
 
-        <p className="mt-6 text-sm text-gray-600">
-          Already have an account?{" "}
-          <span
-            onClick={() => navigate("/login")}
-            className="text-[#095DB7] font-semibold cursor-pointer hover:underline"
-          >
-            Login
-          </span>
-        </p>
-      </div>
-    </div>
-  );
+                    <p
+                        style={{
+                            fontSize: '0.75rem',
+                            textAlign: 'left',
+                            color: '#4b5563',
+                            marginTop: '0.5rem',
+                        }}
+                    >
+                        Password must be{' '}
+                        <span style={{ fontWeight: '600' }}>8+ characters</span>
+                        , include{' '}
+                        <span style={{ fontWeight: '600' }}>a letter</span> and{' '}
+                        <span style={{ fontWeight: '600' }}>a number</span>.
+                    </p>
+
+                    {/* Submit Button */}
+                    <button
+                        type="submit"
+                        style={{
+                            background:
+                                'linear-gradient(to right, #41D7B7, #095DB7)',
+                            color: 'white',
+                            fontWeight: 'bold',
+                            padding: '0.75rem 1.5rem',
+                            borderRadius: '0.75rem',
+                            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+                            transition: 'all 0.3s ease',
+                            cursor: 'pointer',
+                            fontSize: '1rem',
+                        }}
+                        disabled={isDisabled}
+                    >
+                        {isDisabled ? 'Processing...' : 'Next →'}
+                    </button>
+                </form>
+            </div>
+        </div>
+    )
 }

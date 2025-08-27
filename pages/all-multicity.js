@@ -6,7 +6,6 @@ import Link from 'next/link'
 import Head from 'next/head'
 import { useEffect } from 'react'
 import MulticityItem from '../components/MulticityItem'
-import RegisterPage from './multicity/multicityRegistration/RegisterPage'
 
 const Multicity = () => {
     // useEffect(() => {
@@ -30,8 +29,7 @@ const Multicity = () => {
                 { name: 'Raaj Harsh', phone: '7050277123' },
             ],
             completed: false,
-            register_link:
-                "",
+            register_link: '/newRegistrationPageRoute',
             rulebook_link: 'https://bit.ly/AnweshaMulticity',
         },
         // {
@@ -53,7 +51,7 @@ const Multicity = () => {
         //     rulebook_link: 'https://bit.ly/AnweshaMulticity',
         // },
     ]
-
+    // console.log('API KEY:', process.env.NEXT_PUBLIC_FIREBASE_API_KEY)
     return (
         <div className={styles.container}>
             <Head>
