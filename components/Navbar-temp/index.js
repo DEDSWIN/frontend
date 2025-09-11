@@ -191,6 +191,21 @@ function Navigation() {
                                 Events
                             </Link>
                         </li>
+                        <li>
+                            <Link
+                                className={styles.linknav}
+                                style={
+                                    router.pathname === '/events'
+                                        ? {
+                                            color: 'rgb(80, 255, 0)',
+                                        }
+                                        : null
+                                }
+                                href="/all-multicity"
+                            >
+                                Multicity
+                            </Link>
+                        </li>
                         {/* <li>
                             <Link
                                 className={styles.linknav}

@@ -17,7 +17,7 @@ const Multicity = () => {
     const events_temp = [
         {
             key: 1,
-            city: 'Kolkata',
+            city: 'BHU',
             date: '08/10/23',
             venue: 'ISI Kolkata',
             poster: '/multicity/MulticityPosterKolkata.webp',
@@ -29,30 +29,29 @@ const Multicity = () => {
                 { name: 'Raaj Harsh', phone: '7050277123' },
             ],
             completed: false,
-            register_link:
-                'https://docs.google.com/forms/d/e/1FAIpQLScD75l8wtrTlitkQz6OVeYRlOQVIEc80Hzk2wXRAKxyFD-iPQ/viewform',
+            register_link: '/newRegistrationPageRoute',
             rulebook_link: 'https://bit.ly/AnweshaMulticity',
         },
-        {
-            key: 2,
-            city: 'Lucknow',
-            date: '10/09/23',
-            venue: 'BBD NIIT',
-            poster: '/multicity/MulticityPosterLucknow.webp',
-            registration_deadline: '08/09/23',
-            registration_fee: 'Free',
-            timings: '09:00 AM - 06:00 PM',
-            contact: [
-                { name: 'Yash Raj Singh', phone: '8789866763' },
-                { name: 'Divyam Walia', phone: '9105889422' },
-            ],
-            completed: true,
-            register_link:
-                'https://docs.google.com/forms/d/e/1FAIpQLSfdKPCSrc0gj4R8jcq6-C0E9zc-lMp1phBzJxwlOQeZuZhi9A/viewform?usp=sf_link',
-            rulebook_link: 'https://bit.ly/AnweshaMulticity',
-        },
+        // {
+        //     key: 2,
+        //     city: 'Lucknow',
+        //     date: '10/09/23',
+        //     venue: 'BBD NIIT',
+        //     poster: '/multicity/MulticityPosterLucknow.webp',
+        //     registration_deadline: '08/09/23',
+        //     registration_fee: 'Free',
+        //     timings: '09:00 AM - 06:00 PM',
+        //     contact: [
+        //         { name: 'Yash Raj Singh', phone: '8789866763' },
+        //         { name: 'Divyam Walia', phone: '9105889422' },
+        //     ],
+        //     completed: true,
+        //     register_link:
+        //         'https://docs.google.com/forms/d/e/1FAIpQLSfdKPCSrc0gj4R8jcq6-C0E9zc-lMp1phBzJxwlOQeZuZhi9A/viewform?usp=sf_link',
+        //     rulebook_link: 'https://bit.ly/AnweshaMulticity',
+        // },
     ]
-
+    // console.log('API KEY:', process.env.NEXT_PUBLIC_FIREBASE_API_KEY)
     return (
         <div className={styles.container}>
             <Head>
