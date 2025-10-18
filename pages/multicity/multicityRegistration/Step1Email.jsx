@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useAuthUser } from '../context/AuthUserContext'
+import { useAuthUser } from '../../../lib/multicity/context/AuthUserContext'
 import { Eye, EyeOff, Mail, Lock } from 'lucide-react'
 
 import toast from 'react-hot-toast'

@@ -1,6 +1,6 @@
 // src/pages/register/Step5Success.jsx
 import React from 'react'
-import { useAuthUser } from '../context/AuthUserContext'
+import { useAuthUser } from '../../../lib/multicity/context/AuthUserContext'
 
 import { CheckCircle2 } from 'lucide-react'
 

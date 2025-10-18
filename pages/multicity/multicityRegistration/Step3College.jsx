@@ -1,8 +1,8 @@
 // src/pages/register/Step3CollegeDetails.jsx
 import React, { useState } from 'react'
-import { db } from '../firebase/firebaseConfig'
+import { db } from '../../../lib/multicity/firebase/firebaseConfig'
 import { doc, updateDoc } from 'firebase/firestore'
-import { useAuthUser } from '../context/AuthUserContext'
+import { useAuthUser } from '../../../lib/multicity/context/AuthUserContext'
 import toast from 'react-hot-toast'
 import { GraduationCap, Calendar, MapPin } from 'lucide-react'
 
