@@ -5,7 +5,7 @@ import Step2Personal from './Step2Personal'
 import Step3College from './Step3College'
 import Step4Preview from './Step4Preview'
 import Step5Success from './Step5Success'
-import { useAuthUser } from '../context/AuthUserContext'
+import { useAuthUser } from '../../../lib/multicity/context/AuthUserContext'
 
 const steps = ['Email', 'Personal', 'College', 'Preview', 'Success']
 

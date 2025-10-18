@@ -1,6 +1,6 @@
 // src/pages/register/Step2Personal.jsx
 import React, { useState } from 'react'
-import { useAuthUser } from '../context/AuthUserContext'
+import { useAuthUser } from '../../../lib/multicity/context/AuthUserContext'
 import toast from 'react-hot-toast'
 import { User, Calendar, Phone, MapPin } from 'lucide-react'
 

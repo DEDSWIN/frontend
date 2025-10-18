@@ -1,6 +1,6 @@
 // src/pages/register/Step4Preview.jsx
 import React from 'react'
-import { useAuthUser } from '../context/AuthUserContext'
+import { useAuthUser } from '../../../lib/multicity/context/AuthUserContext'
 import toast from 'react-hot-toast'
 import { ClipboardList } from 'lucide-react'
 
