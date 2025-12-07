@@ -79,12 +79,12 @@ function MyApp({ Component, pageProps }) {
                     </div>
                     <Footer />
 
-                    <RegisterPage />
+                    {/* <RegisterPage />
                     <Step1EmailPassword />
                     <Step2Personal />
                     <Step3College />
                     <Step4Preview />
-                    <Step5Success />
+                    <Step5Success /> */}
                 </AuthProvider>
             </AuthUserProvider>
         </main>
