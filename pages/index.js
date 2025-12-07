@@ -944,15 +944,9 @@ const index = () => {
                                 styles.sexy_button_small
                             )}
                             onClick={() => {
-                                setcountdowntimer(true)
-                                setTimeout(() => {
-                                    setShowsound(true)
-                                    setShowVideo(true)
-                                }, 3000)
-                                setTimeout(() => {
                                     router.push('/userRegister')
-                                }, timeee + 3000 - 100)
-                            }}
+                                }
+                            }
                         >
                             REGISTER
                         </button>
