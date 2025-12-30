@@ -80,7 +80,7 @@ const Multicity = () => {
             </div>
             <div className={styles.section}>
                 <img src={'/multicity/Perks.svg'} />
-                <p className={styles.about}>
+                <ul className={styles.about}>
                     <li>
                         Multicity winner Certificate certified by Anwesha, IIT
                         Patna.
@@ -94,7 +94,7 @@ const Multicity = () => {
                         the participants.
                     </li>
                     <li>
-                        The winners' names will be featured on our Social Media
+                        The winners&#39; names will be featured on our Social Media
                         handles and will be announced on stories of official
                         social media handles.
                     </li>
@@ -102,18 +102,18 @@ const Multicity = () => {
                         Chance to interact with many talented and passionate
                         participants during the fest at IIT Patna.
                     </li>
-                </p>
+                </ul>
             </div>
             <div className={styles.title}>
                 <img src={'/multicity/Rewards and Recognition.svg'} />
-                <p className={styles.about}>
+                <ul className={styles.about}>
                     <li>
                         Direct selection for the final round in all the events
                         of Anwesha 24.
                     </li>
                     <li>Chance to perform in front of renowned judges.</li>
                     <li>Winners get exciting prizes and vouchers.</li>
-                </p>
+                </ul>
             </div>
             <div className={styles.content}>
                 {events_temp.map((event, index) => {

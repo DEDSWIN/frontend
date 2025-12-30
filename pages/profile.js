@@ -15,7 +15,7 @@ import Link from 'next/link'
 
 const host = process.env.NEXT_PUBLIC_HOST
 
-function profile() {
+function Profile() {
     const userData = useContext(AuthContext)
     const [tabIndex, setTabIndex] = useState(0)
     // const profDetails = userData.state.user;
@@ -340,4 +340,4 @@ function profile() {
     )
 }
 
-export default profile
+export default Profile

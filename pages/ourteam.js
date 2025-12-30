@@ -75,7 +75,7 @@ function CoordCard({ data, title }) {
         </>)
 }
 
-export default function ourteam() {
+export default function Ourteam() {
 
     const [scrollY, setScrollY] = useState(0);
 
@@ -525,7 +525,7 @@ export default function ourteam() {
                         className={styles.mainTitle}
                     >
                         <span className={styles.firstLetter}>A</span>NWESHA
-                        <span className={styles.lastNumber}>'25</span>
+                        <span className={styles.lastNumber}>&apos;25</span>
                     </p>
                 </div>
             </div>

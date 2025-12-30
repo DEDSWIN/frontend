@@ -296,7 +296,7 @@ const UserLoginForm = () => {
                                 textAlign: 'center',
                             }}
                         >
-                            Don't have an account? &nbsp;
+                            Don&apos;t have an account? &nbsp;
                             <Link
                                 href="/userRegister"
                                 style={{ color: '#ffffff', fontWeight: 600 }}

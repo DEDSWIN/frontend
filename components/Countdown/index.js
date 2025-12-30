@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import style from './style.module.css'
 
-const index = (props) => {
+const Countdown = (props) => {
     const targetDate = new Date(props.dateTo)
     const currentDate = props.dateFrom ? new Date(props.dateFrom) : new Date()
     const diff = targetDate - currentDate
@@ -131,4 +131,4 @@ const index = (props) => {
     )
 }
 
-export default index
+export default Countdown

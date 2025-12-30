@@ -3,7 +3,7 @@ import { useContext, useEffect } from 'react'
 import { proniteRegistration, proniteRegistrationiitp } from '../components/Event Registration/proniteRegistration'
 import { AuthContext } from '../components/authContext'
 
-const getPass = () => {
+const GetPass = () => {
     const userData = useContext(AuthContext)
     const host = process.env.NEXT_PUBLIC_HOST
     const router = useRouter()
@@ -55,5 +55,5 @@ const getPass = () => {
     )
 }
 
-export default getPass
+export default GetPass
 

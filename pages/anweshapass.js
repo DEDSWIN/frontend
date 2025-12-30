@@ -5,6 +5,26 @@ import { AuthContext } from '../components/authContext'
 import { useRouter } from 'next/router.js'
 import { proniteRegistration } from '../components/Event Registration/proniteRegistration'
 
+const ImageWithText = ({ url, title, body, divRef, active, style }) => {
+    return (
+        <div
+            ref={divRef}
+            style={{
+                width: active ? '370px' : '319.61px',
+                height: active ? '414px' : '358.481px',
+                backgroundImage: `url(${url})`,
+                ...(style || {}),
+            }}
+            className={styles.events_image}
+        >
+            <div>
+                <h2>{title}</h2>
+                <h3>{body}</h3>
+            </div>
+        </div>
+    )
+}
+
 const FireSkullHeadLeft = () => {
     return (
         <svg
@@ -279,7 +299,7 @@ const EventSlider = ({ images, currIndex, nextEventImage, previouseEventImage })
     );
 };
 
-function anweshapass() {
+function Anweshapass() {
     const userData = useContext(AuthContext)
     const host = process.env.NEXT_PUBLIC_HOST
     const router = useRouter()
@@ -523,7 +543,7 @@ function anweshapass() {
 
                     </div>
                     <p>
-                        Anwesha's DJ Night brings an electrifying fusion of beats and energy, headlined by the sensational DJ Anshika. Get ready to lose yourself in pulsating rhythms, high-energy drops, and an unforgettable night of non-stop music. With heart-thumping bass and a euphoric atmosphere, this night promises an experience where the crowd moves as one, the lights sync with the beats, and every moment turns into a memory. Let the music take control—DJ Night at Anwesha is where the night truly comes alive!
+                        Anwesha&apos;s DJ Night brings an electrifying fusion of beats and energy, headlined by the sensational DJ Anshika. Get ready to lose yourself in pulsating rhythms, high-energy drops, and an unforgettable night of non-stop music. With heart-thumping bass and a euphoric atmosphere, this night promises an experience where the crowd moves as one, the lights sync with the beats, and every moment turns into a memory. Let the music take control—DJ Night at Anwesha is where the night truly comes alive!
                     </p>
                 </div>
                 <div className={styles.cultural_Night_hero}>
@@ -540,4 +560,4 @@ function anweshapass() {
     )
 }
 
-export default anweshapass
+export default Anweshapass
