@@ -1,10 +1,10 @@
 import React from 'react'
 import styles from '../styles/aboutUs.module.css'
-const aboutus = () => {
+const Aboutus = () => {
     return (
         <div className={styles.parentcontainer}>
             <h2 className={styles.head}>
-                Anwesha'25
+                Anwesha&#39;25
             </h2>
             <div className={styles.sec}>
                 <br />
@@ -13,7 +13,7 @@ const aboutus = () => {
                     of Indian Institute of Technology Patna. The name Anwesha
                     symbolizes, the quest for grandeur, opulence, creativity and
                     perfection. Since its inception in 2010, it has turned out
-                    to be one of east India's biggest and most anticipated youth
+                    to be one of east India&#39;s biggest and most anticipated youth
                     festivals, witnessing participation from all over the
                     country. Anwesha puts forth an unparalleled multitude of
                     events, meticulously fashioned to suit the interests of the
@@ -28,7 +28,7 @@ const aboutus = () => {
                     uplifting festival of togetherness in not just the state or
                     region, but the whole nation. We have reimagined the lens
                     through which we understand culture and celebration,
-                    deriving the cornerstones for this year's edition that shall
+                    deriving the cornerstones for this year&#39;s edition that shall
                     drive forward our festival.
                 </p>
             </div>
@@ -69,7 +69,7 @@ const aboutus = () => {
                             As a major festival with massive footfall, we are
                             aware of the enormous resource consumption and
                             consequent waste generated throughout this festival.
-                            Anwesha'25 shall focus on bringing a sustainable
+                            Anwesha&#39;25 shall focus on bringing a sustainable
                             lifestyle & culture to the mainstream.
                         </p>
                     </li>
@@ -129,4 +129,4 @@ const aboutus = () => {
     )
 }
 
-export default aboutus
+export default Aboutus

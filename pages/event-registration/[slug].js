@@ -13,7 +13,7 @@ import 'react-toastify/dist/ReactToastify.css'
 
 
 
-const eventRegistration = () => {
+const EventRegistration = () => {
     const data = useContext(AuthContext)
     const router = useRouter()
     const userData = useContext(AuthContext)
@@ -237,4 +237,4 @@ const eventRegistration = () => {
     )
 }
 
-export default eventRegistration
+export default EventRegistration

@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import MerchModal from '../components/MerchModal'
 
-function merchandise() {
+function Merchandise() {
     const [deluxe, setDeluxe] = useState(false)
     const [superDeluxe, setSuperDeluxe] = useState(false)
     const [oneTShirt, setOneTShirt] = useState(false)
@@ -326,4 +326,4 @@ function merchandise() {
     )
 }
 
-export default merchandise
+export default Merchandise

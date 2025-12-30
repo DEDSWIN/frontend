@@ -57,9 +57,9 @@ export default function GalleryPage({ folderLinks }) {
                             A
                         </span>
                         NWESHA
-                        <span className={styles.anwesha24}>
-                          '24
-                        </span>
+                                                <span className={styles.anwesha24}>
+                                                    &apos;24
+                                                </span>
                     </div>
                 </div>
 

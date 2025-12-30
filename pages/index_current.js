@@ -9,7 +9,7 @@ import styles from '../styles/comingsoon.module.css'
 import { motion } from 'framer-motion'
 var validator = require('email-validator')
 
-export default function comingsoon() {
+export default function Comingsoon() {
     const [email, setEmail] = useState('')
     useEffect(() => {
         // const scriptURL = 'https://script.google.com/macros/s/AKfycbw51WVpKO2DRiLvCG7GMr-CvlI3pSMXNe2WlGlwLCwTisYKxLysZ0lVeR-qwbId_VE1/exec'
@@ -155,8 +155,8 @@ export default function comingsoon() {
                         </h1>
                     </Link>
                     <p className={styles.ca_text}>
-                        The wait is over! Anwesha is here with it's Campus
-                        Ambassador Programme. Don't miss this amazing
+                        The wait is over! Anwesha is here with it&apos;s Campus
+                        Ambassador Programme. Don&apos;t miss this amazing
                         opportunity to associate and work with the biggest
                         festival of North East India.
                     </p>
@@ -178,13 +178,13 @@ export default function comingsoon() {
                     <h1>Anwesha Dispatch</h1>
                     <h2>Stay connected with Anwesha</h2>
                     <span>
-                        Did you hear that Anwesha's back? Yes, we're as excited
-                        as you are, and can't wait to share everything about
+                        Did you hear that Anwesha&apos;s back? Yes, we&apos;re as excited
+                        as you are, and can&apos;t wait to share everything about
                         everything here at Anwesha.
                     </span>
                     <br />
                     <span>
-                        If you're someone who finds it difficult to catch up on
+                        If you&apos;re someone who finds it difficult to catch up on
                         the latest updates on various platforms, sign up for our
                         very own mailing list and get all your updates right to
                         your inbox.

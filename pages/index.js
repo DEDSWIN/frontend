@@ -506,7 +506,13 @@ const ImagesSlider = ({
     const offset = 864 + 20 // Width of the image + gap (20px)
 
     // Refs for images to track current position
-    const imageRefs = images.map(() => useRef(null))
+    const imageRefs = useRef([])
+
+    useEffect(() => {
+        imageRefs.current = images.map(
+            (_, i) => imageRefs.current[i] || React.createRef()
+        )
+    }, [images])
 
     // State to track the animation trigger
     const [oldIndex, setOldIndex] = useState(currIndex)
@@ -514,7 +520,7 @@ const ImagesSlider = ({
 
     // Set up transition for images when currIndex changes
     useEffect(() => {
-        if (!all(imageRefs)) return
+        if (!all(imageRefs.current)) return
         if (currIndex === oldIndex) return
         const prev = currIndex === 0 ? images.length - 1 : currIndex - 1
         const next = currIndex + 1 === images.length ? 0 : currIndex + 1
@@ -527,32 +533,32 @@ const ImagesSlider = ({
             (currIndex === 0 && oldIndex === images.length - 1)
         ) {
             // Toward left
-            imageRefs[prevprevprev].current.style.zIndex = '-1'
-            imageRefs[
+            imageRefs.current[prevprevprev].current.style.zIndex = '-1'
+            imageRefs.current[
                 prevprevprev
             ].current.style.transform = `translateX(calc(-50% + ${
                 3 * offset
             }px))`
-            imageRefs[prevprev].current.style.zIndex = '4'
-            imageRefs[
+            imageRefs.current[prevprev].current.style.zIndex = '4'
+            imageRefs.current[
                 prevprev
             ].current.style.transform = `translateX(calc(-50% - ${
                 2 * offset
             }px))`
-            imageRefs[prev].current.style.zIndex = '3'
-            imageRefs[
+            imageRefs.current[prev].current.style.zIndex = '3'
+            imageRefs.current[
                 prev
-            ].current.style.transform = `translateX(calc(-50% - ${offset}px))`
-            imageRefs[currIndex].current.style.zIndex = '5'
-            imageRefs[
+            ].current.style.transform = `translateX(calc(-50% - ${offset}px)`
+            imageRefs.current[currIndex].current.style.zIndex = '5'
+            imageRefs.current[
                 currIndex
             ].current.style.transform = `translateX(calc(-50%))`
-            imageRefs[next].current.style.zIndex = '2'
-            imageRefs[
+            imageRefs.current[next].current.style.zIndex = '2'
+            imageRefs.current[
                 next
-            ].current.style.transform = `translateX(calc(-50% + ${offset}px))`
-            imageRefs[nextnext].current.style.zIndex = '1'
-            imageRefs[
+            ].current.style.transform = `translateX(calc(-50% + ${offset}px)`
+            imageRefs.current[nextnext].current.style.zIndex = '1'
+            imageRefs.current[
                 nextnext
             ].current.style.transform = `translateX(calc(-50% + ${
                 2 * offset
@@ -562,32 +568,32 @@ const ImagesSlider = ({
             (currIndex === images.length - 1 && oldIndex === 0)
         ) {
             // Toward Right
-            imageRefs[prevprev].current.style.zIndex = '1'
-            imageRefs[
+            imageRefs.current[prevprev].current.style.zIndex = '1'
+            imageRefs.current[
                 prevprev
             ].current.style.transform = `translateX(calc(-50% - ${
                 2 * offset
             }px))`
-            imageRefs[prev].current.style.zIndex = '2'
-            imageRefs[
+            imageRefs.current[prev].current.style.zIndex = '2'
+            imageRefs.current[
                 prev
-            ].current.style.transform = `translateX(calc(-50% - ${offset}px))`
-            imageRefs[currIndex].current.style.zIndex = '5'
-            imageRefs[
+            ].current.style.transform = `translateX(calc(-50% - ${offset}px)`
+            imageRefs.current[currIndex].current.style.zIndex = '5'
+            imageRefs.current[
                 currIndex
             ].current.style.transform = `translateX(calc(-50%))`
-            imageRefs[next].current.style.zIndex = '3'
-            imageRefs[
+            imageRefs.current[next].current.style.zIndex = '3'
+            imageRefs.current[
                 next
-            ].current.style.transform = `translateX(calc(-50% + ${offset}px))`
-            imageRefs[nextnext].current.style.zIndex = '4'
-            imageRefs[
+            ].current.style.transform = `translateX(calc(-50% + ${offset}px)`
+            imageRefs.current[nextnext].current.style.zIndex = '4'
+            imageRefs.current[
                 nextnext
             ].current.style.transform = `translateX(calc(-50% + ${
                 2 * offset
             }px))`
-            imageRefs[nextnextnext].current.style.zIndex = '-1'
-            imageRefs[
+            imageRefs.current[nextnextnext].current.style.zIndex = '-1'
+            imageRefs.current[
                 nextnextnext
             ].current.style.transform = `translateX(calc(-50% - ${
                 3 * offset
@@ -641,7 +647,7 @@ const ImagesSlider = ({
                     key={index}
                     width={864}
                     height={546}
-                    ref={imageRefs[index]}
+                    ref={imageRefs.current[index]}
                     style={{
                         position: 'absolute',
                         left: '50%',
@@ -660,7 +666,7 @@ const ImagesSlider = ({
     )
 }
 
-const index = () => {
+const IndexPage = () => {
     const [eventActiveImageIndex, setEventActiveImageIndex] = useState(2) // don't set on boundary
     const [eventActiveImageIndexPrevDir, setEventActiveImageIndexPrevDir] =
         useState(false)
@@ -1095,10 +1101,10 @@ const index = () => {
                 </section>
 
                 {/* The Aftermovie */}
-                <section section className={styles.aftermovie}>
+                <section className={styles.aftermovie}>
                     <div className={styles.sexy_title}>
                         <h2>Anwesha 2024: The Aftermovie</h2>
-                        <h3>Last Year's Magic in 3 Minutes</h3>
+                        <h3>Last Year&apos;s Magic in 3 Minutes</h3>
                     </div>
                     <div className={styles.aftermovie_video}>
                         {/* <Image
@@ -1137,9 +1143,9 @@ const index = () => {
                 </section>
 
                 {/* CTA or This Year's Theme */}
-                <section section className={styles.cta}>
+                <section className={styles.cta}>
                     <div className={styles.sexy_title}>
-                        <h2>This Year's Theme</h2>
+                        <h2>This Year&apos;s Theme</h2>
                         <h3>Echoes Of the Abyss</h3>
                     </div>
                     <div className={styles.cta_body}>
@@ -1187,7 +1193,7 @@ const index = () => {
 
                 {/* Sponsors */}
 
-                <section section className={styles.sponsors}>
+                <section className={styles.sponsors}>
                     <div className={styles.sponsors_title}>
                         <h2>Our Proud Sponsors</h2>
                         <h3>Strengthening the Vision Together</h3>
@@ -1198,7 +1204,7 @@ const index = () => {
                 </section>
 
                 {/* NewsLetter */}
-                <section section className={styles.newsletter}>
+                <section className={styles.newsletter}>
                     <p style={{ color: 'white' }}>
                         Subscribe to our newsletter
                     </p>
@@ -1206,7 +1212,7 @@ const index = () => {
                         src="https://embeds.beehiiv.com/255bda27-7d9d-4f91-9f9c-edca5ce5d90a?slim=true"
                         data-test-id="beehiiv-embed"
                         height="52"
-                        frameborder="0"
+                        frameBorder="0"
                         scrolling="no"
                         // style="margin: 0; border-radius: 0px !important; background-color: transparent;"
                     />
@@ -1222,4 +1228,4 @@ const index = () => {
     )
 }
 
-export default index
+export default IndexPage

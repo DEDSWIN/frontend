@@ -94,7 +94,7 @@ const Multicity = () => {
                         the participants.
                     </li>
                     <li>
-                        The winners' names will be featured on our Social Media
+                        The winners&#39; names will be featured on our Social Media
                         handles and will be announced on stories of official
                         social media handles.
                     </li>

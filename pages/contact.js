@@ -63,7 +63,7 @@ const Contact = () => {
                         <div className={styles.rightinnercontainer}>
                             <div className={styles.formtitlebox}>
                                 <div className={styles.formtitle}>
-                                    We'd Love to Hear from You!
+                                    We&#39;d Love to Hear from You!
                                 </div>
                                 <div className={styles.formdescription}>
                                     Fill out the form below

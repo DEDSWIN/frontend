@@ -1,5 +1,5 @@
 import styles from '../styles/events.module.css'
-import { Josefin_Sans, Montserrat } from '@next/font/google'
+import { Josefin_Sans, Montserrat } from 'next/font/google'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import Link from 'next/link'

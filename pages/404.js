@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 
 const Custom404 = () => {
@@ -33,11 +34,11 @@ const Custom404 = () => {
             ></div>
 
             {/* Return Home Button */}
-            <a
+            <Link
                 href="/"
                 style={{
                     backgroundImage: 'url("/redbutton.png")',
-                    backgroundSize: 'contain', 
+                    backgroundSize: 'contain',
                     color: '#FF0000',
                     zIndex: '1',
                     padding: '10px 20px',
@@ -45,17 +46,17 @@ const Custom404 = () => {
                     textDecoration: 'none',
                     fontFamily: '"SF Ironsides", sans-serif',
                     textTransform: 'uppercase',
-                    fontSize: 'clamp(32px, 4vw, 34px)', // Responsive font size
+                    fontSize: 'clamp(32px, 4vw, 34px)',
                     fontWeight: 'bold',
                     boxShadow: '0 2px 4px rgba(0,0,0,0.2)',
                     position: 'absolute',
-                    bottom: 'clamp(50px, 10vh, 100px)', // Responsive positioning
+                    bottom: 'clamp(50px, 10vh, 100px)',
                     textAlign: 'center',
-                    minWidth: 'min(180px, 80vw)', 
+                    minWidth: 'min(180px, 80vw)',
                 }}
             >
                 Home Page
-            </a>
+            </Link>
             <style jsx global>{`
                 @import url('https://fonts.cdnfonts.com/css/sf-ironsides');
             `}</style>
