@@ -564,7 +564,7 @@
     padding-bottom: 12px;
     display: flex;
     flex-direction: column;
-    justify-content: end;
+    justify-content: flex-end;
 }
 .events_image > div > h2 {
     align-self: stretch;
