@@ -2505,7 +2505,7 @@ export default function Page() {
       alignItems: "center",
       justifyContent: "center",
       // Background Settings
-      backgroundImage: 'url("/assets/login.png")',
+      backgroundImage: 'url("/assets/Login.png")',
       backgroundSize: "cover",
       backgroundPosition: "center",
       backgroundRepeat: "no-repeat",
