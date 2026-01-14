@@ -9,15 +9,16 @@
 }
 
 .footer {
-    background: #0d0a18;
+    background: #150A18;
     /* height: 501px; */
     align-self: stretch;
     display: flex;
-    align-items: center;
+    align-items: stretch;
     justify-content: center;
     flex-direction: column;
     position: relative;
     overflow: hidden;
+    z-index: 0;
 }
 
 .left_helobean {
@@ -27,16 +28,30 @@
     /* z-index: -1; */
 }
 .right_helobean {
-    position: absolute;
-    bottom: 79px;
-    right: -46px;
-    /* z-index: -0; */
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+
+  width: clamp(280px, 50%, 720px);
+
+  z-index: 0;
+  pointer-events: none;
 }
+
+.right_helobean img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: right center;
+}
+
+
 .footer_upper {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 87%;
+    /* width: 87%; */
     padding-top: 52px;
     gap: 40px;
 }
@@ -92,6 +107,19 @@
     justify-content: center;
     align-items: center;
 }
+.footer_upper,
+.footer_middle,
+.footer_lower,
+.line_section {
+  position: relative;
+  z-index: 2;
+}
+.footer_upper,
+.footer_lower {
+    width: 100%;
+}
+
+
 
 .footer_nav {
     justify-content: center;
@@ -134,14 +162,24 @@
     margin-block: 20px;
     /* margin: auto; */
 }
+.footer_content {
+    width: 100%;
+    max-width: 1200px;   /* controls laptop centering */
+    margin: 0 auto;      /* true horizontal centering */
+    padding: 0 24px;     /* breathing space on small screens */
+
+    position: relative;
+    z-index: 2;          /* always above flower */
+}
+
 
 .footer_lower {
-    width: 85%;
+    /* width: 85%; */
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    padding-bottom: 20px;
+    padding-bottom:1rem;
 }
+
 
 .footer_lower > h4 > a {
     all: unset;
@@ -150,7 +188,7 @@
 .footer_lower > h4 {
     color: #fff;
 
-    font-family: 'SF Ironsides';
+    /* font-family: 'SF Ironsides'; */
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
@@ -176,6 +214,14 @@
         margin-block: 20px;
     }
 }
+
+/* @media screen and (max-width: 768px) {
+    .right_helobean {
+        width: 70%;
+        opacity: 0.6;
+    }
+} */
+
 @media screen and (max-width: 800px) {
     .footer_upper > div:first-child > img {
         width: 100%;
@@ -212,17 +258,38 @@
     .footer_lower {
         flex-direction: column;
         gap: 20px;
+
     }
 }
+
+@media (max-width: 480px) {
+  .right_helobean {
+    opacity: 0.5;
+  }
+}
+
+@media (max-width: 430px) { /* iPhone 14 width */
+    .right_helobean {
+        width: 100%;
+        opacity: 0.35;
+    }
+
+    .right_helobean img {
+        object-fit: contain;
+        object-position: right center;
+    }
+}
+
+
 
 @media screen and (max-width: 500px) {
     .footer_upper > div:first-child {
         z-index: 1;
     }
-    .right_helobean {
-        /* position: absolute; */
-        top: -63px;
+    /* .right_helobean {
+        position: absolute;
+         top: -63px;
         right: -14px;
         width: 158px;
-    }
+    } */
 }
