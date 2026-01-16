@@ -10,52 +10,45 @@
     z-index: 1;
 }
 .sexy_button {
-    /* USE TAILWIND I struggle to name classes :) */
-    all: unset;
-    width: 127.338px;
-    height: 42.135px;
-
-    /* flex-shrink: 0; */
-    background-image: url('/pics/Subtract.svg');
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-clip: border-box;
-    background-position: center;
-    fill: #000;
-    filter: drop-shadow(0px -3.623px 3.623px #55a826);
-
-    color: var(--Color-Primary500, #50ff00);
-    text-align: center;
-
-    /* SF/SF - 36 REG */
-    font-family: 'SF Ironside';
+    /* Layout & Dimensions from Figma */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 128px;
+    height: 48px;
+    
+    /* Colors from "Selection Colors" in image */
+    background-color: transparent;
+    color: #B8A947;
+    
+    /* Border and Glow Effect */
+    border: 1.5px solid #370461; /* Purple border to match the "Profile" box */
+    box-shadow: 0px 0px 12px rgba(15, 3, 24, 0.6); /* Purple outer glow */
+    
+    /* Typography */
+    font-family: 'SF Ironside'; /* Keeping your font as requested */
     font-size: 20px;
     font-weight: 400;
-    line-height: normal;
     text-transform: uppercase;
-
+    letter-spacing: 0.1rem;
+    
     cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-.sexy_button_small {
-    width: 127.338px;
-    height: 42.135px;
-
-    font-size: 20px;
-    filter: drop-shadow(0px -2.996px 2.996px #55a826);
-}
-/* .sexy_button:focus{
-    filter: drop-shadow(0px -1px 1px white);
-} */
 .sexy_button:hover {
-    filter: drop-shadow(0px -3.623px 3.623px #03fa24);
-    color: var(--Color-Primary500, #00ff26);
-}
-.sexy_button:active {
-    filter: drop-shadow(1px 1px 1px white);
+    /* Slight brightening on hover */
+    /* background-color: #352b3e; */
+    transform: scale(1.07);
+    box-shadow: 0px 0px 18px rgba(178, 83, 255, 0.9);
+    color: #d4c564; /* Brighter gold */
 }
 
-.mainNav {
+.sexy_button:active {
+    transform: scale(0.96);
+    filter: brightness(1.2);
+}
+/* .mainNav {
     background: #000000;
     color: #000;
     text-align: center;
@@ -73,8 +66,31 @@
     align-items: center;
     justify-content: space-between;
     padding: 7px 20px;
+} */
+/* --- Main Navigation Bar --- */
+.mainNav {
+    /* Starry Background & Dark Gradient */
+    background: linear-gradient(180deg, rgba(10, 5, 16, 0.8) 0%, rgba(0, 0, 0, 0) 100%), 
+    url('/Header.png'); 
+background-size: cover;
+background-position: center;
+    
+    color: #ffffff;
+    font-family: 'Outfit', sans-serif; /* Cleaner font for the nav links */
+    font-size: 1rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px; /* Increased height for better spacing */
+    z-index: 100;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 4rem; /* Wide padding as seen in Figma */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
-
 .mobile_nav {
     display: none;
 }
@@ -85,6 +101,7 @@
     padding: 9px 15px;
     display: inline-block;
     white-space: nowrap;
+    font-size: larger;
     /* font-weight: bold; */
 }
 
@@ -115,7 +132,7 @@
     top: 50%;
     white-space: nowrap;
     transform: translate(-50%, -50%);
-    color: rgb(80, 255, 0);
+    color: #B8A947;
     font-size: 1.25rem;
     font-family: 'SF Ironside';
     letter-spacing: 0.15rem;
@@ -159,12 +176,13 @@
     font-family: 'SF Ironside', sans-serif;
     transition: all 0.3s ease;
     z-index: 15;
-    border-bottom: 3px solid rgb(80, 255, 0);
+    border-bottom: 3px solid #B8A947;
     overflow-y: scroll;
     background: rgb(0, 0, 0);
 }
 
 .nav_drawer ul {
+    margin-top: 15px;
     display: flex;
     flex-direction: column;
     /* background: rgb(0, 0, 0); */
