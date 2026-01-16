@@ -287,7 +287,7 @@ export default function CampusAmbassador() {
                             transition={{ duration: 0.3 }}
                         >
                             <h2 className={styles.lottie_text}>
-                                Top 3 CA's name will feature on Anwesha social
+                                Top 3 CA&#39;s name will feature on Anwesha social
                                 media handles
                             </h2>
                         </motion.div>
