@@ -16,9 +16,10 @@
     justify-content: center;
     width: 128px;
     height: 48px;
+    margin-inline: 10px;
     
     /* Colors from "Selection Colors" in image */
-    background-color: transparent;
+    background-color: #370f58;
     color: #B8A947;
     
     /* Border and Glow Effect */
@@ -70,10 +71,9 @@
 /* --- Main Navigation Bar --- */
 .mainNav {
     /* Starry Background & Dark Gradient */
-    background: linear-gradient(180deg, rgba(10, 5, 16, 0.8) 0%, rgba(0, 0, 0, 0) 100%), 
-    url('/Header.png'); 
-background-size: cover;
-background-position: center;
+    background: url('/assets/parth&harish.png'); 
+    background-size: cover;
+    background-position: center;
     
     color: #ffffff;
     font-family: 'Outfit', sans-serif; /* Cleaner font for the nav links */

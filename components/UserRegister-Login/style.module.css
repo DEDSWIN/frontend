@@ -158,7 +158,7 @@
     justify-content: center;
     overflow: hidden;
     /* height: fit-content; */
-    min-height: 100vh;
+    min-height: 50vh;
 }
 
 
@@ -193,7 +193,8 @@
     width: 100%;
     align-items: center;
     padding-block-start: 70px;
-    padding-inline: 50px;
+    padding-inline: 20px;
+    padding-block-end: 30px;
 }
 .form_reset {
     background: rgba(0, 0, 0, 0.75); /* Reduced opacity for more transparency */
@@ -421,10 +422,7 @@
         background: black;
     }
 
-    .container {
-    }
-    .container_login {
-    }
+  
     .iitp_email_ext {
         font-size: 13px;
     }
