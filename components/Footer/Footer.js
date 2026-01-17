@@ -1,5 +1,5 @@
 "use client";
-import { DM_Serif_Display } from "@next/font/google";
+import { DM_Serif_Display } from "next/font/google";
 
 import Image from "next/image";
 import styles from "./Footer.module.css";
