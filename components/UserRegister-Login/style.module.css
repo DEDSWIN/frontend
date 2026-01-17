@@ -17,6 +17,53 @@
 .hero_button {
     z-index: 1;
 }
+/* =================================== register =================================== */
+.register_btn_box{
+    z-index: 1;
+}
+.register_button{
+    all: unset;
+    width: 231.338px;
+    height: 76.135px;
+
+    /* flex-shrink: 0; */
+    background-image: url("/assets/register_button_bac.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-clip: border-box;
+    background-position: center;
+    fill: #000;
+    filter: drop-shadow(0px -3.623px 3.623px #7e7e7e);
+
+    /* color: var(--Color-Primary500, #50FF00); */
+    color: white;
+    text-align: center;
+    padding-top: 5px;
+
+    /* SF/SF - 36 REG */
+    font-family: "SF Ironsides";
+    font-size: 23px;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: uppercase;
+
+    cursor: pointer;
+}
+.register_button_small{
+    width: 191.315px;
+    height: 62.963px;
+    font-size: 28px;
+    filter: drop-shadow(0px -2.996px 2.996px #2b2c2b);
+}
+
+.register_button:hover{
+    filter: drop-shadow(0px -3.623px 3.623px #2b2c2b);
+    color: white;
+    transform: scale(97%);
+}
+.register_button:active{
+    filter: drop-shadow(1px 1px 1px white);
+}
 .sexy_button {
     /* USE TAILWIND I struggle to name classes :) */
     all: unset;
@@ -70,6 +117,7 @@
     padding: 60px 20px;
     width: 100%;
 }
+
 /* .container_login {
     display: flex;
     justify-content: center;
@@ -79,20 +127,93 @@
     padding: 0px 20px;
     width: 100%;
 } */
+.container_login {
+    font-family: 'Poppins', sans-serif;
+    background-image: url('/assets/Login.png');
+    background-repeat: no-repeat; /* Prevents duplication */
+    background-size: cover; /* Ensures the image stretches to cover the entire page */
+    /* background-image: url("/bg.png"); */
+    /* background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1440' height='560' preserveAspectRatio='none' viewBox='0 0 1440 560'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1012%26quot%3b)' fill='none'%3e%3cpath d='M 0%2c342 C 57.6%2c301 172.8%2c119.4 288%2c137 C 403.2%2c154.6 460.8%2c427.4 576%2c430 C 691.2%2c432.6 748.8%2c160.8 864%2c150 C 979.2%2c139.2 1036.8%2c374.2 1152%2c376 C 1267.2%2c377.8 1382.4%2c202.4 1440%2c159L1440 560L0 560z' fill='%23184a7e'%3e%3c/path%3e%3cpath d='M 0%2c138 C 72%2c195.2 216%2c408 360%2c424 C 504%2c440 576%2c203.6 720%2c218 C 864%2c232.4 936%2c538.4 1080%2c496 C 1224%2c453.6 1368%2c104 1440%2c6L1440 560L0 560z' fill='%232264ab'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1012'%3e%3crect width='1440' height='560' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e"); */
+    /* background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1440' height='560' preserveAspectRatio='none' viewBox='0 0 1440 560'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1014%26quot%3b)' fill='none'%3e%3cpath d='M 0%2c342 C 57.6%2c301 172.8%2c119.4 288%2c137 C 403.2%2c154.6 460.8%2c427.4 576%2c430 C 691.2%2c432.6 748.8%2c160.8 864%2c150 C 979.2%2c139.2 1036.8%2c374.2 1152%2c376 C 1267.2%2c377.8 1382.4%2c202.4 1440%2c159L1440 560L0 560z' fill='rgba(24%2c 74%2c 126%2c 0.36)'%3e%3c/path%3e%3cpath d='M 0%2c138 C 72%2c195.2 216%2c408 360%2c424 C 504%2c440 576%2c203.6 720%2c218 C 864%2c232.4 936%2c538.4 1080%2c496 C 1224%2c453.6 1368%2c104 1440%2c6L1440 560L0 560z' fill='rgba(34%2c 100%2c 171%2c 0.55)'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1014'%3e%3crect width='1440' height='560' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e"); */
+
+    /* background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1440' height='560' preserveAspectRatio='none' viewBox='0 0 1440 560'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1021%26quot%3b)' fill='none'%3e%3crect width='1440' height='560' x='0' y='0' fill='rgba(56%2c 3%2c 154%2c 0.43)'%3e%3c/rect%3e%3cpath d='M 0%2c342 C 57.6%2c301 172.8%2c119.4 288%2c137 C 403.2%2c154.6 460.8%2c427.4 576%2c430 C 691.2%2c432.6 748.8%2c160.8 864%2c150 C 979.2%2c139.2 1036.8%2c374.2 1152%2c376 C 1267.2%2c377.8 1382.4%2c202.4 1440%2c159L1440 560L0 560z' fill='rgba(24%2c 74%2c 126%2c 0.36)'%3e%3c/path%3e%3cpath d='M 0%2c138 C 72%2c195.2 216%2c408 360%2c424 C 504%2c440 576%2c203.6 720%2c218 C 864%2c232.4 936%2c538.4 1080%2c496 C 1224%2c453.6 1368%2c104 1440%2c6L1440 560L0 560z' fill='rgba(34%2c 100%2c 171%2c 0.55)'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1021'%3e%3crect width='1440' height='560' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e"); */
+
+    /* background: linear-gradient(
+        to bottom,
+        #101664,
+        #262a95,
+        #3951a9,
+        #609fca,
+        #7bb5c1
+    ); */
+    /* background-image: url('/login_register/portal.svg'),
+        url('/login_register/bg.svg'); */
+    /* 
+    background-size: 100%;
+    background-position: bottom right, top left; */
+    /* background-position: center; */
+    /* background-repeat: no-repeat; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    /* height: fit-content; */
+    min-height: 100vh;
+}
+
+
 
 .form {
-    background: rgba(0, 0, 0, 0.6); /* Reduced opacity for more transparency */
-    border-radius: 15px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+    background: rgba(0, 0, 0, 0.55); /* Reduced opacity for more transparency */
+    /* border-radius: 15px; */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     font-family: 'EB Garamond';
     display: flex;
     flex-direction: column;
     align-content: center;
-    max-width: 450px;
+    max-width: 650px;
     color: #ffffff;
     width: 100%;
     align-items: center;
-    padding: 20px 20px;
+    padding-block-end: 30px;
+    padding-block-start: 60px;
+    padding-inline: 50px;
+}
+.form_login {
+    background: rgba(0, 0, 0, 0.75); /* Reduced opacity for more transparency */
+    /* border-radius: 15px; */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    font-family: 'EB Garamond';
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    max-width: 550px;
+    min-height: 60vh;
+    color: #ffffff;
+    width: 100%;
+    align-items: center;
+    padding-block-start: 70px;
+    padding-inline: 50px;
+}
+.form_reset {
+    background: rgba(0, 0, 0, 0.75); /* Reduced opacity for more transparency */
+    /* border-radius: 15px; */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    font-family: 'EB Garamond';
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    max-width: 550px;
+    /* min-height: 60vh; */
+    padding-block-end: 70px;
+    color: #ffffff;
+    width: 100%;
+    align-items: center;
+    padding-block-start: 100px;
+    padding-inline: 50px;
+    @media screen and (max-width:600px) {
+        padding-block-end: 40px;
+    }
 }
 
 .mainForm {
@@ -146,13 +267,13 @@
 .field input,
 .field select {
     width: 100%;
-    height: 45px;
+    height: 55px;
     margin: 2px;
     border: none;
     color: white;
     background: rgb(20, 20, 20);
     padding: 1.5rem 1.2rem;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     box-sizing: border-box;
 }
 
@@ -163,7 +284,7 @@
 .field input::placeholder {
     color: white;
     opacity: 0.5;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
 }
 
 .userType {
@@ -329,10 +450,10 @@
         padding: 10px;
         box-sizing: border-box;
     }
-    .container {
+    .form {
+        padding-inline: 20px;
     }
-    .container_login {
-    }
+    
     .row {
         flex-wrap: wrap;
     }
@@ -341,3 +462,5 @@
         width: calc(100% - 80px) !important; /* Adjust for internal spacing */
     }
 }
+
+

@@ -1,185 +1,290 @@
-import { useState, useEffect } from 'react'
-import Link from 'next/link'
-import Image from 'next/image'
-import styles from './Navbar.module.css'
-// import 'bootstrap/dist/css/bootstrap.min.css';
-// import 'bootstrap/dist/js/bootstrap.bundle.min'
+"use client";
 
-const Navbar = () => {
-    const [openSide, setSideOpen] = useState(false)
-    const [mobile, setMobile] = useState(false)
-    function handleResize() {
-        if (window.innerWidth <= '500') {
-            setMobile(true)
-        } else {
-            setMobile(false)
-            setSideOpen(false)
-        }
-    }
+import { useState, useEffect, useRef } from "react";
+import styles from "./styles.module.css";
+import Link from "next/link";
+import Image from "next/image";
+import { useAuthUser } from "@/context/AuthUserContext";
+import { useRouter, usePathname } from "next/navigation";
+import { useRive, useStateMachineInput } from "@rive-app/react-canvas";
+import { toast } from "react-hot-toast";
+import { FaUserCircle, FaShoppingCart } from "react-icons/fa";
 
-    useEffect(() => {
-        handleResize
-    }, [])
+const STATE_MACHINE_NAME = "Basic State Machine";
+const INPUT_NAME = "Switch";
+const cn = (...classes) => classes.filter(Boolean).join(" ");
 
-    useEffect(() => {
-        window.addEventListener('resize', handleResize)
-        return (_) => {
-            window.removeEventListener('resize', handleResize)
-        }
-    })
+function Navigation() {
+  const { currentUser, logoutUser } = useAuthUser();
+  const router = useRouter();
+  const pathname = usePathname();
 
-    return (
-        <div className={styles.nav_container}>
-            {/* <Head>
-                <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet' />
-                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
 
-            </Head> */}
-            <div className={styles.nav_div}>
-                {mobile ? (
-                    openSide ? (
-                        <img
-                            className={styles.side_icon}
-                            src="/assets/close.svg"
-                            onClick={() => {
-                                setSideOpen(false)
-                            }}
-                        />
-                    ) : (
-                        <img
-                            className={styles.side_icon}
-                            src="/assets/hamburger.svg"
-                            onClick={() => {
-                                setSideOpen(true)
-                            }}
-                        />
-                    )
-                ) : (
-                    <img
-                        src="./navbar/navbar mandala left.svg"
-                        className={[styles.navbar_3].join(' ')}
-                    />
-                )}
-                <img
-                    src="./navbar/navbar mandala right.svg"
-                    className={styles.navbar_4}
-                />
-                <div className={styles.navbar_flex}>
-                    <Link href="/">
-                        <Image
-                            src="/navbar/logo_no_bg.svg"
-                            width={100}
-                            height={200}
-                            className={[styles.navbar_2].join(' ')}
-                            alt="Anwesha"
-                        />
-                    </Link>
-                    <img
-                        src="./navbar/nav bar1.svg"
-                        className={styles.navbar_1}
-                    />
-                    {mobile ? null : (
-                        <>
-                            <h4 className={` ${styles.item_1} nav-item`}>
-                                <Link
-                                    className={styles.nav_item}
-                                    aria-current="page"
-                                    href="/campusambassador"
-                                >
-                                    CA
-                                </Link>
-                            </h4>
-                            <h4 className={` ${styles.item_2} nav-item`}>
-                                <Link
-                                    className={styles.nav_item}
-                                    aria-current="page"
-                                    href="/all-multicity"
-                                >
-                                    Multicity
-                                </Link>
-                            </h4>
-                            <h4 className={` ${styles.item_3} nav-item`}>
-                                <Link
-                                    className={styles.nav_item}
-                                    aria-current="page"
-                                    href="/gallery"
-                                >
-                                    Gallery
-                                </Link>
-                            </h4>
-                        </>
-                    )}
-                    {/* <h4 className={styles.item_3}>
-                    <Link className={styles.nav_item} aria-current="page" href="#">Events</Link>
-                </h4> */}
-                </div>
+  const dropdownRef = useRef(null);
+  const refNav = useRef(null);
 
-                {/* <nav className={` navbar   ${styles.toggle_nav}`}>
-                    <div className= {`container-fluid`}>
-                        <button className={ `${styles.b}  navbar-toggler `} type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-                            <span className= {`navbar-toggler-icon ${styles.toggle_icon}`} ></span>
-                        </button>
-                        <div className="offcanvas offcanvas-start" tabIndex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-                            <div className={`offcanvas-header ${styles.sidebar_header}`}>
-                                <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                            </div>
-                            <div className={`offcanvas-body ${styles.sidebar}`} >
-                                <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
-                                    <li className={`${styles.h1} nav-item ${styles.sidebar_links}`}>
-                                        <Link className={`nav-link active`} aria-current="page" href="/campus_ambassador"><p className={styles.sidebar_links}>CA</p></Link>
-                                    </li>
-                                    <li className={`${styles.h2} nav-item ${styles.sidebar_links} ${styles.sidebar_links}`}>
-                                        <Link className="nav-link active" href="/all-multicity"><p className={styles.sidebar_links}>Multicity</p></Link>
-                                    </li>
-                                    <li className={`${styles.h3} nav-item ${styles.sidebar_links}`}>
-                                        <Link className="nav-link active" aria-current="page" href="#"><p className={styles.sidebar_links}>Events</p></Link>
-                                    </li>
-                                    <li className={`${styles.h4} nav-item ${styles.sidebar_links}`}>
-                                        <Link className="nav-link active" href="#"><p className={styles.sidebar_links}>Login</p></Link>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </nav> */}
-            </div>
-            {openSide ? (
-                <div className={styles.side_menubar}>
-                    <h4 className={styles.sidemenu_item}>
-                        <Link
-                            className={styles.sidenav_item}
-                            aria-current="page"
-                            href="/campusambassador"
-                        >
-                            CA
-                        </Link>
-                    </h4>
-                    <h4 className={styles.sidemenu_item}>
-                        <Link
-                            className={styles.sidenav_item}
-                            aria-current="page"
-                            href="/all-multicity"
-                        >
-                            Multicity
-                        </Link>
-                    </h4>
-                    <h4 className={styles.sidemenu_item}>
-                        <Link
-                            className={styles.sidenav_item}
-                            aria-current="page"
-                            href="/gallery"
-                        >
-                            Gallery
-                        </Link>
-                    </h4>
-                    {/* <h4 className={styles.sidemenu_item}>
-                        <Link className={styles.sidenav_item} aria-current="page" href="#">Events</Link>
-                    </h4> */}
-                </div>
-            ) : null}
+  const { rive, RiveComponent } = useRive({
+    src: "/navbar/hamburger-time.riv",
+    autoplay: true,
+    stateMachines: STATE_MACHINE_NAME,
+  });
+
+  const toggleInput = useStateMachineInput(rive, STATE_MACHINE_NAME, INPUT_NAME);
+
+  useEffect(() => {
+    if (!showDropdown) return;
+    const handler = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setShowDropdown(false);
+      }
+    };
+    document.addEventListener("click", handler);
+    return () => document.removeEventListener("click", handler);
+  }, [showDropdown]);
+
+  useEffect(() => {
+    if (!drawerOpen) return;
+    const handler = (e) => {
+      if (refNav.current && !refNav.current.contains(e.target)) {
+        closeDrawer();
+      }
+    };
+    document.addEventListener("click", handler);
+    return () => document.removeEventListener("click", handler);
+  }, [drawerOpen]);
+
+  useEffect(() => closeDrawer(), [pathname]);
+
+  const toggleDrawer = () => {
+    const drawer = document.getElementById("drawer");
+    const nav = document.getElementById("nav_div");
+    if (!drawer || !nav) return;
+
+    if (!drawerOpen) {
+      drawer.style.display = "block";
+      nav.style.backgroundColor = "#000";
+      setTimeout(() => (drawer.style.opacity = 1), 50);
+    } else closeDrawer();
+
+    setDrawerOpen(!drawerOpen);
+    toggleInput?.fire();
+  };
+
+  const closeDrawer = () => {
+    const drawer = document.getElementById("drawer");
+    const nav = document.getElementById("nav_div");
+    if (!drawer) return;
+
+    drawer.style.opacity = 0;
+    setTimeout(() => {
+      drawer.style.display = "none";
+      if (nav) nav.style.backgroundColor = "";
+    }, 200);
+
+    setDrawerOpen(false);
+  };
+
+  const handleLogout = async () => {
+    await logoutUser();
+    setShowDropdown(false);
+    closeDrawer();
+    toast.success("Logged out!");
+  };
+
+  return (
+    <>
+      <div id="nav_div" className={styles.mainNav} ref={refNav}>
+        {/* Hamburger */}
+        <div className={styles.hamburger}>
+          <RiveComponent onClick={toggleDrawer} />
         </div>
-    )
+
+        {/* Logo */}
+        <Link href="/" className={styles.navLogo}>
+          <Image src="/navbar/logo_no_bg.svg" alt="logo" width={108} height={45} />
+        </Link>
+
+        {/* Desktop Links */}
+        <div className={styles.navLinks}>
+          <ul>
+            <li><Link className={styles.linknav} href="/events">Events</Link></li>
+            <li><Link className={styles.linknav} href="/multicity">Multicity</Link></li>
+            <li><Link className={styles.linknav} href="/gallery">Gallery</Link></li>
+            <li><Link className={styles.linknav} href="/team">Team</Link></li>
+            <li><Link className={styles.linknav} href="/sponsors">Sponsors</Link></li>
+            <li><Link className={styles.linknav} href="/about">About</Link></li>
+            <li><Link className={styles.linknav} href="/contact">Contact</Link></li>
+            <li><Link className={styles.linknav} href="/campus-ambassador">Campus Ambassador</Link></li>
+            <li><Link className={styles.linknav} href="/store">Store</Link></li>
+          </ul>
+        </div>
+
+        {/* Desktop Right */}
+        <div className={cn(styles.navEnds, "mr-14", "gap-2")}>
+
+          <button
+            className={cn(styles.sexy_button, styles.sexy_button_small)}
+            onClick={() => router.push("/anweshapass")}
+          >
+            GET PASSES
+          </button>
+
+          {!currentUser && (
+            <button
+              className={cn(styles.sexy_button, styles.sexy_button_small)}
+              onClick={() => router.push(`/login?from=${encodeURIComponent(pathname)}`)}
+            >
+              LOGIN
+            </button>
+          )}
+
+          {currentUser && (
+            <div className="relative flex items-center gap-2 " ref={dropdownRef}>
+              <FaShoppingCart
+                size={28}
+                color="white"
+                style={{ cursor: "pointer", marginRight: "12px" }}
+                onClick={() => router.push("/checkout")}
+              />
+
+              <FaUserCircle
+                size={28}
+                color="white"
+                style={{ cursor: "pointer" }}
+                onClick={() => setShowDropdown(prev => !prev)}
+              />
+
+              {showDropdown && (
+                <ul className="absolute right-0 top-full mt-3 w-56 rounded-2xl bg-black shadow-lg text-white">
+                  <li>
+                    <button
+                      className="w-full px-4 py-2 text-left bg-gray-800 hover:bg-gray-600 rounded-xl"
+                      onClick={() => {
+                        setShowDropdown(false);
+                        router.push("/profile");
+                      }}
+                    >
+                      Profile
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      className="w-full px-4 py-2 text-left bg-gray-800 hover:bg-gray-600 rounded-xl"
+                      onClick={() => {
+                        setShowDropdown(false);
+                        router.push("/orders");
+                      }}
+                    >
+                      Orders
+                    </button>
+                  </li>
+
+                  {currentUser?.role === "admin" && (
+                    <>
+                      <li className="mt-2">
+                        <button
+                          className="w-full px-4 py-2 text-left bg-gray-800 hover:bg-gray-600 rounded-xl"
+                          onClick={() => {
+                            setShowDropdown(false);
+                            router.push("/admin");
+                          }}
+                        >
+                          Admin Panel
+                        </button>
+                      </li>
+
+                      <li className="mt-2">
+                        <button
+                          className="w-full px-4 py-2 text-left bg-gray-800 hover:bg-gray-600 rounded-xl"
+                          onClick={() => {
+                            setShowDropdown(false);
+                            router.push("/editor");
+                          }}
+                        >
+                          Editor Panel
+                        </button>
+                      </li>
+                    </>
+                  )}
+
+                  {currentUser?.role === "editor" && (
+                    <li className="mt-2">
+                      <button
+                        className="w-full px-4 py-2 text-left bg-gray-800 hover:bg-gray-600 rounded-xl"
+                        onClick={() => {
+                          setShowDropdown(false);
+                          router.push("/editor");
+                        }}
+                      >
+                        Editor Panel
+                      </button>
+                    </li>
+                  )}
+
+                  <li className="mt-3">
+                    <button
+                      className="w-full px-4 py-2 bg-red-600 hover:bg-red-500 rounded-xl"
+                      onClick={handleLogout}
+                    >
+                      Logout
+                    </button>
+                  </li>
+                </ul>
+              )}
+            </div>
+          )}
+        </div>
+
+        {currentUser && (
+          <div
+            className="flex lg:hidden gap"
+            style={{
+              position: "absolute",
+              right: "16px",
+              top: "50%",
+              transform: "translateY(-50%)",
+              gap: "18px",
+              zIndex: 20,
+            }}
+          >
+            <FaShoppingCart
+              size={28}
+              color="white"
+              style={{ cursor: "pointer" }}
+              onClick={() => router.push("/checkout")}
+            />
+            <FaUserCircle
+              size={28}
+              color="white"
+              style={{ cursor: "pointer" }}
+              onClick={() => setShowDropdown(prev => !prev)}
+            />
+          </div>
+        )}
+      </div>
+
+      <div id="drawer" className={styles.nav_drawer}>
+        <ul>
+          <li><Link href="/" onClick={toggleDrawer}>Home</Link></li>
+          <li><Link href="/events" onClick={toggleDrawer}>Events</Link></li>
+          <li><Link href="/gallery" onClick={toggleDrawer}>Gallery</Link></li>
+          <li><Link href="/team" onClick={toggleDrawer}>Team</Link></li>
+          <li><Link href="/sponsors" onClick={toggleDrawer}>Sponsors</Link></li>
+          <li><Link href="/about" onClick={toggleDrawer}>About</Link></li>
+          <li><Link href="/contact" onClick={toggleDrawer}>Contact</Link></li>
+          <li><Link href="/campus-ambassador" onClick={toggleDrawer}>Campus Ambassador</Link></li>
+          <li><Link href="/store" onClick={toggleDrawer}>Store</Link></li>
+          <li><Link href="/anweshapass" onClick={toggleDrawer}>Get Passes</Link></li>
+
+          {!currentUser && (
+            <li><Link href="/login" onClick={toggleDrawer}>Login</Link></li>
+          )}
+        </ul>
+      </div>
+    </>
+  );
 }
 
-export default Navbar
-
+export default Navigation;
