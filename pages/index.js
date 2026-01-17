@@ -116,64 +116,60 @@ const FireSkullHeadRight = () => {
         </svg>
     )
 }
-const BatLeft = ({ width = 65, height = 85 }) => {
+const BatLeft = ({ width = 85, height = 85 }) => {
     return (
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
+        <Image
+            src="/home/left_button.png"
+            alt="Bat Left"
             width={width}
             height={height}
-            viewBox="10 0 65 85"
-            fill="none"
-        >
-            <g clipPath="url(#clip0_865_9808)">
-                <path
-                    d="M44.2656 50.7915H48.786C48.6235 50.6538 48.4554 50.5009 48.2871 50.3326C47.3576 49.4031 46.3906 47.9709 46.3906 46.0415C46.3906 44.1121 47.3576 42.68 48.2871 41.7505C48.4554 41.5821 48.6235 41.4292 48.786 41.2915H44.2656H43.7656V40.7915C43.7656 38.8663 44.6738 37.3204 45.9752 36.1057C47.2694 34.8978 48.9736 33.9948 50.6424 33.3273C52.3162 32.6578 53.9847 32.2133 55.2314 31.9362C55.8557 31.7975 56.3765 31.7003 56.7422 31.6376C56.8847 31.6131 57.0037 31.5939 57.0963 31.5796C60.4168 26.483 61.2656 20.3432 61.2656 15.4165C61.2656 12.929 61.0493 10.7653 60.833 9.22428C60.7702 8.77733 60.7076 8.38305 60.6502 8.04877C58.5943 11.0158 54.9918 12.7251 51.8523 13.7062C50.0731 14.2622 48.4077 14.5951 47.1879 14.7892C46.5775 14.8863 46.0773 14.9489 45.7285 14.9872C45.6966 14.9907 45.666 14.994 45.6366 14.9972C45.5152 21.8612 42.651 25.4107 39.7152 27.2173C38.231 28.1306 36.7506 28.5855 35.6434 28.8126C35.1252 28.9189 34.6864 28.9758 34.3639 29.0062C35.9284 37.5204 33.54 41.9661 30.5705 44.2503C29.3824 45.1642 28.1256 45.7123 27.0459 46.0415C28.1256 46.3707 29.3824 46.9188 30.5705 47.8327C33.54 50.1169 35.9284 54.5626 34.3639 63.0768C34.6864 63.1072 35.1252 63.1641 35.6434 63.2705C36.7506 63.4976 38.231 63.9524 39.7152 64.8657C42.651 66.6723 45.5152 70.2218 45.6366 77.0858C45.666 77.089 45.6966 77.0923 45.7285 77.0958C46.0773 77.1341 46.5775 77.1967 47.1879 77.2938C48.4077 77.4879 50.0731 77.8208 51.8523 78.3768C54.9918 79.3579 58.5943 81.0672 60.6502 84.0342C60.7076 83.7 60.7702 83.3057 60.833 82.8587C61.0493 81.3177 61.2656 79.154 61.2656 76.6665C61.2656 71.7399 60.4168 65.6 57.0963 60.5034C57.0037 60.4891 56.8847 60.4699 56.7422 60.4454C56.3765 60.3828 55.8557 60.2855 55.2314 60.1468C53.9847 59.8697 52.3162 59.4252 50.6424 58.7557C48.9736 58.0882 47.2694 57.1852 45.9752 55.9773C44.6738 54.7626 43.7656 53.2167 43.7656 51.2915V50.7915H44.2656Z"
-                    fill="#FBFF00"
-                    stroke="black"
-                />
-            </g>
-            <defs>
-                <clipPath id="clip0_865_9808">
-                    <rect
-                        width="84"
-                        height="84"
-                        fill="white"
-                        transform="matrix(-1 0 0 1 84.9531 0.104004)"
-                    />
-                </clipPath>
-            </defs>
-        </svg>
-    )
-}
-const BatRight = ({ width = 65, height = 85 }) => {
+            priority
+            style={{ transform: "rotate(-90deg)" }}
+        />
+    );
+};
+
+const BatRight = ({ width = 85, height = 85 }) => {
     return (
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
+        <Image
+            src="/home/left_button.png"
+            alt="Bat Left"
             width={width}
             height={height}
-            viewBox="10 0 65 85"
-            fill="none"
-        >
-            <g clipPath="url(#clip0_865_9817)">
-                <path
-                    d="M41.2969 50.7915H36.7765C36.939 50.6538 37.1071 50.5009 37.2754 50.3326C38.2049 49.4031 39.1719 47.9709 39.1719 46.0415C39.1719 44.1121 38.2049 42.68 37.2754 41.7505C37.1071 41.5821 36.939 41.4292 36.7765 41.2915H41.2969H41.7969V40.7915C41.7969 38.8663 40.8887 37.3204 39.5873 36.1057C38.2931 34.8978 36.5889 33.9948 34.9201 33.3273C33.2463 32.6578 31.5778 32.2133 30.3311 31.9362C29.7068 31.7975 29.186 31.7003 28.8203 31.6376C28.6778 31.6131 28.5588 31.5939 28.4662 31.5796C25.1457 26.483 24.2969 20.3432 24.2969 15.4165C24.2969 12.929 24.5132 10.7653 24.7295 9.22428C24.7923 8.77733 24.8549 8.38305 24.9123 8.04877C26.9682 11.0158 30.5707 12.7251 33.7102 13.7062C35.4894 14.2622 37.1548 14.5951 38.3746 14.7892C38.985 14.8863 39.4852 14.9489 39.834 14.9872C39.8659 14.9907 39.8965 14.994 39.9259 14.9972C40.0473 21.8612 42.9115 25.4107 45.8473 27.2173C47.3315 28.1306 48.8119 28.5855 49.9191 28.8126C50.4373 28.9189 50.8761 28.9758 51.1986 29.0062C49.6341 37.5204 52.0225 41.9661 54.992 44.2503C56.1801 45.1642 57.4369 45.7123 58.5166 46.0415C57.4369 46.3707 56.1801 46.9188 54.992 47.8327C52.0225 50.1169 49.6341 54.5626 51.1986 63.0768C50.8761 63.1072 50.4373 63.1641 49.9191 63.2705C48.8119 63.4976 47.3315 63.9524 45.8473 64.8657C42.9115 66.6723 40.0473 70.2218 39.9259 77.0858C39.8965 77.089 39.8659 77.0923 39.834 77.0958C39.4852 77.1341 38.985 77.1967 38.3746 77.2938C37.1548 77.4879 35.4894 77.8208 33.7102 78.3768C30.5707 79.3579 26.9682 81.0672 24.9123 84.0342C24.8549 83.7 24.7923 83.3057 24.7295 82.8587C24.5132 81.3177 24.2969 79.154 24.2969 76.6665C24.2969 71.7399 25.1457 65.6 28.4662 60.5034C28.5588 60.4891 28.6778 60.4699 28.8203 60.4454C29.186 60.3828 29.7068 60.2855 30.3311 60.1468C31.5778 59.8697 33.2463 59.4252 34.9201 58.7557C36.5889 58.0882 38.2931 57.1852 39.5873 55.9773C40.8887 54.7626 41.7969 53.2167 41.7969 51.2915V50.7915H41.2969Z"
-                    fill="#FBFF00"
-                    stroke="black"
-                />
-            </g>
-            <defs>
-                <clipPath id="clip0_865_9817">
-                    <rect
-                        width="84"
-                        height="84"
-                        fill="white"
-                        transform="translate(0.609375 0.104004)"
-                    />
-                </clipPath>
-            </defs>
-        </svg>
-    )
-}
+            priority
+            style={{ transform: "rotate(90deg)" }}
+        />
+    );
+};
+// const BatRight = ({ width = 65, height = 85 }) => {
+//     return (
+//         <svg
+//             xmlns="http://www.w3.org/2000/svg"
+//             width={width}
+//             height={height}
+//             viewBox="10 0 65 85"
+//             fill="none"
+//         >
+//             <g clipPath="url(#clip0_865_9817)">
+//                 <path
+//                     d="M41.2969 50.7915H36.7765C36.939 50.6538 37.1071 50.5009 37.2754 50.3326C38.2049 49.4031 39.1719 47.9709 39.1719 46.0415C39.1719 44.1121 38.2049 42.68 37.2754 41.7505C37.1071 41.5821 36.939 41.4292 36.7765 41.2915H41.2969H41.7969V40.7915C41.7969 38.8663 40.8887 37.3204 39.5873 36.1057C38.2931 34.8978 36.5889 33.9948 34.9201 33.3273C33.2463 32.6578 31.5778 32.2133 30.3311 31.9362C29.7068 31.7975 29.186 31.7003 28.8203 31.6376C28.6778 31.6131 28.5588 31.5939 28.4662 31.5796C25.1457 26.483 24.2969 20.3432 24.2969 15.4165C24.2969 12.929 24.5132 10.7653 24.7295 9.22428C24.7923 8.77733 24.8549 8.38305 24.9123 8.04877C26.9682 11.0158 30.5707 12.7251 33.7102 13.7062C35.4894 14.2622 37.1548 14.5951 38.3746 14.7892C38.985 14.8863 39.4852 14.9489 39.834 14.9872C39.8659 14.9907 39.8965 14.994 39.9259 14.9972C40.0473 21.8612 42.9115 25.4107 45.8473 27.2173C47.3315 28.1306 48.8119 28.5855 49.9191 28.8126C50.4373 28.9189 50.8761 28.9758 51.1986 29.0062C49.6341 37.5204 52.0225 41.9661 54.992 44.2503C56.1801 45.1642 57.4369 45.7123 58.5166 46.0415C57.4369 46.3707 56.1801 46.9188 54.992 47.8327C52.0225 50.1169 49.6341 54.5626 51.1986 63.0768C50.8761 63.1072 50.4373 63.1641 49.9191 63.2705C48.8119 63.4976 47.3315 63.9524 45.8473 64.8657C42.9115 66.6723 40.0473 70.2218 39.9259 77.0858C39.8965 77.089 39.8659 77.0923 39.834 77.0958C39.4852 77.1341 38.985 77.1967 38.3746 77.2938C37.1548 77.4879 35.4894 77.8208 33.7102 78.3768C30.5707 79.3579 26.9682 81.0672 24.9123 84.0342C24.8549 83.7 24.7923 83.3057 24.7295 82.8587C24.5132 81.3177 24.2969 79.154 24.2969 76.6665C24.2969 71.7399 25.1457 65.6 28.4662 60.5034C28.5588 60.4891 28.6778 60.4699 28.8203 60.4454C29.186 60.3828 29.7068 60.2855 30.3311 60.1468C31.5778 59.8697 33.2463 59.4252 34.9201 58.7557C36.5889 58.0882 38.2931 57.1852 39.5873 55.9773C40.8887 54.7626 41.7969 53.2167 41.7969 51.2915V50.7915H41.2969Z"
+//                     fill="#FBFF00"
+//                     stroke="black"
+//                 />
+//             </g>
+//             <defs>
+//                 <clipPath id="clip0_865_9817">
+//                     <rect
+//                         width="84"
+//                         height="84"
+//                         fill="white"
+//                         transform="translate(0.609375 0.104004)"
+//                     />
+//                 </clipPath>
+//             </defs>
+//         </svg>
+//     )
+// }
 const GreenCircle = ({ width = 626, height = 626 }) => {
     return (
         <svg
@@ -932,16 +928,20 @@ const IndexPage = () => {
                 <HeroSection className={styles.hero}>
                     <div className={styles.hero_text}>
                         <Image
+                        src={'/home/title_text_home.png'}
+                        width={1000}
+                        height={313}/>
+                        {/* <Image
                             src={'/pics/hero_image-export.svg'}
                             width={1047}
                             height={589}
-                        />
+                        /> */}
                         {/* <div style={{height: 570, width: 570, zIndex: 9, overflow: 'hidden', borderRadius: "9999px"}}>
                         <div style={{height: 589, width: 589}}>
                             <Spline scene="https://prod.spline.design/0cIZkQpUYfHX-VX8/scene.splinecode" width="589" height="589"/>
                         </div>
                     </div> */}
-                        <h2>Welcome To Your Nightmare</h2>
+                        {/* <h2>Welcome To Your Nightmare</h2> */}
                     </div>
                     <div className={styles.hero_button}>
                         <button
@@ -956,18 +956,30 @@ const IndexPage = () => {
                         >
                             REGISTER
                         </button>
+                        <button
+                            className={cn(
+                                styles.sexy_button,
+                                styles.sexy_button_small
+                            )}
+                            onClick={() => {
+                                    router.push('/userRegister')
+                                }
+                            }
+                        >
+                            GET PASSES
+                        </button>
                     </div>
                 </HeroSection>
 
                 {/* Events */}
                 <section className={styles.events}>
                     <div className={styles.events_title}>
-                        <FireSkullHeadLeft />
+                        {/* <FireSkullHeadLeft /> */}
                         <div>
                             <h2>Explore the Events</h2>
-                            <h3>Dare to face the Unseen</h3>
+                            {/* <h3>Dare to face the Unseen</h3> */}
                         </div>
-                        <FireSkullHeadRight />
+                        {/* <FireSkullHeadRight /> */}
                     </div>
                     <div className={styles.events_images_parent}>
                         <button
@@ -1078,7 +1090,7 @@ const IndexPage = () => {
                             className={styles.bat_scroll_button}
                             onClick={nextMomentImage}
                         >
-                            <BatLeft width={40} height={60} />
+                            <BatLeft width={90} height={100} />
                         </button>
                         <button
                             className={cn(
@@ -1095,7 +1107,7 @@ const IndexPage = () => {
                             className={styles.bat_scroll_button}
                             onClick={previouseMomentImage}
                         >
-                            <BatRight width={40} height={60} />
+                            <BatRight width={90} height={100} />
                         </button>
                     </div>
                 </section>
@@ -1146,18 +1158,17 @@ const IndexPage = () => {
                 <section className={styles.cta}>
                     <div className={styles.sexy_title}>
                         <h2>This Year&apos;s Theme</h2>
-                        <h3>Echoes Of the Abyss</h3>
+                        <h3>Palingenesis reverie</h3>
                     </div>
                     <div className={styles.cta_body}>
-                        <div className={styles.cta_body_left}>
-                            <GreenCircle />
-                            <div className={styles.cta_image}>
+                        <div className={styles.cta_body_left}>  
+                            {/* <div className={styles.cta_image}> */}
                                 <Image
-                                    src={'/pics/Mascot.png'}
+                                    src={'/home/home_circle.png'}
                                     width={474.386}
                                     height={474.386}
                                 />
-                            </div>
+                            {/* </div> */}
                         </div>
                         <div className={styles.cta_body_right}>
                             <p>
@@ -1204,7 +1215,7 @@ const IndexPage = () => {
                 </section>
 
                 {/* NewsLetter */}
-                <section className={styles.newsletter}>
+                {/* <section className={styles.newsletter}>
                     <p style={{ color: 'white' }}>
                         Subscribe to our newsletter
                     </p>
@@ -1216,7 +1227,7 @@ const IndexPage = () => {
                         scrolling="no"
                         // style="margin: 0; border-radius: 0px !important; background-color: transparent;"
                     />
-                </section>
+                </section> */}
                 {loadimg && (
                     <img width={200} src="/pics/jump.gif" alt="Scary GIF" />
                 )}
@@ -2493,3 +2504,79 @@ export default IndexPage
 // }
 
 // export default Home;
+// 'use client';
+
+// export default function Page() {
+//   return (
+//     <div style={{
+//       minHeight: "100vh",
+//       width: "100%",
+//       display: "flex",
+//       flexDirection: "column",
+//       alignItems: "center",
+//       justifyContent: "center",
+//       // Background Settings
+//       backgroundImage: 'url("/assets/login.png")',
+//       backgroundSize: "cover",
+//       backgroundPosition: "center",
+//       backgroundRepeat: "no-repeat",
+//       backgroundAttachment: "fixed",
+//       margin: 0,
+//       padding: 0,
+//       overflow: "hidden"
+//     }}>
+//       {/* The actual text content */}
+//       <div className="maintenance-container">
+//         {/* <h1 className="maintenance-text">SITE UNDER MAINTENANCE</h1> */}
+//         <h1 className="maintenance-text">WEBSITE INTO THE ABYSS</h1>
+//         <p className="sub-text">We're preparing for the Chaos!!!</p>
+//       </div>
+
+//       <style jsx>{`
+//         .maintenance-container {
+//           background: rgba(0, 0, 0, 0.4);
+//           backdrop-filter: blur(8px);
+//           padding: 40px;
+//           border-radius: 24px;
+//           border: 1px solid rgba(255, 255, 255, 0.1);
+//           text-align: center;
+//           margin: 20px;
+//         }
+
+//         .maintenance-text {
+//           font-size: 48px;
+//           color: white;
+//           font-weight: 900;
+//           letter-spacing: 2px;
+//           margin: 0;
+//           text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+//         }
+
+//         .sub-text {
+//           color: rgba(255, 255, 255, 0.8);
+//           font-size: 18px;
+//           margin-top: 10px;
+//         }
+
+//         /* Mobile Responsive */
+//         @media (max-width: 768px) {
+//           .maintenance-text {
+//             font-size: 32px;
+//           }
+//           .sub-text {
+//             font-size: 16px;
+//           }
+//         }
+
+//         @media (max-width: 480px) {
+//           .maintenance-text {
+//             font-size: 24px;
+//           }
+//           .maintenance-container {
+//             padding: 20px;
+//           }
+//         }
+//       `}</style>
+//     </div>
+//   );
+// }
