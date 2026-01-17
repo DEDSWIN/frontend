@@ -44,6 +44,7 @@
   width: 100%;
   object-fit: cover;
   object-position: right center;
+  opacity: 0.8;
 }
 
 
@@ -164,9 +165,9 @@
 }
 .footer_content {
     width: 100%;
-    max-width: 1200px;   /* controls laptop centering */
+    max-width: 1400px;   /* controls laptop centering */
     margin: 0 auto;      /* true horizontal centering */
-    padding: 0 24px;     /* breathing space on small screens */
+    padding: 0 12px;     /* breathing space on small screens */
 
     position: relative;
     z-index: 2;          /* always above flower */
