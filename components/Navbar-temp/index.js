@@ -128,10 +128,11 @@ function Navigation() {
                     className={styles.navLogo}
                 >
                     <Image
-                        src="/navbar/logo_no_bg.svg"
+                        className='nav_logo'
+                        src="/newlogo.svg"
                         alt="logo"
-                        width={108}
-                        height={45}
+                        width={110}
+                        height={85}
                     />
                 </Link>
                 <div className={styles.navLinks}>
@@ -182,7 +183,7 @@ function Navigation() {
                                 style={
                                     router.pathname === '/events'
                                         ? {
-                                            color: 'rgb(80, 255, 0)',
+                                            color: '#B8A947',
                                         }
                                         : null
                                 }
@@ -195,9 +196,9 @@ function Navigation() {
                             <Link
                                 className={styles.linknav}
                                 style={
-                                    router.pathname === '/events'
+                                    router.pathname === '/all-multicity'
                                         ? {
-                                            color: 'rgb(80, 255, 0)',
+                                            color: '#B8A947',
                                         }
                                         : null
                                 }
@@ -212,7 +213,7 @@ function Navigation() {
                                 style={
                                     router.pathname === '/schedule'
                                         ? {
-                                              color: 'rgb(80, 255, 0)',
+                                              color: '#B8A947',
                                           }
                                         : null
                                 }
@@ -227,7 +228,7 @@ function Navigation() {
                                 style={
                                     router.pathname === '/merch'
                                         ? {
-                                              color: 'rgb(80, 255, 0)',
+                                              color: '#B8A947',
                                           }
                                         : null
                                 }
@@ -243,7 +244,7 @@ function Navigation() {
                                 style={
                                     router.pathname === '/gallery'
                                         ? {
-                                            color: 'rgb(80, 255, 0)',
+                                            color: '#B8A947',
                                         }
                                         : null
                                 }
@@ -258,7 +259,7 @@ function Navigation() {
                                 style={
                                     router.pathname === '/ourteam'
                                         ? {
-                                            color: 'rgb(80, 255, 0)',
+                                            color: '#B8A947',
                                         }
                                         : null
                                 }
@@ -273,7 +274,7 @@ function Navigation() {
                                 style={
                                     router.pathname === '/oursponsors'
                                         ? {
-                                            color: 'rgb(80, 255, 0)',
+                                            color: '#B8A947',
                                         }
                                         : null
                                 }
@@ -288,7 +289,7 @@ function Navigation() {
                                 style={
                                     router.pathname === '/aboutus'
                                         ? {
-                                            color: 'rgb(80, 255, 0)',
+                                            color: '#B8A947',
                                         }
                                         : null
                                 }
@@ -303,7 +304,7 @@ function Navigation() {
                                 style={
                                     router.pathname === '/contact'
                                         ? {
-                                            color: 'rgb(80, 255, 0)',
+                                            color: '#B8A947',
                                         }
                                         : null
                                 }

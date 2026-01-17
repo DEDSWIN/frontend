@@ -11,7 +11,7 @@ export default function userRegister() {
                 <link rel="icon" href="./logo_no_bg.svg" />
             </Head>
 
-            <div className={styles.container} loading="lazy">
+            <div className={styles.container_register} loading="lazy">
 
                 <UserRegisterForm />
                 {/* <img

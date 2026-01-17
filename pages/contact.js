@@ -124,9 +124,9 @@ const Contact = () => {
                                     />
                                 </div>
                             </div> */}
-                            <div className={styles.buttonbox}>
+                            <div className={styles.register_btn_box}>
                                 <input
-                                    className={styles.button}
+                                    className={styles.register_button}
                                     type="button"
                                     onClick={() => window.open("https://forms.gle/MVtBKRRqqWEtkFag7", "_blank")}
                                     value="Google Form"
