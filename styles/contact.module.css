@@ -15,15 +15,19 @@
 .maincontainer {
     width: 100%;
     min-height: 100vh;
+
     display: flex;
-    justify-content: center; /* Centers horizontally */
-    align-items: center; /* Centers vertically */
+    justify-content: center;
+    align-items: center;
     text-align: center;
 
-    background-image: url('/contactUsBg2.png');
+    background-image:
+      /* linear-gradient(90deg, #000 0%, rgba(0, 0, 0, 0.1) 85%), */
+      url('/assets/contactusnew.png');
+
     background-repeat: no-repeat;
-    background-position: 80px 40px;
-    /* background: linear-gradient(90deg, #000 0%, rgba(0, 0, 0, 0.20) 85.95%); */
+    background-size: cover;
+    background-position: center;
 }
 
 .effectContainer {
@@ -68,7 +72,7 @@
     gap: 8px;
 }
 .title {
-    color: var(--Color-Primary500, #50ff00);
+    color: var(--Color-Primary500, #fff);
     font-family: 'SF Ironsides';
     font-size: 72px;
     font-style: normal;
@@ -346,4 +350,51 @@ border: none;
     .rightContainer {
         width: 100%;
     }
+}
+/* =================================== register =================================== */
+.register_btn_box{
+    z-index: 1;
+}
+.register_button{
+    all: unset;
+    width: 231.338px;
+    height: 176.135px;
+
+    /* flex-shrink: 0; */
+    background-image: url("/assets/register_button_bac.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-clip: border-box;
+    background-position: center;
+    fill: #000;
+    filter: drop-shadow(0px -3.623px 3.623px #f2e279);
+
+    /* color: var(--Color-Primary500, #50FF00); */
+    color: #f3de56;
+    text-align: center;
+    padding-top: 5px;
+
+    /* SF/SF - 36 REG */
+    font-family: "SF Ironsides";
+    font-size: 23px;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: uppercase;
+
+    cursor: pointer;
+}
+.register_button_small{
+    width: 191.315px;
+    height: 62.963px;
+    font-size: 28px;
+    filter: drop-shadow(0px -2.996px 2.996px #f2e279);
+}
+
+.register_button:hover{
+    filter: drop-shadow(0px -3.623px 3.623px #f2e279);
+    color: #f2e279;
+    transform: scale(97%);
+}
+.register_button:active{
+    filter: drop-shadow(1px 1px 1px f2e279);
 }

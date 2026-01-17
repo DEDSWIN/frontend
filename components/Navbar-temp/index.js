@@ -128,10 +128,11 @@ function Navigation() {
                     className={styles.navLogo}
                 >
                     <Image
+                        className='nav_logo'
                         src="/newlogo.svg"
                         alt="logo"
                         width={110}
-                        height={55}
+                        height={85}
                     />
                 </Link>
                 <div className={styles.navLinks}>
@@ -195,7 +196,7 @@ function Navigation() {
                             <Link
                                 className={styles.linknav}
                                 style={
-                                    router.pathname === '/events'
+                                    router.pathname === '/all-multicity'
                                         ? {
                                             color: '#B8A947',
                                         }
