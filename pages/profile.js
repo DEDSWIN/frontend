@@ -17,11 +17,23 @@ const host = process.env.NEXT_PUBLIC_HOST
 
 function Profile() {
     const userData = useContext(AuthContext)
+    const isDev = process.env.NODE_ENV === 'development'
+
     const [tabIndex, setTabIndex] = useState(0)
     // const profDetails = userData.state.user;
+    const devUser = {
+        full_name: 'Dev User',
+        anwesha_id: 'ANWESHA_DEV_001',
+        email_id: 'dev@anwesha.in',
+        phone_number: '9999999999',
+        college_name: 'IIT Patna',
+        qr_code: '',
+    }
+
     const [profDetails, setProfDetails] = useState(
-        userData.state.user || { anwesha_id: '' }
+        userData?.state?.user || (isDev ? devUser : { anwesha_id: '' })
     )
+
     const [formData, setFormData] = useState(profDetails)
     const [qrcode, setQrcode] = useState(
         userData ? userData.state.user?.qr_code : ''
@@ -63,6 +75,8 @@ function Profile() {
     }
 
     useEffect(() => {
+        if (isDev) return
+
         fetch(`${host}/user/editprofile`, {
             method: 'GET',
             credentials: 'include',
@@ -70,7 +84,7 @@ function Profile() {
         })
             .then((response) => response.json())
             .then((result) => {
-                setProfDetails(result), console.log(result)
+                setProfDetails(result)
             })
             .catch((error) => console.log('error', error))
     }, [])
@@ -86,6 +100,21 @@ function Profile() {
                 setQrcode(result.qr_code)
             })
             .catch((error) => console.log('error', error))
+    }
+
+    // DEV MODE LOGIN BYPASS
+    if (!isDev && !userData?.state?.user) {
+        return (
+            <div
+                style={{
+                    color: 'white',
+                    textAlign: 'center',
+                    marginTop: '100px',
+                }}
+            >
+                Please login to view your profile
+            </div>
+        )
     }
 
     return (
@@ -120,7 +149,7 @@ function Profile() {
                         >
                             <div className={styles.userImage}>
                                 <img
-                                    src={'/pics/circle_greenNobg.png'}
+                                    src={'/profile/profile.png'}
                                     width={180}
                                     height={180}
                                     alt="userImage"
@@ -169,7 +198,10 @@ function Profile() {
                                         />
                                     ) : (
                                         // View mode: Show name
-                                        <h1 className={styles.anwesha_username} style={{ fontWeight: 'normal' }}>
+                                        <h1
+                                            className={styles.anwesha_username}
+                                            style={{ fontWeight: 'normal' }}
+                                        >
                                             {formData.full_name}
                                         </h1>
                                     )}
@@ -207,7 +239,10 @@ function Profile() {
                                         flexDirection: 'row',
                                     }}
                                 >
-                                    <h1 className={styles.anwesha_id} style={{ fontWeight: 'normal' }}>
+                                    <h1
+                                        className={styles.anwesha_id}
+                                        style={{ fontWeight: 'normal' }}
+                                    >
                                         {profDetails.anwesha_id}
                                     </h1>
                                     <button
@@ -299,9 +334,24 @@ function Profile() {
                         </div>
                     </div>
                     <MyEvents />
-                    <h2 style={{ color: 'white', fontWeight: 'normal', textAlign: 'center', letterSpacing: '1px' }}>To seek accomodation Fill this &nbsp;
-                        <a href='https://forms.gle/WjTuyC2gR8mHYGzA6' target="_blank" rel="noopener noreferrer" style={{ fontWeight: 'normal', color: 'skyblue' }}>FORM</a>
-                    </h2>
+                    {/* <h2
+                        style={{
+                            color: 'white',
+                            fontWeight: 'normal',
+                            textAlign: 'center',
+                            letterSpacing: '1px',
+                        }}
+                    >
+                        To seek accomodation Fill this &nbsp;
+                        <a
+                            href="https://forms.gle/WjTuyC2gR8mHYGzA6"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{ fontWeight: 'normal', color: 'skyblue' }}
+                        >
+                            FORM
+                        </a>
+                    </h2> */}
 
                     {/* <Tabs className={styles.tabs}>
                         <TabList
@@ -334,8 +384,19 @@ function Profile() {
                             <MyMerch />
                         </TabPanel>
                     </Tabs> */}
+
+                    {/* design for the bottom pngs */}
+                        <div className={styles.bottomDesign}>
+                             <img
+                                    src={'/profile/bottom.png'}
+                                    width={800}
+                                    height={350}
+                                    alt="userImage"
+                                />
+                        </div>
+                        
                 </div>
-            </div >
+            </div>
         </>
     )
 }
