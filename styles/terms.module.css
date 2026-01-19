@@ -1,28 +1,50 @@
 @font-face {
-    font-family: 'SF Ironsides';
-    src: url('/font/SF-Ironsides.ttf');
+    font-family: 'Lisu Bosa';
+    src: url('/font/Lisu-Bosa-Regular.otf');
+    font-weight: normal;
+    font-style: normal;
 }
- 
 @font-face {
-    font-family: "Laila";
-    src: url('/font/Laila-Regular.ttf');
+    font-family: 'DM Serif Display';
+    src: url('/font/DMSerifDisplay-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
 }
-
 .parentcontainer {
-    background-image: url("/aboutusBg.png");
-    /* background-image: url("/contactUsBg2.png"); */
-    background-size: 100%;
-    background-color: #0b0c0c;
+    /* position: relative; */
+    background-image: url('../images/background.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+
     color: rgb(255, 255, 255);
     padding: 150px 150px 100px 120px;
+    font-family: 'Lisu Bosa', sans-serif;
+    /* overflow: hidden; */
+    background-attachment: fixed;
 }
-.parentcontainer > h2{
-    color: #50FF00;
-    font-family: 'SF Ironsides', sans-serif;
+
+.parentcontainer::before {
+    content: "";
+    position: relative;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.35); /* adjust darkness here */
+    z-index: 1;
+    /* background-attachment: fixed; */
+
+}
+
+.parentcontainer > * {
+    position: relative;
+    z-index: 2;
+}
+
+.parentcontainer > h2 {
+    color: #F2BF51;
+    font-family: 'DM Serif Display', serif;
 }
 .head {
     color: #002886;
-    font-family: laila;
+    font-family: 'DM Serif Display', serif;
     font-size: 44px;
     font-style: normal;
     font-weight: 700;
@@ -37,37 +59,34 @@
     border: none;
 }
 .para {
-    color: #fff;
-    font-family: laila;
+    color: #c0bcbc;
+    font-family: 'Lisu Bosa', sans-serif;
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
     margin-bottom: 8px;
 }
-
 .subheading {
-    color:  #50FF00;
-    font-family: 'SF Ironsides', sans-serif;
+    color: #F2BF51;
+    font-family: 'DM Serif Display', serif;
     font-size: 36px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
     padding-bottom: 10px;
 }
-
 .list {
     margin-left: 40px;
 }
-
 .sec {
     margin-block: 1em;
 }
 .listitem {
-    color: #eaeffa;
+    color: #c0bcbc;
     font-size: 20px;
+    font-family: 'Lisu Bosa', sans-serif;
 }
-
 .listitem::before {
     margin-left: 1.5em;
 }

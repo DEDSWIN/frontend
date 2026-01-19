@@ -224,14 +224,15 @@ const UserRegisterForm = () => {
                     <div className={styles.form}>
                         <div
                             style={{
-                                fontSize: '2rem',
+                                fontSize: '2.2rem',
                                 fontFamily: 'Anavio Small Capitals W01 Bold',
                                 margin: ' 0 0 2.5rem 0',
                                 textAlign: 'center',
+                              
                             }}
                         >
                             Create Your Account
-
+                    
                             <p style={{ fontSize: '0.9rem', color: 'white', marginTop:'5px', textShadow: '0px 0px 5px rgba(255, 255, 255, 0.7)'
  }}> 
                                 Non IITP Students register by their personal email
@@ -423,8 +424,8 @@ const UserRegisterForm = () => {
                             <button
                                 onClick={handleSubmit}
                                 className={cn(
-                                    styles.sexy_button,
-                                    styles.sexy_button_small
+                                    styles.register_button,
+                                    
                                 )}
                             >
                                 {!loading ? 'REGISTER' : 'REGISTERING..'}
@@ -440,6 +441,7 @@ const UserRegisterForm = () => {
                         >
                             Already registered? &nbsp;
                             <Link
+                                className='login_link'
                                 href="/userLogin"
                                 style={{ color: '#ffffff', fontWeight: 600 }}
                             >

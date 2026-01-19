@@ -189,7 +189,7 @@ const UserLoginForm = () => {
     }
 
     return (
-        <div>
+        <div className={styles.container_login}>
             <ToastContainer
                 position="top-right"
                 autoClose={3000}
@@ -209,7 +209,7 @@ const UserLoginForm = () => {
                 transition={{ duration: 1 }}
             >
                 <div className={styles.container}>
-                    <div className={styles.form}>
+                    <div className={styles.form_login}>
                         <h1
                             style={{
                                 fontSize: '2rem',
@@ -282,8 +282,7 @@ const UserLoginForm = () => {
                             <button
                                 onClick={handleSubmit}
                                 className={cn(
-                                    styles.sexy_button,
-                                    styles.sexy_button_small
+                                    styles.register_button,
                                 )}
                             >
                                 LOGIN

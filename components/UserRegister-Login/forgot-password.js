@@ -104,7 +104,7 @@ const ForgotPassword = () => {
     }
 
     return (
-        <div>
+        <div className={styles.container_login}>
             <ToastContainer
                 position="top-right"
                 autoClose={3000}
@@ -123,8 +123,12 @@ const ForgotPassword = () => {
                 whileInView={{ opacity: 1, x: '0%' }}
                 transition={{ duration: 1 }}
             >
-                <div className={styles.container}>
-                    <div className={styles.form}>
+                <div style={{ 
+                    position: "relative",
+                    bottom: "70px", 
+
+                 }} className={styles.container}>
+                    <div className={styles.form_reset}>
                         <h2
                             style={{
                                 fontSize: '2rem',
@@ -195,8 +199,7 @@ const ForgotPassword = () => {
                         <div className={styles.hero_button}>
                             <button
                                 className={cn(
-                                    styles.sexy_button,
-                                    styles.sexy_button_small
+                                    styles.register_button,
                                 )}
                                 onClick={handleSubmit}
                             >

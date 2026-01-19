@@ -1,6 +1,6 @@
-.container {
+.container_register {
     font-family: 'Poppins', sans-serif;
-    background-image: url('/pics/registerBg.jpg');
+    background-image: url('/assets/registration.png');
     background-repeat: no-repeat; /* Prevents duplication */
     background-size: cover; /* Ensures the image stretches to cover the entire page */
     /* background-image: url("/bg.png"); */
@@ -30,10 +30,14 @@
     overflow: hidden;
     height: fit-content;
     min-height: 100vh;
+   
 }
 
 @media only screen and (max-width: 1023px) {
     .container {
+        background-size: cover, cover;
+    }
+    .container_login {
         background-size: cover, cover;
     }
 }

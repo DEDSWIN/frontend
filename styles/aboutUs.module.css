@@ -3,13 +3,13 @@
 @import url(https://db.onlinewebfonts.com/c/c4edbff807a21e68cd990230dab176df?family=Anavio+Small+Capitals+W01+Rg);
 
 .parentcontainer {
-    background-image: url('/aboutusBg.png');
+    background-image: url('/assets/aboutusnew.png');
     background-size: 100%;
-    color: black;
+    color: F2BF51;
     padding: 150px 150px 100px 120px;
 }
 .head{
-    color: #50FF00;
+    color: #fff;
     font-family: 'SF Ironsides', sans-serif;
     font-size: 50px;
     font-style: normal;
@@ -34,7 +34,7 @@
 }
 
 .subheading {
-    color: #50FF00;
+    color: #fff;
     font-family: 'SF Ironsides', sans-serif;
     font-size: 50px;
     font-style: normal;
@@ -45,7 +45,7 @@
 .title{
     font-size: 20px;
     font-family: 'Anavio Small Capitals W01 Rg';
-    color: #FBFF00;
+    color: #F2BF51;
 
 }
 .list {
