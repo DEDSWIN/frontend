@@ -17,22 +17,15 @@ const host = process.env.NEXT_PUBLIC_HOST
 
 function Profile() {
     const userData = useContext(AuthContext)
-    const isDev = process.env.NODE_ENV === 'development'
+
 
     const [tabIndex, setTabIndex] = useState(0)
     // const profDetails = userData.state.user;
-    const devUser = {
-        full_name: 'Dev User',
-        anwesha_id: 'ANWESHA_DEV_001',
-        email_id: 'dev@anwesha.in',
-        phone_number: '9999999999',
-        college_name: 'IIT Patna',
-        qr_code: '',
-    }
+   
+const [profDetails, setProfDetails] = useState(
+    userData?.state?.user || {}
+)
 
-    const [profDetails, setProfDetails] = useState(
-        userData?.state?.user || (isDev ? devUser : { anwesha_id: '' })
-    )
 
     const [formData, setFormData] = useState(profDetails)
     const [qrcode, setQrcode] = useState(
@@ -74,20 +67,20 @@ function Profile() {
             .catch((error) => console.log('error', error))
     }
 
-    useEffect(() => {
-        if (isDev) return
+  useEffect(() => {
+    if (!userData?.state?.user) return
 
-        fetch(`${host}/user/editprofile`, {
-            method: 'GET',
-            credentials: 'include',
-            redirect: 'follow',
+    fetch(`${host}/user/editprofile`, {
+        method: 'GET',
+        credentials: 'include',
+        redirect: 'follow',
+    })
+        .then((response) => response.json())
+        .then((result) => {
+            setProfDetails(result)
         })
-            .then((response) => response.json())
-            .then((result) => {
-                setProfDetails(result)
-            })
-            .catch((error) => console.log('error', error))
-    }, [])
+        .catch((error) => console.log('error', error))
+}, [userData])
 
     function regenrateqr() {
         fetch(`${host}/user/regenerateqr/`, {
@@ -102,20 +95,10 @@ function Profile() {
             .catch((error) => console.log('error', error))
     }
 
-    // DEV MODE LOGIN BYPASS
-    if (!isDev && !userData?.state?.user) {
-        return (
-            <div
-                style={{
-                    color: 'white',
-                    textAlign: 'center',
-                    marginTop: '100px',
-                }}
-            >
-                Please login to view your profile
-            </div>
-        )
-    }
+   if (!userData?.state?.user) {
+    return null
+}
+
 
     return (
         <>
