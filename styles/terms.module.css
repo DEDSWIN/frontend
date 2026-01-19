@@ -11,15 +11,33 @@
     font-style: normal;
 }
 .parentcontainer {
+    /* position: relative; */
     background-image: url('../images/background.png');
-     /* background-image: url("../images/background.png"); */ 
-     /* background-image: url("/contactUsBg2.png"); */
-    background-size: 100%;
-    /* background-color: #0b0c0c; */
+    background-size: cover;
+    background-repeat: no-repeat;
+
     color: rgb(255, 255, 255);
     padding: 150px 150px 100px 120px;
     font-family: 'Lisu Bosa', sans-serif;
+    /* overflow: hidden; */
+    background-attachment: fixed;
 }
+
+.parentcontainer::before {
+    content: "";
+    position: relative;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.35); /* adjust darkness here */
+    z-index: 1;
+    /* background-attachment: fixed; */
+
+}
+
+.parentcontainer > * {
+    position: relative;
+    z-index: 2;
+}
+
 .parentcontainer > h2 {
     color: #DEB25B;
     font-family: 'DM Serif Display', serif;
@@ -41,7 +59,7 @@
     border: none;
 }
 .para {
-    color: #fff;
+    color: #c0bcbc;
     font-family: 'Lisu Bosa', sans-serif;
     font-size: 20px;
     font-style: normal;
@@ -65,7 +83,7 @@
     margin-block: 1em;
 }
 .listitem {
-    color: #eaeffa;
+    color: #c0bcbc;
     font-size: 20px;
     font-family: 'Lisu Bosa', sans-serif;
 }

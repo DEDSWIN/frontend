@@ -147,26 +147,75 @@
 }
 
 /* =================================== HERO =================================== */
-.hero {
+/* .hero {
     background-image: url('/pics/backdrop_home.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-clip: border-box;
     background-position: center;
-    /* right */
+} */
+
+.hero {
+    position: relative;
+    width: 100vw;          /* FULL WIDTH */
+    height: 100vh;          /* your desired height */
+    max-height: 100vh;     /* never exceed screen */
+    overflow: hidden;      /* crop overflow */
+}
+
+.hero_video {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;           /* 🔥 removes black bars */
+    object-position: center bottom;     /* 🔥 zoom middle part */
+
+    transform: scale(1.25);      /* 🔥 zoom in (adjust if needed) */
+    z-index: 0;
+}
+
+
+
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 1;
 }
 
 .hero_text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 2;
+
+    transform: translateY(-40vh); /* 🔼 adjust value as needed */
+}
+
+
+
+
+/* .hero_text {
     margin-top: -650px;
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
-}
+} */
 
 .hero_text>img {
     position: relative;
     z-index: 1;
+    width: min(90vw, 1000px);
+    height: auto;
 }
 
 .hero_text>h2 {
@@ -186,12 +235,24 @@
     filter: drop-shadow(0px -7px 1px #5dc02c);
 }
 
-.hero_button {
+/* .hero_button {
     margin-top: 100px;
     z-index: 1;
     display: flex;
     gap: 50px;
+} */
+
+.hero_button {
+    position: relative;
+    z-index: 2;
+    margin-top: 40px;
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+
+    transform: translateY(-45vh)
 }
+
 
 @media only screen and (max-width: 900px) {
     .hero {
@@ -205,6 +266,15 @@
         z-index: 1;
     }
 }
+
+@media (max-width: 568px) {
+    .hero_button {
+        flex-direction: column; /* 🔥 STACK */
+        gap: 0px;
+        transform: translateY(-30vh);
+    }
+}
+
 
 @media only screen and (max-width: 768px) {
     .hero {
@@ -227,9 +297,9 @@
     }
 
     .hero_text>img {
-        width: calc(1047px / 1.2);
-        height: calc(589px / 1.2);
-        margin-top: 12px;
+         width: calc(407px / 1.2);
+        height: calc(189px / 1.2);
+        margin-top: 12px; 
     }
 
     .hero_text>h2 {
@@ -251,6 +321,35 @@
 
     position: relative;
 }
+
+.fixed_bg {
+    position: relative;
+    background-image: url('/home/backdrop2_home.png'); /* your new bg */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center top;
+    background-attachment: fixed; 
+     width: 100%;
+    overflow-x: hidden; 
+}
+.fixed_bg::before {
+    content: "";
+     position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3); 
+    z-index: 0;
+    inset: 0;
+}
+
+.fixed_bg > * {
+    /* position: relative; */
+    z-index: 1;
+}
+
+
 
 
 /* =================================== EVENTS =================================== */
@@ -532,7 +631,8 @@
     gap: 20px;
     align-self: stretch;
 
-    background: #000300;
+    background: transparent;
+    /* background: #000300; */
 }
 
 .merch_body {
@@ -891,7 +991,9 @@
 /* =================================== Anwesha Through the Lens =================================== */
 .moments {
     align-self: stretch;
-    background: #000300;
+    background: transparent;
+    /* background: #0E0117; */
+    background: transparent;
     padding-top: 44px;
     padding-bottom: 44px;
 }
@@ -901,7 +1003,7 @@
 }
 
 .moments_images_curve {
-    background-color: #000300;
+    background-color: #0E0117;
     width: 120%;
     margin-left: -10%;
     height: 60px;
@@ -919,6 +1021,7 @@
     border-top-left-radius: 50% 100%;
     border-top-right-radius: 50% 100%;
     margin-top: -90px;
+    
 }
 
 .moments_images {
@@ -1012,7 +1115,8 @@
     align-items: center;
     gap: 34px;
     align-self: stretch;
-    background: #000300;
+    /* background: #000300; */
+    background: transparent;
     width: 100%;
 }
 
@@ -1113,7 +1217,8 @@
 /* =================================== CTA =================================== */
 .cta {
     align-self: stretch;
-    background: #000300;
+    background: transparent;
+    /* background: #000300; */
     padding-top: 64px;
 }
 
