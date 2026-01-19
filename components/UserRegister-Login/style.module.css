@@ -1,14 +1,27 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-@import url(https://db.onlinewebfonts.com/c/16ff7a691ffa5aae54301d500d494a5b?family=Anavio+Small+Capitals+W01+Bold);
 
 @font-face {
-    font-family: 'BroadwayShadow';
-    src: url('/font/BroadwayShadow.ttf') format('truetype');
+    font-family: 'Lisu_Bosa';
+    src: url('../../styles/fonts/Lisu_Bosa/LisuBosa-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
 }
-
 @font-face {
-    font-family: 'SF Ironside';
-    src: url('/font/SF_Ironsides.ttf') format('truetype');
+    font-family: 'Cormorant_Garamond';
+    src: url('../../styles/fonts/Cormorant_Garamond/static/CormorantGaramond-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Cinzel_Decorative';
+    src: url('../../styles//fonts/Cinzel_Decorative/CinzelDecorative-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'DM_Serif_Display';
+    src: url('../../styles//fonts/DM_Serif_Display/DMSerifDisplay-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
 }
 
 /* body {
@@ -18,14 +31,32 @@
     z-index: 1;
 }
 /* =================================== register =================================== */
+.register_page_heading{
+    font-size: 2.4rem;
+    font-family: 'DM_Serif_Display', serif;
+    margin:  0 0 2.5rem 0;
+    text-align: center;
+    letter-spacing: 0.2ch;
+}
+.register_page_subheading{
+    font-size: 0.9rem;
+    font-family: 'Cinzel_Decorative', serif;
+    margin:  0 0 2.5rem 0;
+    margin-top: 5px;
+    text-align: center;
+    letter-spacing: -0.1ch !important;
+    text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.7);
+   
+}
 .register_btn_box{
     z-index: 1;
 }
 .register_button{
     all: unset;
-    width: 231.338px;
+    width: 245.34px;
     height: 76.135px;
-
+    font-family: 'Cormorant_Garamond', serif;
+    padding-left: 9px;
     /* flex-shrink: 0; */
     background-image: url("/assets/register_button_bac.png");
     background-repeat: no-repeat;
@@ -33,7 +64,7 @@
     background-clip: border-box;
     background-position: center;
     fill: #000;
-    filter: drop-shadow(0px -3.623px 3.623px #f2e279);
+    filter: drop-shadow(0px 0px 0px #ffffff);
 
     /* color: var(--Color-Primary500, #50FF00); */
     color: #f3de56;
@@ -41,12 +72,12 @@
     padding-top: 5px;
 
     /* SF/SF - 36 REG */
-    font-family: "SF Ironsides";
+    /* font-family: "SF Ironsides"; */
     font-size: 23px;
-    font-weight: 400;
+    font-weight: 600;
     line-height: normal;
     text-transform: uppercase;
-
+    transition: all ease 0.2s;
     cursor: pointer;
 }
 .register_button_small{
@@ -116,6 +147,8 @@
     margin: 65px 0px 0px 0px;
     padding: 60px 20px;
     width: 100%;
+    font-family: 'Lisu_Bosa', serif;
+
 }
 
 /* .container_login {
@@ -129,7 +162,7 @@
 } */
 .container_login {
     font-family: 'Poppins', sans-serif;
-    background-image: url('/assets/Login.png');
+    background-image: url('/assets/login_new.png');
     background-repeat: no-repeat; /* Prevents duplication */
     background-size: cover; /* Ensures the image stretches to cover the entire page */
     /* background-image: url("/bg.png"); */
@@ -159,6 +192,7 @@
     overflow: hidden;
     /* height: fit-content; */
     min-height: 50vh;
+    font-family: 'Lisu_Bosa', serif;
 }
 
 
@@ -178,12 +212,12 @@
     padding-block-end: 30px;
     padding-block-start: 60px;
     padding-inline: 50px;
+    font-family: 'Lisu_Bosa', serif;
 }
 .form_login {
     background: rgba(0, 0, 0, 0.75); /* Reduced opacity for more transparency */
     /* border-radius: 15px; */
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    font-family: 'EB Garamond';
     display: flex;
     flex-direction: column;
     align-content: center;
@@ -195,12 +229,13 @@
     padding-block-start: 70px;
     padding-inline: 20px;
     padding-block-end: 30px;
+    font-family: 'Lisu_Bosa', serif;
 }
 .form_reset {
     background: rgba(0, 0, 0, 0.75); /* Reduced opacity for more transparency */
     /* border-radius: 15px; */
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    font-family: 'EB Garamond';
+    font-family: 'Lisu_Bosa', serif;
     display: flex;
     flex-direction: column;
     align-content: center;
@@ -226,6 +261,7 @@
     padding: 30px 30px 30px 30px;
     background: black;
     width: 37vw;
+    font-family: 'Lisu_Bosa', serif;
     /* height: 70vh; */
 }
 
@@ -235,6 +271,7 @@
     font-weight: 400;
     font-size: 18px;
     line-height: 27px;
+    font-family: 'Lisu_Bosa', serif;
 }
 
 .mainForm a {
@@ -263,6 +300,8 @@
     margin-bottom: 1rem;
     width: 100%;
     font-size: 0.8rem;
+    font-family: 'Lisu_Bosa', serif;
+
 }
 
 .field input,
@@ -276,6 +315,8 @@
     padding: 1.5rem 1.2rem;
     font-size: 0.9rem;
     box-sizing: border-box;
+    font-family: 'Lisu_Bosa', serif;
+
 }
 
 .field input:focus,
@@ -286,6 +327,8 @@
     color: white;
     opacity: 0.5;
     font-size: 0.9rem;
+    font-family: 'Lisu_Bosa', serif;
+
 }
 
 .userType {

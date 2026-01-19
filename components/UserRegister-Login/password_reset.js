@@ -139,7 +139,7 @@ const ChangePassword = () => {
                     whileInView={{ opacity: 1, x: '0%' }}
                     transition={{ duration: 1 }}
                 >
-                    <h2 style={{ letterSpacing: 1, fontSize: 30 }}>
+                    <h2   className={styles.register_page_heading} >
                         Password Reset
                     </h2>
                     <hr />

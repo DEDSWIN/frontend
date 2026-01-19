@@ -211,12 +211,7 @@ const UserLoginForm = () => {
                 <div className={styles.container}>
                     <div className={styles.form_login}>
                         <h1
-                            style={{
-                                fontSize: '2rem',
-                                fontFamily: 'Anavio Small Capitals W01 Bold',
-                                margin: ' 0 0 2.5rem 0',
-                                textAlign: 'center',
-                            }}
+                           className={styles.register_page_heading}
                         >
                             Welcome Back!
                         </h1>
