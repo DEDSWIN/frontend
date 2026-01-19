@@ -411,7 +411,7 @@ function Anweshapass() {
                 <div className={styles.passcontainer_body}>
 
                     <div>
-                        <h2>Anwesha 2025 FESTIVAL Passes</h2>
+                        <h2>Anwesha 2026 FESTIVAL Passes</h2>
                         <h3>Own the Unforgettable Experience</h3>
                     </div>
                     <p>
@@ -435,7 +435,7 @@ function Anweshapass() {
                             <div className={styles.tshirt_blue} />
                         </div>
                         <div className={styles.passcontainer_button} >
-                            <button className={styles.sexy_button} onClick={handlefestpass}>
+                            <button className={styles.register_button} onClick={handlefestpass}>
                                 {isloading ? 'GRABBING...' : 'GRAB NOW'}
                             </button>
                             {/* <div className={styles.earlybird}><p>💀 Early Bird Offer ! Till 6 Feb 11:59 PM 💀</p></div>

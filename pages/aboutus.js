@@ -4,7 +4,7 @@ const Aboutus = () => {
     return (
         <div className={styles.parentcontainer}>
             <h2 className={styles.head}>
-                Anwesha&#39;25
+                Anwesha&#39;26
             </h2>
             <div className={styles.sec}>
                 <br />
