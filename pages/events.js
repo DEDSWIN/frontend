@@ -6,45 +6,44 @@ import Link from 'next/link'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import Card from '../components/EventItem/index.js'
-import { useNavigate } from 'react-router-dom';
 // import Modal from '../components/EventItem/Modal.js'
 import EventItem from '../components/EventItem'
-import eventsDetails from '../public/events/events_data.json' assert { type: 'json' };
 import Modal from '../components/BigModal/index.js'
+// import eventsDetails from '../public/events/events_data.json' assert { type: 'json' };
 
-// Static array of 24 events from public/events folder
-const staticEventsData = [
-    { "Event Name": "Animecon", "poster": '/events/Animecon.png' },
-    { "Event Name": "arTEEst", "poster": '/events/Arteest.png' },
-    { "Event Name": "Bespoke", "poster": '/events/Bespoke.png' },
-    { "Event Name": "Chronoshift", "poster": '/events/Chronoshift.png' },
-    { "Event Name": "Comedy Crunch", "poster": '/events/Comedy Crunch.png' },
-    { "Event Name": "Cook off", "poster": '/events/Cook off.png' },
-    { "Event Name": "Darpan", "poster": '/events/Darpan.png' },
-    { "Event Name": "Ekal", "poster": '/events/ekal.png' },
-    { "Event Name": "Escape Room", "poster": '/events/Escape Room.png' },
-    { "Event Name": "Heelturn(solo-duet and group)", "poster": '/events/Heel Turn.png' },
-    { "Event Name": "Imagination Station", "poster": '/events/imagination.png' },
-    { "Event Name": "IncorporARTion", "poster": '/events/incorpration.png' },
-    { "Event Name": "Kalapravah", "poster": '/events/kalapravah.png' },
-    { "Event Name": "Maidan-e-jung", "poster": '/events/Maidan -e- jung.png' },
-    { "Event Name": "Mixology", "poster": '/events/Mixology.png' },
-    { "Event Name": "Mr-Ms Anwesha", "poster": '/events/MRMS.png' },
-    { "Event Name": "Parakh", "poster": '/events/parakh.png' },
-    { "Event Name": "ProtoUI", "poster": '/events/proroUI.png' },
-    { "Event Name": "Reelverse", "poster": '/events/reelverse.png' },
-    { "Event Name": "Satanz Tantrum", "poster": '/events/Satanz Tantrum.png' },
-    { "Event Name": "Silent Expo", "poster": '/events/silent expo.png' },
-    { "Event Name": "Step Up", "poster": '/events/step up.png' },
-    { "Event Name": "Syngphony", "poster": '/events/syngphony.png' },
-    { "Event Name": "Verve", "poster": '/events/Verve.png' },
-];
+// DEPRECATED: Static event data - now fetched from backend /event/allevents
+// const staticEventsData = [
+//     { "Event Name": "Animecon", "poster": '/events/Animecon.png' },
+//     { "Event Name": "arTEEst", "poster": '/events/Arteest.png' },
+//     { "Event Name": "Bespoke", "poster": '/events/Bespoke.png' },
+//     { "Event Name": "Chronoshift", "poster": '/events/Chronoshift.png' },
+//     { "Event Name": "Comedy Crunch", "poster": '/events/Comedy Crunch.png' },
+//     { "Event Name": "Cook off", "poster": '/events/Cook off.png' },
+//     { "Event Name": "Darpan", "poster": '/events/Darpan.png' },
+//     { "Event Name": "Ekal", "poster": '/events/ekal.png' },
+//     { "Event Name": "Escape Room", "poster": '/events/Escape Room.png' },
+//     { "Event Name": "Heelturn(solo-duet and group)", "poster": '/events/Heel Turn.png' },
+//     { "Event Name": "Imagination Station", "poster": '/events/imagination.png' },
+//     { "Event Name": "IncorporARTion", "poster": '/events/incorpration.png' },
+//     { "Event Name": "Kalapravah", "poster": '/events/kalapravah.png' },
+//     { "Event Name": "Maidan-e-jung", "poster": '/events/Maidan -e- jung.png' },
+//     { "Event Name": "Mixology", "poster": '/events/Mixology.png' },
+//     { "Event Name": "Mr-Ms Anwesha", "poster": '/events/MRMS.png' },
+//     { "Event Name": "Parakh", "poster": '/events/parakh.png' },
+//     { "Event Name": "ProtoUI", "poster": '/events/proroUI.png' },
+//     { "Event Name": "Reelverse", "poster": '/events/reelverse.png' },
+//     { "Event Name": "Satanz Tantrum", "poster": '/events/Satanz Tantrum.png' },
+//     { "Event Name": "Silent Expo", "poster": '/events/silent expo.png' },
+//     { "Event Name": "Step Up", "poster": '/events/step up.png' },
+//     { "Event Name": "Syngphony", "poster": '/events/syngphony.png' },
+//     { "Event Name": "Verve", "poster": '/events/Verve.png' },
+// ];
 
-const workshopcardarr = [{
-    "Event Name": "techgyan x Anwesha",
-    "poster": '/events/workshopPoster.jpeg',
-    "Event": "2 days of workshop",
-}]
+// const workshopcardarr = [{
+//     "Event Name": "techgyan x Anwesha",
+//     "poster": '/events/workshopPoster.jpeg',
+//     "Event": "2 days of workshop",
+// }]
 
 const SponsorsSlider = ({ images, animation_duration = -1 }) => {
     const width = 127.381; // IF YOU CHANGE THIS THEN CHANGE IT INSIDE autoScrollSponseAnimation ALSO
@@ -125,40 +124,53 @@ const Events = () => {
         'https://drive.google.com/uc?export=view&id=1mX_WeCIywRV838QPn8AywiEWTSXSzMbM', // 'Waffcha'
         'https://drive.google.com/uc?export=view&id=183hiDaFhULaFvHURLFMCWBPmT7RjMRWI', // 'Wat A Burger'
     ];
+    const host = process.env.NEXT_PUBLIC_HOST
+    const mediaBase = process.env.NEXT_PUBLIC_MEDIA_BASE || host
+    const [events, setEvents] = useState([])
+    const [filteredEvents, setFilteredEvents] = useState([]) // Manages the filtered events
+    const [loading, setLoading] = useState(true)
 
+    const makePosterUrl = (url) => {
+        if (!url) return '/events/poster.png'
+        if (url.startsWith('http://') || url.startsWith('https://')) return url
+        console.log('[Events] Raw poster URL from backend:', url)
+        const base = (mediaBase || '').replace(/\/$/, '')
+        const path = url.startsWith('/') ? url : `/${url}`
+        const fullUrl = `${base}${path}`
+        console.log('[Events] Constructed full URL:', fullUrl)
+        return fullUrl
+    }
 
-    // Create a mapping of event names to poster paths (case-insensitive)
-    const posterMap = {};
-    staticEventsData.forEach(event => {
-        // Use lowercase keys for case-insensitive matching
-        posterMap[event["Event Name"].toLowerCase()] = event["poster"];
-    });
-
-    // Filter eventsDetails to only include the 24 events that have posters
-    // This removes duplicates and online-only events
-    const validEventNames = new Set(staticEventsData.map(e => e["Event Name"].toLowerCase()));
-    const uniqueEvents = [];
-    const seenEvents = new Set();
-    
-    eventsDetails.forEach(event => {
-        const eventNameLower = event["Event Name"].toLowerCase();
-        // Only include if it's in our poster list and we haven't seen it yet
-        if (validEventNames.has(eventNameLower) && !seenEvents.has(eventNameLower)) {
-            seenEvents.add(eventNameLower);
-            uniqueEvents.push(event);
+    useEffect(() => {
+        const fetchEvents = async () => {
+            try {
+                const res = await fetch(`${host}/event/allevents`, {
+                    method: 'GET',
+                    headers: { 'Content-Type': 'application/json' },
+                })
+                const data = await res.json()
+                const normalized = Array.isArray(data)
+                    ? data.map((ev) => ({
+                        ...ev,
+                        poster: makePosterUrl(ev.poster_file || ev.poster),
+                        name: ev.name || ev["Event Name"] || '',
+                    }))
+                    : []
+                normalized.forEach((ev, idx) => {
+                    console.log(`[Events] ${idx} poster:`, ev.poster)
+                })
+                setEvents(normalized)
+                setFilteredEvents(normalized)
+            } catch (e) {
+                console.error('Failed to fetch events', e)
+                setEvents([])
+                setFilteredEvents([])
+            } finally {
+                setLoading(false)
+            }
         }
-    });
-
-    // Merge with poster information
-    const eventsWithPosters = uniqueEvents.map(event => ({
-        ...event,
-        poster: posterMap[event["Event Name"].toLowerCase()] || '/events/poster.png'
-    }));
-
-    const [events, setEvents] = useState(eventsWithPosters);
-    const [filteredEvents, setFilteredEvents] = useState(eventsWithPosters); // Manages the filtered events
-    //console.log(eventsWithPosters.length);
-    // No need for API fetch - using static data from public folder
+        fetchEvents()
+    }, [host])
 
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [selectedEvent, setSelectedEvent] = useState(null)
@@ -167,20 +179,20 @@ const Events = () => {
     const [isSearching, setIsSearching] = useState(false);
     
     const handleSearch = (e) => {
-        const query = e.target.value;
-        setSearchQuery(query);
-        
+        const query = e.target.value
+        setSearchQuery(query)
+
         if (query.trim() === '') {
-            setIsSearching(false);
-            setSearchResults([]);
+            setIsSearching(false)
+            setSearchResults([])
         } else {
-            setIsSearching(true);
-            const results = eventsWithPosters.filter((event) =>
-                event['Event Name'].toLowerCase().includes(query.toLowerCase())
-            );
-            setSearchResults(results);
+            setIsSearching(true)
+            const results = events.filter((event) =>
+                (event.name || '').toLowerCase().includes(query.toLowerCase())
+            )
+            setSearchResults(results)
         }
-    };
+    }
 
 
     const openModal = (event) => {
@@ -241,27 +253,15 @@ const Events = () => {
                         ) : (
                             // Default 3 featured cards (shown when not searching OR when no results)
                             <>
-                                <div className={styles.featuredCard} style={{ filter: 'grayscale(100%)' }}>
-                                    <Card
-                                        onClick={() => openModal(eventsWithPosters[0])}
-                                        event={eventsWithPosters[0]}
-                                        closeHandler={closeModal}
-                                    />
-                                </div>
-                                <div className={styles.featuredCard} style={{ filter: 'grayscale(100%)' }}>
-                                    <Card
-                                        onClick={() => openModal(eventsWithPosters[3])}
-                                        event={eventsWithPosters[3]}
-                                        closeHandler={closeModal}
-                                    />
-                                </div>
-                                <div className={styles.featuredCard} style={{ filter: 'grayscale(100%)' }}>
-                                    <Card
-                                        onClick={() => openModal(eventsWithPosters[1])}
-                                        event={eventsWithPosters[1]}
-                                        closeHandler={closeModal}
-                                    />
-                                </div>
+                                {events.slice(0, 3).map((item, idx) => (
+                                    <div key={idx} className={styles.featuredCard} style={{ filter: 'grayscale(100%)' }}>
+                                        <Card
+                                            onClick={() => openModal(item)}
+                                            event={item}
+                                            closeHandler={closeModal}
+                                        />
+                                    </div>
+                                ))}
                             </>
                         )}
                     </div>
@@ -270,7 +270,7 @@ const Events = () => {
                 <div className={styles.eventsPanel}>
                 <div className={styles.eventsPanelTitle}>EVENTS</div>
                 <div className={styles.cardContainer}>
-                    {eventsWithPosters.map((item, idx) => (
+                    {events.map((item, idx) => (
                         <Card
                             onClick={() => openModal(item)}
                             key={idx}
@@ -282,7 +282,7 @@ const Events = () => {
             </div>
                 {isModalOpen && (
                     <Modal
-                        title={selectedEvent["Event Name"].split('#')[0]}
+                        title={(selectedEvent?.name || '').split('#')[0]}
                         body={selectedEvent}
                         closeHandler={closeModal}
                     />
