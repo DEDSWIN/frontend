@@ -20,7 +20,7 @@ import Step5Success from './multicity/multicityRegistration/Step5Success'
 import Navbar from '../components/Navbar-temp'
 // import Navbar from '../components/Navbar/Navbar'
 
-import Footer from '../components/Footer/Footer'
+import Footer from '../components/Footer/Footer.js'
 
 const poppins = Poppins({
     weight: ['400', '600', '900', '100', '300', '500', '700', '800'],
