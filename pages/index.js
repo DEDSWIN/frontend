@@ -320,9 +320,8 @@ const EventSlider = ({
             imageRefs.current[prevprev].current.style.zIndex = '1'
             imageRefs.current[
                 prevprev
-            ].current.style.transform = `translateY(-50%) translateX(calc(-50% - ${
-                2 * offset
-            }px))`
+            ].current.style.transform = `translateY(-50%) translateX(calc(-50% - ${2 * offset
+                }px))`
             imageRefs.current[prev].current.style.zIndex = '2'
             imageRefs.current[
                 prev
@@ -338,9 +337,8 @@ const EventSlider = ({
             imageRefs.current[nextnext].current.style.zIndex = '-1'
             imageRefs.current[
                 nextnext
-            ].current.style.transform = `translateY(-50%) translateX(calc(-50% + ${
-                2 * offset
-            }px))`
+            ].current.style.transform = `translateY(-50%) translateX(calc(-50% + ${2 * offset
+                }px))`
         } else if (
             currIndex === oldIndex - 1 ||
             (currIndex === images.length - 1 && oldIndex === 0)
@@ -349,9 +347,8 @@ const EventSlider = ({
             imageRefs.current[prevprev].current.style.zIndex = '-1'
             imageRefs.current[
                 prevprev
-            ].current.style.transform = `translateY(-50%) translateX(calc(-50% - ${
-                2 * offset
-            }px))`
+            ].current.style.transform = `translateY(-50%) translateX(calc(-50% - ${2 * offset
+                }px))`
             imageRefs.current[prev].current.style.zIndex = '2'
             imageRefs.current[
                 prev
@@ -367,9 +364,8 @@ const EventSlider = ({
             imageRefs.current[nextnext].current.style.zIndex = '1'
             imageRefs.current[
                 nextnext
-            ].current.style.transform = `translateY(-50%) translateX(calc(-50% + ${
-                2 * offset
-            }px))`
+            ].current.style.transform = `translateY(-50%) translateX(calc(-50% + ${2 * offset
+                }px))`
             imageRefs.current[nextnextnext].current.style.zIndex = '-1'
         }
         setOldIndex(currIndex)
@@ -425,8 +421,8 @@ const EventSlider = ({
                             index === currIndex
                                 ? '2'
                                 : index === prev || index === next
-                                ? '1'
-                                : '-1',
+                                    ? '1'
+                                    : '-1',
                         position: 'absolute',
                         left: '50%',
                         top: '50%',
@@ -435,13 +431,11 @@ const EventSlider = ({
                         transform:
                             index == currIndex
                                 ? `translateY(-50%) translateX(-50%)`
-                                : `translateY(-50%) translateX(calc(-50% ${
-                                      currIndex > index ? '-' : '+'
-                                  } min(50vw - 200px, ${
-                                      (currIndex > index
-                                          ? currIndex - index
-                                          : index - currIndex) * offset
-                                  }px)))`,
+                                : `translateY(-50%) translateX(calc(-50% ${currIndex > index ? '-' : '+'
+                                } min(50vw - 200px, ${(currIndex > index
+                                    ? currIndex - index
+                                    : index - currIndex) * offset
+                                }px)))`,
                         transition:
                             'transform .15s linear, width .15s linear, height .15s linear', // Smooth transition
                     }}
@@ -479,9 +473,8 @@ const SponsorsSlider = ({ images, animation_duration = -1 }) => {
                         position: 'absolute',
                         left: '100%',
                         // zIndex: 8,
-                        animationDelay: `${
-                            (duration / images.length) * index
-                        }s`,
+                        animationDelay: `${(duration / images.length) * index
+                            }s`,
                         animationDuration: `${duration}s`,
                         '--width': width,
                     }}
@@ -532,15 +525,13 @@ const ImagesSlider = ({
             imageRefs.current[prevprevprev].current.style.zIndex = '-1'
             imageRefs.current[
                 prevprevprev
-            ].current.style.transform = `translateX(calc(-50% + ${
-                3 * offset
-            }px))`
+            ].current.style.transform = `translateX(calc(-50% + ${3 * offset
+                }px))`
             imageRefs.current[prevprev].current.style.zIndex = '4'
             imageRefs.current[
                 prevprev
-            ].current.style.transform = `translateX(calc(-50% - ${
-                2 * offset
-            }px))`
+            ].current.style.transform = `translateX(calc(-50% - ${2 * offset
+                }px))`
             imageRefs.current[prev].current.style.zIndex = '3'
             imageRefs.current[
                 prev
@@ -556,9 +547,8 @@ const ImagesSlider = ({
             imageRefs.current[nextnext].current.style.zIndex = '1'
             imageRefs.current[
                 nextnext
-            ].current.style.transform = `translateX(calc(-50% + ${
-                2 * offset
-            }px))`
+            ].current.style.transform = `translateX(calc(-50% + ${2 * offset
+                }px))`
         } else if (
             currIndex === oldIndex - 1 ||
             (currIndex === images.length - 1 && oldIndex === 0)
@@ -567,9 +557,8 @@ const ImagesSlider = ({
             imageRefs.current[prevprev].current.style.zIndex = '1'
             imageRefs.current[
                 prevprev
-            ].current.style.transform = `translateX(calc(-50% - ${
-                2 * offset
-            }px))`
+            ].current.style.transform = `translateX(calc(-50% - ${2 * offset
+                }px))`
             imageRefs.current[prev].current.style.zIndex = '2'
             imageRefs.current[
                 prev
@@ -585,15 +574,13 @@ const ImagesSlider = ({
             imageRefs.current[nextnext].current.style.zIndex = '4'
             imageRefs.current[
                 nextnext
-            ].current.style.transform = `translateX(calc(-50% + ${
-                2 * offset
-            }px))`
+            ].current.style.transform = `translateX(calc(-50% + ${2 * offset
+                }px))`
             imageRefs.current[nextnextnext].current.style.zIndex = '-1'
             imageRefs.current[
                 nextnextnext
-            ].current.style.transform = `translateX(calc(-50% - ${
-                3 * offset
-            }px))`
+            ].current.style.transform = `translateX(calc(-50% - ${3 * offset
+                }px))`
         }
         setOldIndex(currIndex)
     }, [currIndex])
@@ -647,13 +634,11 @@ const ImagesSlider = ({
                     style={{
                         position: 'absolute',
                         left: '50%',
-                        transform: `translateX(calc(-50% ${
-                            currIndex > index ? '-' : '+'
-                        } ${
-                            (currIndex > index
+                        transform: `translateX(calc(-50% ${currIndex > index ? '-' : '+'
+                            } ${(currIndex > index
                                 ? currIndex - index
                                 : index - currIndex) * offset
-                        }px))`,
+                            }px))`,
                         transition: 'transform 0.35s ease-in-out', // Smooth transition
                     }}
                 />
@@ -925,12 +910,24 @@ const IndexPage = () => {
 
             <div className={styles.bg}>
                 {/* HERO */}
-                <HeroSection className={styles.hero}>
+                {/* <HeroSection className={styles.hero}>
                     <div className={styles.hero_text}>
+
+                        <video
+                            className={styles.hero_video}
+                            autoPlay
+                            muted
+                            loop
+                            playsInline
+                        >
+                            <source src="/home/hero_bg.mp4" type="video/mp4" />
+                        </video>
                         <Image
                         src={'/home/title_text_home.png'}
                         width={1000}
                         height={313}/>
+
+                         */}
                         {/* <Image
                             src={'/pics/hero_image-export.svg'}
                             width={1047}
@@ -942,7 +939,7 @@ const IndexPage = () => {
                         </div>
                     </div> */}
                         {/* <h2>Welcome To Your Nightmare</h2> */}
-                    </div>
+                    {/* </div>
                     <div className={styles.hero_button}>
                         <button
                             className={cn(
@@ -950,8 +947,8 @@ const IndexPage = () => {
                                 styles.sexy_button_small
                             )}
                             onClick={() => {
-                                    router.push('/userRegister')
-                                }
+                                router.push('/userRegister')
+                            }
                             }
                         >
                             REGISTER
@@ -962,260 +959,300 @@ const IndexPage = () => {
                                 styles.sexy_button_small
                             )}
                             onClick={() => {
-                                    router.push('/userRegister')
-                                }
+                                router.push('/userRegister')
+                            }
                             }
                         >
                             GET PASSES
                         </button>
                     </div>
-                </HeroSection>
+                </HeroSection> */}
 
-                {/* Events */}
-                <section className={styles.events}>
-                    <div className={styles.events_title}>
-                        {/* <FireSkullHeadLeft /> */}
-                        <div>
-                            <h2>Explore the Events</h2>
-                            {/* <h3>Dare to face the Unseen</h3> */}
-                        </div>
-                        {/* <FireSkullHeadRight /> */}
-                    </div>
-                    <div className={styles.events_images_parent}>
-                        <button
-                            className={styles.bat_scroll_button}
-                            onClick={previouseEventImage}
-                        >
-                            <BatLeft />
-                        </button>
-                        <EventSlider
-                            images={pseudoEventImage}
-                            currIndex={eventActiveImageIndex}
-                            nextEventImage={nextEventImage}
-                            previouseEventImage={previouseEventImage}
-                        />
-                        <button
-                            className={styles.bat_scroll_button}
-                            onClick={nextEventImage}
-                        >
-                            <BatRight />
-                        </button>
-                    </div>
-                    <div className={styles.events_button}>
-                        <button
-                            className={cn(
-                                styles.sexy_button,
-                                styles.sexy_button_small
-                            )}
-                            onClick={() => {
-                                router.push('/events')
-                            }}
-                        >
-                            VIEW MORE
-                        </button>
-                    </div>
-                </section>
+                <HeroSection className={styles.hero}>
+    {/* BACKGROUND VIDEO */}
+    <video
+        className={styles.hero_video}
+        autoPlay
+        muted
+        loop
+        playsInline
+    >
+        <source src="/home/hero_bg.mp4" type="video/mp4" />
+    </video>
 
-                {/* MERCH */}
-                <section className={styles.merch} id="merch">
-                    <div className={styles.merch_body}>
-                        <div>
-                            <h2>Anwesha 2025 Official Merchandise</h2>
-                            <h3>Own the Unforgettable Experience</h3>
-                        </div>
-                        <p>
-                            The designs are a fusion of elegance and innovation,
-                            capturing the true spirit of Anwesha. T-shirts are
-                            made of supreme quality with GSM 200 and 100%
-                            cotton, ensuring maximum comfort and durability.
-                            Hoodies are made from Premium Quality Woven Cotton
-                            with 350+ GSM cloth.
-                        </p>
-                    </div>
-                    <div className={styles.merch_hero}>
-                        <div className={styles.merch_background} />
-                        <div className={styles.merch_hero_fix}>
-                            <div className={styles.merch_tshirts}>
-                                {/* <div className={styles.tshirt_white} /> */}
-                                {/* <div className={styles.tshirt_black_parent}> */}
-                                {/* <div className={styles.tshirt_black} /> */}
-                                {/* </div> */}
-                                {/* <div className={styles.tshirt_blue} /> */}
+    {/* HERO CONTENT */}
+    <div className={styles.hero_text}>
+        <Image
+            src={'/home/title_text_home.png'}
+            width={1000}
+            height={313}
+        />
+    </div>
+
+    <div className={styles.hero_button}>
+        <button
+            className={cn(styles.sexy_button, styles.sexy_button_small)}
+            onClick={() => router.push('/userRegister')}
+        >
+            REGISTER
+        </button>
+        <button
+            className={cn(styles.sexy_button, styles.sexy_button_small)}
+            onClick={() => router.push('/userRegister')}
+        >
+            GET PASSES
+        </button>
+    </div>
+</HeroSection>
+
+
+
+                <div className={styles.fixed_bg}>
+
+                    {/* Events */}
+                    <section className={styles.events}>
+                        <div className={styles.events_title}>
+                            {/* <FireSkullHeadLeft /> */}
+                            <div>
+                                <h2>Explore the Events</h2>
+                                {/* <h3>Dare to face the Unseen</h3> */}
                             </div>
-                            <div className={styles.merch_button}>
-                                <button
-                                    className={styles.sexy_button}
-                                    onClick={() =>
-                                        window.open(
-                                            'https://docs.google.com/forms/d/1B6yMQs6Y8UV5GDrnxYipGIrDWCY4mcZZvPVboi5Q1nU/edit'
-                                        )
-                                    }
-                                >
-                                    GRAB NOW
-                                </button>
+                            {/* <FireSkullHeadRight /> */}
+                        </div>
+                        <div className={styles.events_images_parent}>
+                            <button
+                                className={styles.bat_scroll_button}
+                                onClick={previouseEventImage}
+                            >
+                                <BatLeft />
+                            </button>
+                            <EventSlider
+                                images={pseudoEventImage}
+                                currIndex={eventActiveImageIndex}
+                                nextEventImage={nextEventImage}
+                                previouseEventImage={previouseEventImage}
+                            />
+                            <button
+                                className={styles.bat_scroll_button}
+                                onClick={nextEventImage}
+                            >
+                                <BatRight />
+                            </button>
+                        </div>
+                        <div className={styles.events_button}>
+                            <button
+                                className={cn(
+                                    styles.sexy_button,
+                                    styles.sexy_button_small
+                                )}
+                                onClick={() => {
+                                    router.push('/events')
+                                }}
+                            >
+                                VIEW MORE
+                            </button>
+                        </div>
+                    </section>
+
+                    {/* MERCH */}
+                    <section className={styles.merch} id="merch">
+                        <div className={styles.merch_body}>
+                            <div>
+                                <h2>Anwesha 2025 Official Merchandise</h2>
+                                <h3>Own the Unforgettable Experience</h3>
+                            </div>
+                            <p>
+                                The designs are a fusion of elegance and innovation,
+                                capturing the true spirit of Anwesha. T-shirts are
+                                made of supreme quality with GSM 200 and 100%
+                                cotton, ensuring maximum comfort and durability.
+                                Hoodies are made from Premium Quality Woven Cotton
+                                with 350+ GSM cloth.
+                            </p>
+                        </div>
+                        <div className={styles.merch_hero}>
+                            <div className={styles.merch_background} />
+                            <div className={styles.merch_hero_fix}>
+                                <div className={styles.merch_tshirts}>
+                                    {/* <div className={styles.tshirt_white} /> */}
+                                    {/* <div className={styles.tshirt_black_parent}> */}
+                                    {/* <div className={styles.tshirt_black} /> */}
+                                    {/* </div> */}
+                                    {/* <div className={styles.tshirt_blue} /> */}
+                                </div>
+                                <div className={styles.merch_button}>
+                                    <button
+                                        className={styles.sexy_button}
+                                        onClick={() =>
+                                            window.open(
+                                                'https://docs.google.com/forms/d/1B6yMQs6Y8UV5GDrnxYipGIrDWCY4mcZZvPVboi5Q1nU/edit'
+                                            )
+                                        }
+                                    >
+                                        GRAB NOW
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </section>
+                    </section>
 
-                {/* Anwesha Through the Lens */}
-                <section className={styles.moments}>
-                    <div className={styles.sexy_title}>
-                        <h2>Anwesha Through the Lens</h2>
-                        <h3>Relive the Moments That Defined Us</h3>
-                    </div>
-                    <div className={styles.moments_images_parent}>
-                        <div
-                            className={cn(
-                                styles.moments_images_top_curve,
-                                styles.moments_images_curve
-                            )}
-                        />
-                        <ImagesSlider
-                            images={pseudoMomentImage}
-                            currIndex={momentsActiveImageIndex}
-                            nextMomentImage={nextMomentImage}
-                            previouseMomentImage={previouseMomentImage}
-                        />
-                        <div
-                            className={cn(
-                                styles.moments_images_bottom_curve,
-                                styles.moments_images_curve
-                            )}
-                        />
-                    </div>
-                    <br />
-                    <div className={styles.moments_button}>
-                        <button
-                            className={styles.bat_scroll_button}
-                            onClick={nextMomentImage}
-                        >
-                            <BatLeft width={90} height={100} />
-                        </button>
-                        <button
-                            className={cn(
-                                styles.sexy_button,
-                                styles.sexy_button_small
-                            )}
-                            onClick={() => {
-                                router.push('/gallery')
-                            }}
-                        >
-                            VIEW MORE
-                        </button>
-                        <button
-                            className={styles.bat_scroll_button}
-                            onClick={previouseMomentImage}
-                        >
-                            <BatRight width={90} height={100} />
-                        </button>
-                    </div>
-                </section>
+                    {/* Anwesha Through the Lens */}
+                    <section className={styles.moments}>
+                        <div className={styles.sexy_title}>
+                            <h2>Anwesha Through the Lens</h2>
+                            <h3>Relive the Moments That Defined Us</h3>
+                        </div>
+                        <div className={styles.moments_images_parent}>
+                            <div
+                                className={cn(
+                                    styles.moments_images_top_curve,
+                                    styles.moments_images_curve
+                                )}
+                            />
+                            <ImagesSlider
+                                images={pseudoMomentImage}
+                                currIndex={momentsActiveImageIndex}
+                                nextMomentImage={nextMomentImage}
+                                previouseMomentImage={previouseMomentImage}
+                            />
+                            <div
+                                className={cn(
+                                    styles.moments_images_bottom_curve,
+                                    styles.moments_images_curve
+                                )}
+                            />
+                        </div>
+                        <br />
+                        <div className={styles.moments_button}>
+                            <button
+                                className={styles.bat_scroll_button}
+                                onClick={nextMomentImage}
+                            >
+                                <BatLeft width={90} height={100} />
+                            </button>
+                            <button
+                                className={cn(
+                                    styles.sexy_button,
+                                    styles.sexy_button_small
+                                )}
+                                onClick={() => {
+                                    router.push('/gallery')
+                                }}
+                            >
+                                VIEW MORE
+                            </button>
+                            <button
+                                className={styles.bat_scroll_button}
+                                onClick={previouseMomentImage}
+                            >
+                                <BatRight width={90} height={100} />
+                            </button>
+                        </div>
+                    </section>
 
-                {/* The Aftermovie */}
-                <section className={styles.aftermovie}>
-                    <div className={styles.sexy_title}>
-                        <h2>Anwesha 2024: The Aftermovie</h2>
-                        <h3>Last Year&apos;s Magic in 3 Minutes</h3>
-                    </div>
-                    <div className={styles.aftermovie_video}>
-                        {/* <Image
+                    {/* The Aftermovie */}
+                    <section className={styles.aftermovie}>
+                        <div className={styles.sexy_title}>
+                            <h2>Anwesha 2024: The Aftermovie</h2>
+                            <h3>Last Year&apos;s Magic in 3 Minutes</h3>
+                        </div>
+                        <div className={styles.aftermovie_video}>
+                            {/* <Image
                         src="/pics/aftermovie.jpg"
                         width={1226}
                         height={607}
                     /> */}
-                        <video
-                            ref={videoRef}
-                            autoPlay
-                            muted={isMuted}
-                            loop
-                            width={1226}
-                            height={607}
-                        >
-                            <source
-                                src="https://astounding-madeleine-371471.netlify.app/assets/Anwesha25Aftermovie.mp4"
-                                type="video/mp4"
-                            />
-                        </video>
-                        {/* <iframe src="https://drive.google.com/file/d/17qtrN_8Qg9vUAEps515INNUQRGd3oMla/preview" width="1226" height="607" allow="autoplay"></iframe> */}
-                        {/* <iframe src="https://streamable.com/e/4qofi9" width={1226} height={607} frameborder="0" allowfullscreen></iframe> */}
-                        <div>
-                            <button
-                                onClick={toggleMute}
-                                style={{ width: 32, height: 32 }}
+                            <video
+                                ref={videoRef}
+                                autoPlay
+                                muted={isMuted}
+                                loop
+                                width={1226}
+                                height={607}
                             >
-                                {isMuted ? (
-                                    <MuteIcon width={32} height={32} />
-                                ) : (
-                                    <UnmuteIcon width={32} height={32} />
-                                )}
-                            </button>
+                                <source
+                                    src="https://astounding-madeleine-371471.netlify.app/assets/Anwesha25Aftermovie.mp4"
+                                    type="video/mp4"
+                                />
+                            </video>
+                            {/* <iframe src="https://drive.google.com/file/d/17qtrN_8Qg9vUAEps515INNUQRGd3oMla/preview" width="1226" height="607" allow="autoplay"></iframe> */}
+                            {/* <iframe src="https://streamable.com/e/4qofi9" width={1226} height={607} frameborder="0" allowfullscreen></iframe> */}
+                            <div>
+                                <button
+                                    onClick={toggleMute}
+                                    style={{ width: 32, height: 32 }}
+                                >
+                                    {isMuted ? (
+                                        <MuteIcon width={32} height={32} />
+                                    ) : (
+                                        <UnmuteIcon width={32} height={32} />
+                                    )}
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                </section>
+                    </section>
 
-                {/* CTA or This Year's Theme */}
-                <section className={styles.cta}>
-                    <div className={styles.sexy_title}>
-                        <h2>This Year&apos;s Theme</h2>
-                        <h3>Palingenesis reverie</h3>
-                    </div>
-                    <div className={styles.cta_body}>
-                        <div className={styles.cta_body_left}>  
-                            {/* <div className={styles.cta_image}> */}
-                                <Image
+                    {/* CTA or This Year's Theme */}
+                    <section className={styles.cta}>
+                        <div className={styles.sexy_title}>
+                            <h2>This Year&apos;s Theme</h2>
+                            <h3>Palingenesis reverie</h3>
+                        </div>
+                        <div className={styles.cta_body}>
+                            {/* <div className={styles.cta_body_left}> */}
+                               
+                                {/* <Image
                                     src={'/home/home_circle.png'}
                                     width={474.386}
                                     height={474.386}
                                 />
-                            {/* </div> */}
-                        </div>
-                        <div className={styles.cta_body_right}>
-                            <p>
-                                Meet <span>Grimmy</span>, a lone skeleton
-                                wandering the Abyss, where whispers of forgotten
-                                souls linger. In this realm of shadows and
-                                echoes, he unravels haunting secrets, braving
-                                eerie landscapes and unseen terrors. Join Grimmy
-                                as he dares to uncover the mysteries buried in
-                                the depths of the Abyss!
-                                <br />
-                                <br />
-                                Join Grimmy on this fun adventure and let your
-                                imagination soar beyond the ordinary!
-                            </p>
+                            </div> */}
+                            <div className={styles.cta_body_right}>
+                                <p>
+                                    Meet <span>Grimmy</span>, a lone skeleton
+                                    wandering the Abyss, where whispers of forgotten
+                                    souls linger. In this realm of shadows and
+                                    echoes, he unravels haunting secrets, braving
+                                    eerie landscapes and unseen terrors. Join Grimmy
+                                    as he dares to uncover the mysteries buried in
+                                    the depths of the Abyss!
+                                    <br />
+                                    <br />
+                                    Join Grimmy on this fun adventure and let your
+                                    imagination soar beyond the ordinary!
+                                </p>
 
-                            <div className={styles.cta_button}>
-                                <button
-                                    className={cn(
-                                        styles.sexy_button,
-                                        styles.sexy_button_small
-                                    )}
-                                    onClick={() => {
-                                        router.push('/userRegister')
-                                    }}
-                                >
-                                    REGISTER
-                                </button>
+                                <div className={styles.cta_button}>
+                                    <button
+                                        className={cn(
+                                            styles.sexy_button,
+                                            styles.sexy_button_small
+                                        )}
+                                        onClick={() => {
+                                            router.push('/userRegister')
+                                        }}
+                                    >
+                                        REGISTER
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </section>
+                    </section>
 
-                {/* Sponsors */}
+                    {/* Sponsors */}
 
-                <section className={styles.sponsors}>
-                    <div className={styles.sponsors_title}>
-                        <h2>Our Proud Sponsors</h2>
-                        <h3>Strengthening the Vision Together</h3>
-                    </div>
-                    <div className={styles.sponsors_images_slider}>
-                        <SponsorsSlider images={sponsorImages} />
-                    </div>
-                </section>
+                    <section className={styles.sponsors}>
+                        <div className={styles.sponsors_title}>
+                            <h2>Our Proud Sponsors</h2>
+                            <h3>Strengthening the Vision Together</h3>
+                        </div>
+                        <div className={styles.sponsors_images_slider}>
+                            <SponsorsSlider images={sponsorImages} />
+                        </div>
+                    </section>
 
-                {/* NewsLetter */}
-                {/* <section className={styles.newsletter}>
+                    {/* NewsLetter */}
+                    {/* <section className={styles.newsletter}>
                     <p style={{ color: 'white' }}>
                         Subscribe to our newsletter
                     </p>
@@ -1228,12 +1265,13 @@ const IndexPage = () => {
                         // style="margin: 0; border-radius: 0px !important; background-color: transparent;"
                     />
                 </section> */}
-                {loadimg && (
-                    <img width={200} src="/pics/jump.gif" alt="Scary GIF" />
-                )}
-                {loadimg && (
-                    <img width={50} src="/pics/final_h.gif" alt="Scary GIF" />
-                )}
+                    {loadimg && (
+                        <img width={200} src="/pics/jump.gif" alt="Scary GIF" />
+                    )}
+                    {loadimg && (
+                        <img width={50} src="/pics/final_h.gif" alt="Scary GIF" />
+                    )}
+                </div>
             </div>
         </>
     )
