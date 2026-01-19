@@ -1,11 +1,26 @@
 @font-face {
-    font-family: 'SF Ironside';
-    src: url('/font/SF_Ironsides.ttf') format('truetype');
+    font-family: 'Lisu_Bosa';
+    src: url('../styles/fonts/Lisu_Bosa/LisuBosa-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
 }
-
 @font-face {
-    font-family: 'laila';
-    src: url('/font/Laila-Medium.ttf') format('truetype');
+    font-family: 'Cormorant_Garamond';
+    src: url('../styles/fonts/Cormorant_Garamond/static/CormorantGaramond-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Cinzel_Decorative';
+    src: url('../styles/fonts/Cinzel_Decorative/CinzelDecorative-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'DM_Serif_Display';
+    src: url('../styles/fonts/DM_Serif_Display/DMSerifDisplay-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
 }
 
 /* OUR SPONSORS */
@@ -15,6 +30,7 @@
     font-size: 2.2rem;
     margin-block-start: 52px;
     margin-block-end: 22px;
+    font-family: 'Cinzel_Decorative', serif;
     
 }
 .parentContainer {
@@ -24,17 +40,22 @@
     background-size: 100%;
     background-color: black;
     color: white;
-    font-family: 'laila', sans-serif;
+    font-family: 'DM_Serif_Display', serif;
+
+    
 }
 .partnerGroup {
     display: flex;
     flex-direction: column;
     align-items: center;
+    font-family: 'Lisu_Bosa', serif;
+
 }
 .partnerHeading {
     font-size: 24px;
     margin-bottom: 10px;
     text-align: center;
+    font-family: 'Lisu_Bosa', serif;
     @media screen and (max-width: 750px) {
         font-size: 5vw;
     }
@@ -45,11 +66,13 @@
     flex-wrap: wrap;
     gap: 12px; /* optional spacing */
     justify-content: center;
+    font-family: 'Lisu_Bosa', serif;
 }
 .wave {
     background-image: url(/sponsors/waves.png);
     background-repeat: repeat;
     background-size: 100%;
+    font-family: 'Lisu_Bosa', serif;
 }
 
 .container {
@@ -65,7 +88,7 @@
     text-align: center;
     text-shadow: 4px 4px 96px rgba(0, 0, 0, 0.25);
     font-size: 4rem;
-    font-family: 'SF Ironside';
+    
     line-height: normal;
     text-transform: capitalize;
     margin-top: 10px;
@@ -179,7 +202,7 @@
 }
 
 .dropdownContainer {
-    font-family: 'SF Ironside';
+    font-family: 'Lisu_Bosa', serif;
     position: absolute;
     top: 100px;
     right: 40px;
@@ -190,7 +213,7 @@
 
 /* Dropdown button */
 .dropdownButton {
-    font-family: 'SF Ironside';
+    font-family: 'Lisu_Bosa', serif;
     display: flex;
     align-items: center;
     gap: 12px;

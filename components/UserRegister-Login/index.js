@@ -223,18 +223,12 @@ const UserRegisterForm = () => {
                 <div className={styles.container}>
                     <div className={styles.form}>
                         <div
-                            style={{
-                                fontSize: '2.2rem',
-                                fontFamily: 'Anavio Small Capitals W01 Bold',
-                                margin: ' 0 0 2.5rem 0',
-                                textAlign: 'center',
-                              
-                            }}
+                            className={styles.register_page_heading}
                         >
                             Create Your Account
                     
-                            <p style={{ fontSize: '0.9rem', color: 'white', marginTop:'5px', textShadow: '0px 0px 5px rgba(255, 255, 255, 0.7)'
- }}> 
+                            <p className={styles.register_page_subheading} 
+                            >             
                                 Non IITP Students register by their personal email
                             </p>
 
