@@ -296,7 +296,7 @@ const UserRegisterForm = () => {
                                 placeholder={
                                     usertype === 'iitp_student'
                                         ? 'Eg: 2001me85_rishiraj'
-                                        : 'Eg: vineet@gmail.com'
+                                        : 'Eg: mohit.sharma@gmail.com'
                                 }
                                 onChange={(e) => {
                                     if (usertype === 'iitp_student') {
