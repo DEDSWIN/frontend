@@ -6,17 +6,18 @@ import 'react-toastify/dist/ReactToastify.css'
 const host = process.env.NEXT_PUBLIC_HOST
 
 const AuthContext = React.createContext()
-
 const { Provider } = AuthContext
 
 const PrivateRoute = ({ children }) => {
     const router = useRouter()
-    const authContext = React.useContext(AuthContext)
+const auth = React.useContext(AuthContext)
+    const isDev = process.env.NODE_ENV === 'development'
 
     useEffect(() => {
         // Redirect to login if the user is unauthenticated and trying to access protected routes
         if (
-            !authContext.isAuth &&
+            !isDev &&
+            !auth.isAuth &&
             [
                 '/event-registration',
                 '/event-registrations',
@@ -25,15 +26,16 @@ const PrivateRoute = ({ children }) => {
         ) {
             router.push('/userLogin')
         }
+
         // Redirect logged-in users away from the login page
         if (
-            authContext.isAuth &&
+            auth.isAuth &&
             (router.pathname === '/userLogin' ||
                 router.pathname === '/userRegister')
         ) {
             router.push('/profile')
         }
-    }, [authContext.isAuth, router.pathname]) // Dependency array ensures this effect runs on changes to auth status or path
+    }, [auth.isAuth, router.pathname]) // Dependency array ensures this effect runs on changes to auth status or path
 
     return children
 }
@@ -55,9 +57,9 @@ const AuthProvider = ({ children }) => {
             // Check for specific unauthenticated messages
             if (
                 result.message ===
-                'You are unauthenticated. Please log in first.' ||
+                    'You are unauthenticated. Please log in first.' ||
                 result.message ===
-                'Your token is expired. Please generate a new one.' ||
+                    'Your token is expired. Please generate a new one.' ||
                 result.message === 'Your token is expired. Please log in again.'
             ) {
                 setUser(null) // Mark the user as unauthenticated
@@ -90,9 +92,11 @@ const AuthProvider = ({ children }) => {
     }
 
     // Fetch user data on component mount
-    useEffect(() => {
-        getUser()
-    }, [])
+useEffect(() => {
+    if (process.env.NODE_ENV === 'development') return
+    getUser()
+}, [])
+
 
     return (
         <>
