@@ -27,7 +27,8 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 100vh; /* Changed to viewport height for first page */
+    min-height: 831px; /* Minimum height to maintain design */
     background-image: 
         radial-gradient(
             circle at center, 
@@ -37,14 +38,14 @@
         ),
         url("/events/new_bg.png"); /* First page background only */
     background-position: 
-        center 0px, /* Radial gradient position */
-        center 0px; /* First page background at top */
+        center top, /* Radial gradient position */
+        center top; /* First page background at top */
     background-repeat: 
         no-repeat, /* Radial gradient doesn't repeat */
         no-repeat; /* First page background doesn't repeat */
     background-size: 
-        1280px 831px, /* Radial gradient size - only first page */
-        1280px 831px; /* First page background size */
+        cover, /* Radial gradient covers the area */
+        cover; /* First page background covers and stretches */
     background-blend-mode: overlay, normal;
     pointer-events: none;
     z-index: 0;
@@ -61,7 +62,7 @@
     background-image: url("/events/circle.png");
     background-position: center top;
     background-repeat: repeat-y;
-    background-size: 550px auto; /* Width 550px, Height 900px creates spacing between circles */
+    background-size: clamp(300px, 50vw, 550px) auto; /* Responsive width: 300px-550px based on viewport, creates spacing between circles */
     pointer-events: none;
     z-index: 0;
 }
@@ -265,19 +266,23 @@ flex-shrink: 0;
 }
 
 .titleText {
-    width: 476px;
-    height: 48px;
+    width: 100%;
+    max-width: 600px; /* Increased to fit "EXPLORE THE EVENTS" on one line */
+    height: auto;
+    min-height: 48px;
     color: var(--Color-Primary500, white);
     text-align: center;
     font-family: "DM Serif Display", serif;
-    font-size: 48px;
+    font-size: clamp(32px, 5vw, 48px);
     font-style: normal;
     font-weight: 400;
-    line-height: 48px;
+    line-height: 1.2;
     text-transform: uppercase;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 0 20px;
+    white-space: nowrap; /* Keeps text on a single line */
 }
 
 .titleImage {
@@ -328,8 +333,10 @@ flex-shrink: 0;
 } */
 
 .eventsPanel {
-    width: 1065px;
-    height: 3237px;
+    width: 100%;
+    max-width: 1065px;
+    min-height: 3237px;
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -354,11 +361,12 @@ flex-shrink: 0;
 
 .cardContainer {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 columns */
+    grid-template-columns: repeat(3, 1fr); /* 3 columns on desktop */
     gap: 32px;
     width: 100%;
     max-width: 1065px;
     justify-items: center;
+    /* Grid will automatically wrap cards to new rows as they're added */
 }
 
 
@@ -588,6 +596,8 @@ flex-shrink: 0;
     }
     .searchbox{
         width: 100%;
+        max-width: 90%;
+        padding: 16px 20px;
     }
     
     .searchWrapper {
@@ -603,5 +613,50 @@ flex-shrink: 0;
     .titleImage {
         max-width: 90%;
     }
-   
+    
+    .titleBox {
+        padding-top: 100px;
+    }
+    
+    .featuredEventsSection {
+        flex-direction: column;
+        gap: 20px;
+        margin-bottom: 60px;
+    }
+    
+    .cardContainer {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .eventsPanelTitle {
+        font-size: 40px;
+        line-height: 44px;
+        margin-bottom: 40px;
+    }
 }   
+/* Tablet responsive styles */
+@media screen and (min-width: 551px) and (max-width: 1024px) {
+    .cardContainer {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+    }
+    
+    .featuredEventsSection {
+        gap: 24px;
+        max-width: 90%;
+    }
+    
+    .titleBox {
+        padding-top: 150px;
+    }
+    
+    .eventsPanel {
+        padding: 0px 10px 40px 10px;
+    }
+    
+    .eventsPanelTitle {
+        font-size: 52px;
+        line-height: 56px;
+    }
+}
