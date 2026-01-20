@@ -126,9 +126,37 @@ const Events = () => {
     ];
     const host = process.env.NEXT_PUBLIC_HOST
     const mediaBase = process.env.NEXT_PUBLIC_MEDIA_BASE || host
-    const [events, setEvents] = useState([])
-    const [filteredEvents, setFilteredEvents] = useState([]) // Manages the filtered events
-    const [loading, setLoading] = useState(true)
+    // TEMPORARY: Mock data for testing responsive layout - TO BE REMOVED
+    const mockEvents = [
+        { name: 'Event 1', poster: '/events/poster.png', id: 1 },
+        { name: 'Event 2', poster: '/events/poster.png', id: 2 },
+        { name: 'Event 3', poster: '/events/poster.png', id: 3 },
+        { name: 'Event 4', poster: '/events/poster.png', id: 4 },
+        { name: 'Event 5', poster: '/events/poster.png', id: 5 },
+        { name: 'Event 6', poster: '/events/poster.png', id: 6 },
+        { name: 'Event 7', poster: '/events/poster.png', id: 7 },
+        { name: 'Event 8', poster: '/events/poster.png', id: 8 },
+        { name: 'Event 9', poster: '/events/poster.png', id: 9 },
+        { name: 'Event 10', poster: '/events/poster.png', id: 10 },
+        { name: 'Event 11', poster: '/events/poster.png', id: 11 },
+        { name: 'Event 12', poster: '/events/poster.png', id: 12 },
+        { name: 'Event 13', poster: '/events/poster.png', id: 13 },
+        { name: 'Event 14', poster: '/events/poster.png', id: 14 },
+        { name: 'Event 15', poster: '/events/poster.png', id: 15 },
+        { name: 'Event 16', poster: '/events/poster.png', id: 16 },
+        { name: 'Event 17', poster: '/events/poster.png', id: 17 },
+        { name: 'Event 18', poster: '/events/poster.png', id: 18 },
+        { name: 'Event 19', poster: '/events/poster.png', id: 19 },
+        { name: 'Event 20', poster: '/events/poster.png', id: 20 },
+        { name: 'Event 21', poster: '/events/poster.png', id: 21 },
+        { name: 'Event 22', poster: '/events/poster.png', id: 22 },
+        { name: 'Event 23', poster: '/events/poster.png', id: 23 },
+        { name: 'Event 24', poster: '/events/poster.png', id: 24 },
+    ]
+    
+    const [events, setEvents] = useState(mockEvents) // TEMPORARY: Using mock data
+    const [filteredEvents, setFilteredEvents] = useState(mockEvents) // Manages the filtered events
+    const [loading, setLoading] = useState(false) // TEMPORARY: Set to false to show mock data immediately
 
     const makePosterUrl = (url) => {
         if (!url) return '/events/poster.png'
@@ -141,6 +169,8 @@ const Events = () => {
         return fullUrl
     }
 
+    // TEMPORARY: Commented out to use mock data for testing
+    /*
     useEffect(() => {
         const fetchEvents = async () => {
             try {
@@ -171,6 +201,7 @@ const Events = () => {
         }
         fetchEvents()
     }, [host])
+    */
 
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [selectedEvent, setSelectedEvent] = useState(null)
