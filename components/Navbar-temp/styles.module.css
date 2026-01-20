@@ -1,9 +1,32 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+@font-face {
+    font-family: 'Cormorant Garamond';
+    src: url('/font/CormorantGaramond-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
 
 @font-face {
-    font-family: 'SF Ironside';
-    src: url('/font/SF_Ironsides.ttf') format('truetype');
+    font-family: 'Cormorant Garamond';
+    src: url('/font/CormorantGaramond-Italic.ttf') format('truetype');
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Cormorant Garamond';
+    src: url('/font/CormorantGaramond-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@import url('https://fonts.cdnfonts.com/css/wasted-vindey');
+
+@font-face {
+    font-family: 'Wasted Vindey';
+    src: url('/font/wasted-vindey.regular.ttf') format('truetype');
+    font-weight: bolder;
+    font-style: normal;
+    font-display: swap;
 }
 
 .hero_button {
@@ -17,22 +40,23 @@
     width: 128px;
     height: 48px;
     margin-inline: 10px;
-    
+
     /* Colors from "Selection Colors" in image */
     background-color: #370f58;
-    color: #B8A947;
-    
+    color: #b8a947;
+
     /* Border and Glow Effect */
     border: 1.5px solid #370461; /* Purple border to match the "Profile" box */
     box-shadow: 0px 0px 12px rgba(15, 3, 24, 0.6); /* Purple outer glow */
-    
+
     /* Typography */
-    font-family: 'SF Ironside'; /* Keeping your font as requested */
-    font-size: 20px;
-    font-weight: 400;
+    font-family: 'Wasted Vindey', sans-serif;
+    /* Keeping your font as requested */
+    font-size: 18px;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1rem;
-    
+
     cursor: pointer;
     transition: all 0.3s ease;
 }
@@ -41,12 +65,14 @@
     /* Slight brightening on hover */
     /* background-color: #352b3e; */
     transform: scale(1.07);
+     font-family: 'Wasted Vindey', sans-serif;
     box-shadow: 0px 0px 18px rgba(178, 83, 255, 0.9);
     color: #d4c564; /* Brighter gold */
 }
 
 .sexy_button:active {
     transform: scale(0.96);
+     font-family: 'Wasted Vindey', sans-serif;
     filter: brightness(1.2);
 }
 /* .mainNav {
@@ -71,12 +97,12 @@
 /* --- Main Navigation Bar --- */
 .mainNav {
     /* Starry Background & Dark Gradient */
-    background: url('/assets/parth&harish.png'); 
+    background: url('/assets/parth&harish.png');
     background-size: cover;
     background-position: center;
-    
+
     color: #ffffff;
-    font-family: 'Outfit', sans-serif; /* Cleaner font for the nav links */
+    font-family: 'Cormorant Garamond', serif; /* Cleaner font for the nav links */
     font-size: 1rem;
     position: fixed;
     top: 0;
@@ -132,9 +158,9 @@
     top: 50%;
     white-space: nowrap;
     transform: translate(-50%, -50%);
-    color: #B8A947;
+    color: #b8a947;
     font-size: 1.25rem;
-    font-family: 'SF Ironside';
+    font-family: 'Wasted Vindey', cursive;
     letter-spacing: 0.15rem;
 }
 
@@ -148,7 +174,7 @@
     padding: 0;
 }
 .getcardsbutton {
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Cormorant Garamond', serif;
     font-optical-sizing: auto;
     font-weight: 500;
     font-style: normal;
@@ -173,10 +199,10 @@
     top: 65px;
     width: 100vw;
     max-height: 65vh;
-    font-family: 'SF Ironside', sans-serif;
+    font-family: 'Cormorant Garamond', serif;
     transition: all 0.3s ease;
     z-index: 15;
-    border-bottom: 3px solid #B8A947;
+    border-bottom: 3px solid #b8a947;
     overflow-y: scroll;
     background: rgb(0, 0, 0);
 }
