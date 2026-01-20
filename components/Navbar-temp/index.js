@@ -129,7 +129,7 @@ function Navigation() {
                 >
                     <Image
                         className='nav_logo'
-                        src="/navbar/newlogoFinal.png"
+                        src="/navbar/newlogofinal.png"
                         alt="logo"
                         width={180}
                         height={60}
@@ -581,7 +581,7 @@ export default Navigation
 //   const pathname = usePathname();
 
 //   // MOCK STATE: Set to 'false' to show LOGIN, 'true' to show Profile icons
-//   const isLoggedIn = false; 
+//   const isLoggedIn = false;
 
 //   const [drawerOpen, setDrawerOpen] = useState(false);
 //   const [showDropdown, setShowDropdown] = useState(false);
