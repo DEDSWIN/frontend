@@ -157,10 +157,14 @@
 
 .hero {
     position: relative;
-    width: 100vw;          /* FULL WIDTH */
-    height: 100vh;          /* your desired height */
-    max-height: 100vh;     /* never exceed screen */
-    overflow: hidden;      /* crop overflow */
+    width: 100vw;
+    /* FULL WIDTH */
+    height: 100vh;
+    /* your desired height */
+    max-height: 100vh;
+    /* never exceed screen */
+    overflow: hidden;
+    /* crop overflow */
 }
 
 .hero_video {
@@ -170,10 +174,13 @@
     width: 100%;
     height: 100%;
 
-    object-fit: cover;           /* 🔥 removes black bars */
-    object-position: center bottom;     /* 🔥 zoom middle part */
+    object-fit: cover;
+    /* 🔥 removes black bars */
+    object-position: center bottom;
+    /* 🔥 zoom middle part */
 
-    transform: scale(1.25);      /* 🔥 zoom in (adjust if needed) */
+    transform: scale(1.25);
+    /* 🔥 zoom in (adjust if needed) */
     z-index: 0;
 }
 
@@ -197,7 +204,8 @@
     position: relative;
     z-index: 2;
 
-    transform: translateY(-40vh); /* 🔼 adjust value as needed */
+    transform: translateY(-40vh);
+    /* 🔼 adjust value as needed */
 }
 
 
@@ -269,7 +277,8 @@
 
 @media (max-width: 568px) {
     .hero_button {
-        flex-direction: column; /* 🔥 STACK */
+        flex-direction: column;
+        /* 🔥 STACK */
         gap: 0px;
         transform: translateY(-30vh);
     }
@@ -297,9 +306,9 @@
     }
 
     .hero_text>img {
-         width: calc(407px / 1.2);
+        width: calc(407px / 1.2);
         height: calc(189px / 1.2);
-        margin-top: 12px; 
+        margin-top: 12px;
     }
 
     .hero_text>h2 {
@@ -324,27 +333,29 @@
 
 .fixed_bg {
     position: relative;
-    background-image: url('/home/backdrop2_home.png'); /* your new bg */
+    background-image: url('/home/backdrop2_home.png');
+    /* your new bg */
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center top;
-    background-attachment: fixed; 
-     width: 100%;
-    overflow-x: hidden; 
+    background-attachment: fixed;
+    width: 100%;
+    overflow-x: hidden;
 }
+
 .fixed_bg::before {
     content: "";
-     position: absolute;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.3); 
+    background: rgba(0, 0, 0, 0.3);
     z-index: 0;
     inset: 0;
 }
 
-.fixed_bg > * {
+.fixed_bg>* {
     /* position: relative; */
     z-index: 1;
 }
@@ -1021,7 +1032,7 @@
     border-top-left-radius: 50% 100%;
     border-top-right-radius: 50% 100%;
     margin-top: -90px;
-    
+
 }
 
 .moments_images {

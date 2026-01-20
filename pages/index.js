@@ -321,7 +321,7 @@ const EventSlider = ({
             imageRefs.current[
                 prevprev
             ].current.style.transform = `translateY(-50%) translateX(calc(-50% - ${2 * offset
-                }px))`
+            }px))`
             imageRefs.current[prev].current.style.zIndex = '2'
             imageRefs.current[
                 prev
@@ -338,7 +338,7 @@ const EventSlider = ({
             imageRefs.current[
                 nextnext
             ].current.style.transform = `translateY(-50%) translateX(calc(-50% + ${2 * offset
-                }px))`
+            }px))`
         } else if (
             currIndex === oldIndex - 1 ||
             (currIndex === images.length - 1 && oldIndex === 0)
@@ -348,7 +348,7 @@ const EventSlider = ({
             imageRefs.current[
                 prevprev
             ].current.style.transform = `translateY(-50%) translateX(calc(-50% - ${2 * offset
-                }px))`
+            }px))`
             imageRefs.current[prev].current.style.zIndex = '2'
             imageRefs.current[
                 prev
@@ -365,7 +365,7 @@ const EventSlider = ({
             imageRefs.current[
                 nextnext
             ].current.style.transform = `translateY(-50%) translateX(calc(-50% + ${2 * offset
-                }px))`
+            }px))`
             imageRefs.current[nextnextnext].current.style.zIndex = '-1'
         }
         setOldIndex(currIndex)
@@ -526,12 +526,12 @@ const ImagesSlider = ({
             imageRefs.current[
                 prevprevprev
             ].current.style.transform = `translateX(calc(-50% + ${3 * offset
-                }px))`
+            }px))`
             imageRefs.current[prevprev].current.style.zIndex = '4'
             imageRefs.current[
                 prevprev
             ].current.style.transform = `translateX(calc(-50% - ${2 * offset
-                }px))`
+            }px))`
             imageRefs.current[prev].current.style.zIndex = '3'
             imageRefs.current[
                 prev
@@ -548,7 +548,7 @@ const ImagesSlider = ({
             imageRefs.current[
                 nextnext
             ].current.style.transform = `translateX(calc(-50% + ${2 * offset
-                }px))`
+            }px))`
         } else if (
             currIndex === oldIndex - 1 ||
             (currIndex === images.length - 1 && oldIndex === 0)
@@ -558,7 +558,7 @@ const ImagesSlider = ({
             imageRefs.current[
                 prevprev
             ].current.style.transform = `translateX(calc(-50% - ${2 * offset
-                }px))`
+            }px))`
             imageRefs.current[prev].current.style.zIndex = '2'
             imageRefs.current[
                 prev
@@ -575,12 +575,12 @@ const ImagesSlider = ({
             imageRefs.current[
                 nextnext
             ].current.style.transform = `translateX(calc(-50% + ${2 * offset
-                }px))`
+            }px))`
             imageRefs.current[nextnextnext].current.style.zIndex = '-1'
             imageRefs.current[
                 nextnextnext
             ].current.style.transform = `translateX(calc(-50% - ${3 * offset
-                }px))`
+            }px))`
         }
         setOldIndex(currIndex)
     }, [currIndex])
@@ -928,18 +928,18 @@ const IndexPage = () => {
                         height={313}/>
 
                          */}
-                        {/* <Image
+                {/* <Image
                             src={'/pics/hero_image-export.svg'}
                             width={1047}
                             height={589}
                         /> */}
-                        {/* <div style={{height: 570, width: 570, zIndex: 9, overflow: 'hidden', borderRadius: "9999px"}}>
+                {/* <div style={{height: 570, width: 570, zIndex: 9, overflow: 'hidden', borderRadius: "9999px"}}>
                         <div style={{height: 589, width: 589}}>
                             <Spline scene="https://prod.spline.design/0cIZkQpUYfHX-VX8/scene.splinecode" width="589" height="589"/>
                         </div>
                     </div> */}
-                        {/* <h2>Welcome To Your Nightmare</h2> */}
-                    {/* </div>
+                {/* <h2>Welcome To Your Nightmare</h2> */}
+                {/* </div>
                     <div className={styles.hero_button}>
                         <button
                             className={cn(
@@ -969,41 +969,41 @@ const IndexPage = () => {
                 </HeroSection> */}
 
                 <HeroSection className={styles.hero}>
-    {/* BACKGROUND VIDEO */}
-    <video
-        className={styles.hero_video}
-        autoPlay
-        muted
-        loop
-        playsInline
-    >
-        <source src="/home/hero_bg.mp4" type="video/mp4" />
-    </video>
+                    {/* BACKGROUND VIDEO */}
+                    <video
+                        className={styles.hero_video}
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                    >
+                        <source src="/home/hero_bg.mp4" type="video/mp4" />
+                    </video>
 
-    {/* HERO CONTENT */}
-    <div className={styles.hero_text}>
-        <Image
-            src={'/home/title_text_home.png'}
-            width={1000}
-            height={313}
-        />
-    </div>
+                    {/* HERO CONTENT */}
+                    <div className={styles.hero_text}>
+                        <Image
+                            src={'/home/title_text_home.png'}
+                            width={1000}
+                            height={313}
+                        />
+                    </div>
 
-    <div className={styles.hero_button}>
-        <button
-            className={cn(styles.sexy_button, styles.sexy_button_small)}
-            onClick={() => router.push('/userRegister')}
-        >
-            REGISTER
-        </button>
-        <button
-            className={cn(styles.sexy_button, styles.sexy_button_small)}
-            onClick={() => router.push('/userRegister')}
-        >
-            GET PASSES
-        </button>
-    </div>
-</HeroSection>
+                    <div className={styles.hero_button}>
+                        <button
+                            className={cn(styles.sexy_button, styles.sexy_button_small)}
+                            onClick={() => router.push('/userRegister')}
+                        >
+                            REGISTER
+                        </button>
+                        <button
+                            className={cn(styles.sexy_button, styles.sexy_button_small)}
+                            onClick={() => router.push('/userRegister')}
+                        >
+                            GET PASSES
+                        </button>
+                    </div>
+                </HeroSection>
 
 
 
@@ -1200,8 +1200,8 @@ const IndexPage = () => {
                         </div>
                         <div className={styles.cta_body}>
                             {/* <div className={styles.cta_body_left}> */}
-                               
-                                {/* <Image
+
+                            {/* <Image
                                     src={'/home/home_circle.png'}
                                     width={474.386}
                                     height={474.386}
