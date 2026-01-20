@@ -129,10 +129,10 @@ function Navigation() {
                 >
                     <Image
                         className='nav_logo'
-                        src="/newlogo.svg"
+                        src="/navbar/newlogoFinal.png"
                         alt="logo"
-                        width={110}
-                        height={85}
+                        width={180}
+                        height={60}
                     />
                 </Link>
                 <div className={styles.navLinks}>
