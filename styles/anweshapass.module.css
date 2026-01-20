@@ -233,7 +233,10 @@
     height: 418.97px;
     width: 134.48px;
     flex-shrink: 0;
-    background: url('/passes/rightpass.svg');
+    background: url('/passes/pass_right.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 .tshirt_black {
     margin-left: auto;
@@ -242,9 +245,12 @@
     height: 418.97px;
     margin-bottom: 20px;
     flex-shrink: 0;
-    background: url('/passes/centerpass.svg') transparent 50% no-repeat;
+    background: url('/passes/pass_center.svg') transparent 50% no-repeat;
     z-index: 9;
     position: relative;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .tshirt_blue {
@@ -253,7 +259,10 @@
     width: 134.48px;
     height: 418.97px;
     flex-shrink: 0;
-    background: url('/passes/leftpass.svg');
+    background: url('/passes/pass_left.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .passcontainer_button {
@@ -1264,6 +1273,7 @@
     all: unset;
     width: 231.338px;
     height: 96.135px;
+    margin-bottom: 34px;
 
     /* flex-shrink: 0; */
     background-image: url("/assets/register_button_bac.png");
