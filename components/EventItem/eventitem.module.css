@@ -17,17 +17,17 @@
 }
 
 .imageWrap {
-	width: 319.61px;
-height: 358.481px;
-flex-shrink: 0;
-border-radius: 8px;
-background: #FFF;
-display: flex;
-justify-content: center;
-align-items: flex-end;
-padding-bottom: 33px;
-transition: transform 0.3s ease, filter 0.3s ease; /* Add smooth transition */
-position: relative; /* Ensures innerShadow is properly positioned */
+	width: clamp(200px, 25vw, 400px);
+	aspect-ratio: 319.61 / 358.481;
+	flex-shrink: 0;
+	border-radius: 8px;
+	background: #FFF;
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+	padding-bottom: 33px;
+	transition: transform 0.3s ease, filter 0.3s ease; /* Add smooth transition */
+	position: relative; /* Ensures innerShadow is properly positioned */
 }
 
 .imageWrap:hover{
