@@ -17,7 +17,7 @@ const Multicity = () => {
     const events_temp = [
         {
             key: 1,
-            city: 'Kolkata',
+            city: 'BHU',
             date: '08/10/23',
             venue: 'ISI Kolkata',
             poster: '/multicity/MulticityPosterKolkata.webp',
@@ -29,30 +29,29 @@ const Multicity = () => {
                 { name: 'Raaj Harsh', phone: '7050277123' },
             ],
             completed: false,
-            register_link:
-                'https://docs.google.com/forms/d/e/1FAIpQLScD75l8wtrTlitkQz6OVeYRlOQVIEc80Hzk2wXRAKxyFD-iPQ/viewform',
+            register_link: '/newRegistrationPageRoute',
             rulebook_link: 'https://bit.ly/AnweshaMulticity',
         },
-        {
-            key: 2,
-            city: 'Lucknow',
-            date: '10/09/23',
-            venue: 'BBD NIIT',
-            poster: '/multicity/MulticityPosterLucknow.webp',
-            registration_deadline: '08/09/23',
-            registration_fee: 'Free',
-            timings: '09:00 AM - 06:00 PM',
-            contact: [
-                { name: 'Yash Raj Singh', phone: '8789866763' },
-                { name: 'Divyam Walia', phone: '9105889422' },
-            ],
-            completed: true,
-            register_link:
-                'https://docs.google.com/forms/d/e/1FAIpQLSfdKPCSrc0gj4R8jcq6-C0E9zc-lMp1phBzJxwlOQeZuZhi9A/viewform?usp=sf_link',
-            rulebook_link: 'https://bit.ly/AnweshaMulticity',
-        },
+        // {
+        //     key: 2,
+        //     city: 'Lucknow',
+        //     date: '10/09/23',
+        //     venue: 'BBD NIIT',
+        //     poster: '/multicity/MulticityPosterLucknow.webp',
+        //     registration_deadline: '08/09/23',
+        //     registration_fee: 'Free',
+        //     timings: '09:00 AM - 06:00 PM',
+        //     contact: [
+        //         { name: 'Yash Raj Singh', phone: '8789866763' },
+        //         { name: 'Divyam Walia', phone: '9105889422' },
+        //     ],
+        //     completed: true,
+        //     register_link:
+        //         'https://docs.google.com/forms/d/e/1FAIpQLSfdKPCSrc0gj4R8jcq6-C0E9zc-lMp1phBzJxwlOQeZuZhi9A/viewform?usp=sf_link',
+        //     rulebook_link: 'https://bit.ly/AnweshaMulticity',
+        // },
     ]
-
+    // console.log('API KEY:', process.env.NEXT_PUBLIC_FIREBASE_API_KEY)
     return (
         <div className={styles.container}>
             <Head>
@@ -81,7 +80,7 @@ const Multicity = () => {
             </div>
             <div className={styles.section}>
                 <img src={'/multicity/Perks.svg'} />
-                <p className={styles.about}>
+                <ul className={styles.about}>
                     <li>
                         Multicity winner Certificate certified by Anwesha, IIT
                         Patna.
@@ -95,7 +94,7 @@ const Multicity = () => {
                         the participants.
                     </li>
                     <li>
-                        The winners' names will be featured on our Social Media
+                        The winners&#39; names will be featured on our Social Media
                         handles and will be announced on stories of official
                         social media handles.
                     </li>
@@ -103,18 +102,18 @@ const Multicity = () => {
                         Chance to interact with many talented and passionate
                         participants during the fest at IIT Patna.
                     </li>
-                </p>
+                </ul>
             </div>
             <div className={styles.title}>
                 <img src={'/multicity/Rewards and Recognition.svg'} />
-                <p className={styles.about}>
+                <ul className={styles.about}>
                     <li>
                         Direct selection for the final round in all the events
                         of Anwesha 24.
                     </li>
                     <li>Chance to perform in front of renowned judges.</li>
                     <li>Winners get exciting prizes and vouchers.</li>
-                </p>
+                </ul>
             </div>
             <div className={styles.content}>
                 {events_temp.map((event, index) => {

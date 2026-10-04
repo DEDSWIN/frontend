@@ -6,12 +6,12 @@ export default function userRegister() {
     return (
         <>
             <Head>
-                <title>User Register - Anwesha 2025</title>
-                <meta name="description" content="Anwesha 2025" />
+                <title>User Register - Anwesha 2026</title>
+                <meta name="description" content="Anwesha 2026" />
                 <link rel="icon" href="./logo_no_bg.svg" />
             </Head>
 
-            <div className={styles.container} loading="lazy">
+            <div className={styles.container_register} loading="lazy">
 
                 <UserRegisterForm />
                 {/* <img

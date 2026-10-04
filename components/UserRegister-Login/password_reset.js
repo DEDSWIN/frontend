@@ -18,7 +18,7 @@ const ChangePassword = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault()
-        let body = { token: router.query.slug, password: password }
+        let body = { token: router.query.slug || router.query.token, new_password: password }
         // user input validation
         if (password.length == 0) {
             toast.warning('Please fill password', {
@@ -46,13 +46,12 @@ const ChangePassword = () => {
             return
         }
         try {
-            const response = await fetch(`${host}/user/forgetpassword`, {
-                method: 'PUT',
+            const response = await fetch(`${host}/auth/reset-password`, {
+                method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(body),
-                credentials: 'include',
             })
 
             //check if request is successful
@@ -139,7 +138,7 @@ const ChangePassword = () => {
                     whileInView={{ opacity: 1, x: '0%' }}
                     transition={{ duration: 1 }}
                 >
-                    <h2 style={{ letterSpacing: 1, fontSize: 30 }}>
+                    <h2   className={styles.register_page_heading} >
                         Password Reset
                     </h2>
                     <hr />

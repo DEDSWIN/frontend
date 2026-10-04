@@ -19,7 +19,7 @@ const ForgotPassword = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault()
-        let body = { email: email }
+        let body = { email_id: email }
         // user input validation
         if (email.length == 0) {
             toast.warning('Please fill email', {
@@ -35,13 +35,12 @@ const ForgotPassword = () => {
             return
         }
         try {
-            const response = await fetch(`${host}/user/forgetpassword`, {
+            const response = await fetch(`${host}/auth/forgot-password`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(body),
-                credentials: 'include',
             })
 
             //check if request is successful
@@ -104,7 +103,7 @@ const ForgotPassword = () => {
     }
 
     return (
-        <div>
+        <div className={styles.container_login}>
             <ToastContainer
                 position="top-right"
                 autoClose={3000}
@@ -123,8 +122,12 @@ const ForgotPassword = () => {
                 whileInView={{ opacity: 1, x: '0%' }}
                 transition={{ duration: 1 }}
             >
-                <div className={styles.container}>
-                    <div className={styles.form}>
+                <div style={{ 
+                    position: "relative",
+                    bottom: "70px", 
+
+                 }} className={styles.container}>
+                    <div className={styles.form_reset}>
                         <h2
                             style={{
                                 fontSize: '2rem',
@@ -141,7 +144,7 @@ const ForgotPassword = () => {
                             <input
                                 type="email"
                                 name="Email_Id"
-                                placeholder="Eg: vineet@gmail.com"
+                                placeholder="Eg: mohit.sharma@gmail.com"
                                 onChange={(e) => setEmail(e.target.value)}
                                 required
                             />
@@ -195,8 +198,7 @@ const ForgotPassword = () => {
                         <div className={styles.hero_button}>
                             <button
                                 className={cn(
-                                    styles.sexy_button,
-                                    styles.sexy_button_small
+                                    styles.register_button,
                                 )}
                                 onClick={handleSubmit}
                             >

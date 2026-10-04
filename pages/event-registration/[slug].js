@@ -10,10 +10,10 @@ import { useRouter } from 'next/router'
 import { motion } from 'framer-motion'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+ 
 
 
-
-const eventRegistration = () => {
+const EventRegistration = () => {
     const data = useContext(AuthContext)
     const router = useRouter()
     const userData = useContext(AuthContext)
@@ -237,4 +237,4 @@ const eventRegistration = () => {
     )
 }
 
-export default eventRegistration
+export default EventRegistration

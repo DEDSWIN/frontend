@@ -5,7 +5,7 @@ import Modal from '../BigModal'
 import { useState } from 'react'
 
 
-const index = ({ event, onClick }) => {
+const EventItem = ({ event, onClick }) => {
     const [modal, setModal] = useState(false)
     const [first, second] = (event?.name ?? "").split("#");
 
@@ -60,4 +60,4 @@ const index = ({ event, onClick }) => {
     )
 }
 
-export default index
+export default EventItem
