@@ -7,7 +7,7 @@ import { AuthContext } from '../authContext'
 import 'react-toastify/dist/ReactToastify.css'
 import Image from 'next/image'
 
-const host = process.env.NEXT_PUBLIC_HOST
+const host = process.env.NEXT_PUBLIC_HOST || '/api/backend'
 
 const cn = (...classes) => {
     return classes.filter(Boolean).join(' ')
@@ -24,7 +24,9 @@ const UserLoginForm = () => {
         const checkIOS = () => {
             const iOSDevice =
                 /iPad|iPhone|iPod/.test(navigator.userAgent) ||
-                (navigator.userAgent.includes("Mac") && "ontouchend" in document);
+                (navigator.userAgent.includes('Mac') &&
+                    'ontouchend' in document)
+
             if (iOSDevice) {
                 toast(
                     'Disable prevent cross site tracking in safari->settings',
@@ -40,51 +42,15 @@ const UserLoginForm = () => {
                     }
                 )
             }
-        };
+        }
 
-        checkIOS();
-    }, []);
-
-
-    useEffect(() => {
-        const frame = document.createElement('iframe')
-        frame.id = '3pc'
-        frame.src = 'https://chamithrepo.github.io/create-third-party-cookie/' //Add your hosted domain url here
-        frame.style.display = 'none'
-        frame.style.position = 'fixed'
-        document.body.appendChild(frame)
-
-        window.addEventListener(
-            'message',
-            function listen(event) {
-                if (event.data === '3pcUnsupported') {
-                    document.body.removeChild(frame)
-                    window.removeEventListener('message', listen)
-                    toast.error(
-                        'Please Enable third party cookies to be able to Login (go to browser settings)',
-                        {
-                            position: 'top-right',
-                            autoClose: 10000,
-                            hideProgressBar: false,
-                            closeOnClick: true,
-                            pauseOnHover: true,
-                            draggable: true,
-                            progress: undefined,
-                            theme: 'light',
-                        }
-                    )
-                }
-            },
-            false
-        )
+        checkIOS()
     }, [])
 
     const handleSubmit = async (event) => {
-        setloaded(true)
         event.preventDefault()
-        let body = { username: email, password: password }
-        // user input validation
-        if (email.length == 0 || password.length == 0) {
+
+        if (email.length === 0 || password.length === 0) {
             toast.warning('Please fill email and password', {
                 position: 'top-right',
                 autoClose: 3000,
@@ -97,23 +63,30 @@ const UserLoginForm = () => {
             })
             return
         }
+
+        setloaded(true)
+
         try {
-            const response = await fetch(`${host}/user/login`, {
+            const response = await fetch(`${host}/auth/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(body),
-                credentials: 'include',
+                body: JSON.stringify({
+                    email_id: email,
+                    password: password,
+                }),
             })
 
-            //check if request is successful
-            // console.log(response.status)
+            const data = await response.json().catch(() => ({}))
+
             setloaded(false)
-            if (response.status === 200 || response.status === 201) {
-                const data = await response.json()
-                if (data.success === true) {
-                    toast.success('You are successfully logged in', {
+
+            if (response.ok && data.success === true) {
+                const token = data.token || data.access_token
+
+                if (!token) {
+                    toast.error('Login response missing token', {
                         position: 'top-right',
                         autoClose: 3000,
                         hideProgressBar: false,
@@ -123,22 +96,12 @@ const UserLoginForm = () => {
                         progress: undefined,
                         theme: 'light',
                     })
-                    context.getUser()
-                } else {
-                    toast.error(data.message, {
-                        position: 'top-right',
-                        autoClose: 3000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: 'light',
-                    })
+                    return
                 }
-            } else if (response.status === 409) {
-                const data = await response.json()
-                toast.error(data.message || 'Unable to login', {
+
+                context.persistToken(token)
+
+                toast.success('You are successfully logged in', {
                     position: 'top-right',
                     autoClose: 3000,
                     hideProgressBar: false,
@@ -148,48 +111,68 @@ const UserLoginForm = () => {
                     progress: undefined,
                     theme: 'light',
                 })
-            } else if (response.status === 403) {
-                const data = await response.json()
-                toast.error(`${data.message} (check in Spam folder)`, {
-                    position: 'top-right',
-                    autoClose: 6000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: 'light',
-                })
-            } else {
-                const data = await response.json()
-                toast.error(data.message, {
-                    position: 'top-right',
-                    autoClose: 3000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: 'light',
-                })
+
+                setTimeout(() => {
+                    context.getUser()
+                }, 100)
+
+                return
             }
+
+            if (response.status === 403) {
+                toast.error(
+                    `${data.message || 'Email verification required'} (check in Spam folder)`,
+                    {
+                        position: 'top-right',
+                        autoClose: 6000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: 'light',
+                    }
+                )
+                return
+            }
+
+            toast.error(
+                data.message ||
+                data.error ||
+                'Unable to login. Please check your credentials.',
+                {
+                    position: 'top-right',
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: 'light',
+                }
+            )
         } catch (err) {
-            console.log(err)
-            toast.error('Login failed. Check your internet connection', {
-                position: 'top-right',
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: 'light',
-            })
+            console.error('[Login] Error:', err)
+            setloaded(false)
+
+            toast.error(
+                'Login failed. Check your internet connection',
+                {
+                    position: 'top-right',
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: 'light',
+                }
+            )
         }
     }
 
     return (
-        <div>
+        <div className={styles.container_login}>
             <ToastContainer
                 position="top-right"
                 autoClose={3000}
@@ -209,17 +192,13 @@ const UserLoginForm = () => {
                 transition={{ duration: 1 }}
             >
                 <div className={styles.container}>
-                    <div className={styles.form}>
+                    <div className={styles.form_login}>
                         <h1
-                            style={{
-                                fontSize: '2rem',
-                                fontFamily: 'Anavio Small Capitals W01 Bold',
-                                margin: ' 0 0 2.5rem 0',
-                                textAlign: 'center',
-                            }}
+                            className={styles.register_page_heading}
                         >
                             Welcome Back!
                         </h1>
+
                         <div className={styles.field}>
                             <label htmlFor="email_id">Email ID</label>
                             <br />
@@ -227,7 +206,9 @@ const UserLoginForm = () => {
                                 type="email"
                                 name="Email_Id"
                                 placeholder="Enter your email address"
-                                onChange={(e) => setEmail(e.target.value)}
+                                onChange={(e) =>
+                                    setEmail(e.target.value)
+                                }
                                 required
                             />
                             <br />
@@ -241,7 +222,9 @@ const UserLoginForm = () => {
                                 id="pwd"
                                 name="Password"
                                 placeholder="Enter your password"
-                                onChange={(e) => setPassword(e.target.value)}
+                                onChange={(e) =>
+                                    setPassword(e.target.value)
+                                }
                                 required
                             />
                             <br />
@@ -263,32 +246,19 @@ const UserLoginForm = () => {
                         </div>
 
                         <br />
-                        {/* <motion.div
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.8 }}
-                        >
-                            <button className={styles.fancyButton} onClick={handleSubmit}>
-                                <span>{!loaded ? "LOGIN" : "LOGGING.."}</span>
-                                <Image
-                                    src={'/assets/Subtract.svg'}
-                                    className={styles.memberImage}
-                                    height={220}
-                                    width={220}
-                                    alt="register"
-                                />
-                            </button>
-                        </motion.div> */}
+
                         <div className={styles.hero_button}>
                             <button
                                 onClick={handleSubmit}
                                 className={cn(
-                                    styles.sexy_button,
-                                    styles.sexy_button_small
+                                    styles.register_button
                                 )}
+                                disabled={loaded}
                             >
-                                LOGIN
+                                {loaded ? 'LOGGING..' : 'LOGIN'}
                             </button>
                         </div>
+
                         <p
                             style={{
                                 fontSize: '0.8rem',
@@ -296,10 +266,13 @@ const UserLoginForm = () => {
                                 textAlign: 'center',
                             }}
                         >
-                            Don't have an account? &nbsp;
+                            Don&apos;t have an account? &nbsp;
                             <Link
                                 href="/userRegister"
-                                style={{ color: '#ffffff', fontWeight: 600 }}
+                                style={{
+                                    color: '#ffffff',
+                                    fontWeight: 600,
+                                }}
                             >
                                 Register here.
                             </Link>

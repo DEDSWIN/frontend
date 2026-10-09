@@ -3,9 +3,9 @@ import { useContext, useEffect } from 'react'
 import { proniteRegistration, proniteRegistrationiitp } from '../components/Event Registration/proniteRegistration'
 import { AuthContext } from '../components/authContext'
 
-const getPass = () => {
+const GetPass = () => {
     const userData = useContext(AuthContext)
-    const host = process.env.NEXT_PUBLIC_HOST
+    const host = process.env.NEXT_PUBLIC_HOST || '/api/backend'
     const router = useRouter()
     // useEffect(() => {
     //     const handleRegistration = () => {
@@ -26,6 +26,10 @@ const getPass = () => {
     async function event() {
         var myHeaders = new Headers()
         myHeaders.append('Content-Type', 'application/json')
+        const token = localStorage.getItem('anwesha_token')
+        if (token) {
+            myHeaders.append('Authorization', `Bearer ${token}`)
+        }
 
         var raw = JSON.stringify({
             anwesha_id: userData.state.user.anwesha_id,
@@ -35,7 +39,6 @@ const getPass = () => {
             headers: myHeaders,
             body: raw,
             redirect: 'follow',
-            credentials: 'include',
         }
 
         const data = await fetch(`${host}/festpasses/get`, requestOptions)
@@ -55,5 +58,5 @@ const getPass = () => {
     )
 }
 
-export default getPass
+export default GetPass
 
