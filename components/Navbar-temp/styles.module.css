@@ -1,61 +1,85 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+@font-face {
+    font-family: 'Cormorant Garamond';
+    src: url('/font/CormorantGaramond-Regular.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
 
 @font-face {
-    font-family: 'SF Ironside';
-    src: url('/font/SF_Ironsides.ttf') format('truetype');
+    font-family: 'Cormorant Garamond';
+    src: url('/font/CormorantGaramond-Italic.ttf') format('truetype');
+    /* font-weight: 400; */
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Cormorant Garamond';
+    src: url('/font/CormorantGaramond-Bold.ttf') format('truetype');
+    /* font-weight: 700; */
+    font-style: normal;
+}
+
+@import url('https://fonts.cdnfonts.com/css/wasted-vindey');
+
+@font-face {
+    font-family: 'Wasted Vindey';
+    src: url('/font/wasted-vindey.regular.ttf') format('truetype');
+    font-weight: bolder;
+    font-style: normal;
+    font-display: swap;
 }
 
 .hero_button {
     z-index: 1;
 }
+
 .sexy_button {
-    /* USE TAILWIND I struggle to name classes :) */
-    all: unset;
-    width: 127.338px;
-    height: 42.135px;
+    /* Layout & Dimensions from Figma */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 128px;
+    height: 48px;
+    margin-inline: 10px;
 
-    /* flex-shrink: 0; */
-    background-image: url('/pics/Subtract.svg');
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-clip: border-box;
-    background-position: center;
-    fill: #000;
-    filter: drop-shadow(0px -3.623px 3.623px #55a826);
+    /* Colors from "Selection Colors" in image */
+    background-color: #370f58;
+    color: #b8a947;
 
-    color: var(--Color-Primary500, #50ff00);
-    text-align: center;
+    /* Border and Glow Effect */
+    border: 1.5px solid #370461;
+    /* Purple border to match the "Profile" box */
+    box-shadow: 0px 0px 12px rgba(15, 3, 24, 0.6);
+    /* Purple outer glow */
 
-    /* SF/SF - 36 REG */
-    font-family: 'SF Ironside';
+    /* Typography */
+    font-family: 'Wasted Vindey', sans-serif;
+    /* Keeping your font as requested */
     font-size: 20px;
-    font-weight: 400;
-    line-height: normal;
-    text-transform: uppercase;
+    font-weight: 900;
+    letter-spacing: 0.1rem;
 
     cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-.sexy_button_small {
-    width: 127.338px;
-    height: 42.135px;
-
-    font-size: 20px;
-    filter: drop-shadow(0px -2.996px 2.996px #55a826);
-}
-/* .sexy_button:focus{
-    filter: drop-shadow(0px -1px 1px white);
-} */
 .sexy_button:hover {
-    filter: drop-shadow(0px -3.623px 3.623px #03fa24);
-    color: var(--Color-Primary500, #00ff26);
-}
-.sexy_button:active {
-    filter: drop-shadow(1px 1px 1px white);
+    /* Slight brightening on hover */
+    /* background-color: #352b3e; */
+    transform: scale(1.07);
+    font-family: 'Wasted Vindey', sans-serif;
+    box-shadow: 0px 0px 18px rgba(178, 83, 255, 0.9);
+    color: #d4c564;
+    /* Brighter gold */
 }
 
-.mainNav {
+.sexy_button:active {
+    transform: scale(0.96);
+    font-family: 'Wasted Vindey', sans-serif;
+    filter: brightness(1.2);
+}
+
+/* .mainNav {
     background: #000000;
     color: #000;
     text-align: center;
@@ -73,6 +97,36 @@
     align-items: center;
     justify-content: space-between;
     padding: 7px 20px;
+} */
+/* --- Main Navigation Bar --- */
+.mainNav {
+    /* Starry Background & Dark Gradient with solid fallback */
+    background-color: #000000;
+    background-image: url('/assets/parth&harish.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    color: #ffffff;
+    font-family: 'Wasted Vindey', sans-serif;
+    /* Cleaner font for the nav links */
+    font-size: 1rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    /* Increased height for better spacing */
+    z-index: 9999;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 4rem;
+    /* Wide padding as seen in Figma */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 .mobile_nav {
@@ -82,10 +136,11 @@
 .navLinks a {
     color: #fff;
     text-decoration: none;
-    padding: 9px 15px;
+    padding: 9px 20px;
     display: inline-block;
     white-space: nowrap;
-    /* font-weight: bold; */
+    font-size: 1.2rem;
+    font-weight: 300;
 }
 
 .linknav {
@@ -93,9 +148,10 @@
 }
 
 .linknav:hover {
-    border: #fff 1px solid;
+    /* border: #fff 1px solid; */
     border-radius: 5px;
 }
+
 .fancyButton {
     position: relative;
     display: inline-block;
@@ -115,9 +171,9 @@
     top: 50%;
     white-space: nowrap;
     transform: translate(-50%, -50%);
-    color: rgb(80, 255, 0);
+    color: #b8a947;
     font-size: 1.25rem;
-    font-family: 'SF Ironside';
+    font-family: 'Wasted Vindey', cursive;
     letter-spacing: 0.15rem;
 }
 
@@ -130,8 +186,9 @@
     margin: 0;
     padding: 0;
 }
+
 .getcardsbutton {
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Wasted Vindey', sans-serif;
     font-optical-sizing: auto;
     font-weight: 500;
     font-style: normal;
@@ -145,47 +202,172 @@
     padding-bottom: 6px;
     border: none;
 }
+
 .mobile_only {
     display: none;
 }
 
 .nav_drawer {
-    display: none;
-    opacity: 0;
     position: fixed;
-    top: 65px;
-    width: 100vw;
-    max-height: 65vh;
-    font-family: 'SF Ironside', sans-serif;
-    transition: all 0.3s ease;
-    z-index: 15;
-    border-bottom: 3px solid rgb(80, 255, 0);
-    overflow-y: scroll;
-    background: rgb(0, 0, 0);
-}
-
-.nav_drawer ul {
+    top: 70px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 9998;
     display: flex;
     flex-direction: column;
-    /* background: rgb(0, 0, 0); */
+    gap: 20px;
+    width: 100%;
+    padding: 20px 20px calc(24px + env(safe-area-inset-bottom));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    color: #f2ecdf;
+    background: linear-gradient(180deg, #1a0629 0%, #0e0117 100%);
+    border-top: 1px solid rgba(178, 83, 255, 0.22);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s linear 0.25s;
+}
+
+.nav_drawer_open {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s;
+}
+
+.drawer_user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    color: #f2ecdf;
+    text-decoration: none;
+    background: rgba(55, 15, 88, 0.45);
+    border: 1px solid rgba(178, 83, 255, 0.22);
+    border-radius: 14px;
+}
+
+.drawer_avatar {
+    display: flex;
+    flex-shrink: 0;
     align-items: center;
     justify-content: center;
+    width: 42px;
+    height: 42px;
+    color: #e8d9a8;
+    font-weight: 700;
+    font-size: 1.1rem;
+    background: #370f58;
+    border: 1px solid rgba(178, 83, 255, 0.45);
+    border-radius: 50%;
 }
 
-.nav_drawer li {
-    margin: 10px 0;
-    /* border-radius: 8px; */
+.drawer_user_text {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.drawer_user_name {
     overflow: hidden;
+    font-size: 1rem;
+    font-weight: 600;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
-.nav_drawer a {
-    color: #fff;
-    text-align: center;
-    font-size: 24px;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+.drawer_user_id {
+    color: #a99bbb;
+    font-size: 0.8rem;
+}
+
+.drawer_links {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.drawer_link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 56px;
+    padding: 0 4px;
+    color: #f2ecdf;
+    font-family: 'Wasted Vindey', sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: 0.06em;
     text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.drawer_link svg {
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.drawer_link:active {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.drawer_link_active,
+.drawer_link_active svg {
+    color: #e8d9a8;
+}
+
+.drawer_actions {
+    display: grid;
+    gap: 12px;
+    margin-top: auto;
+}
+
+.drawer_primary,
+.drawer_secondary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    min-height: 52px;
+    font-family: 'Wasted Vindey', sans-serif;
+    font-size: 1.15rem;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.drawer_primary {
+    color: #e8d9a8;
+    background: #370f58;
+    border: 1.5px solid #4f1c7a;
+    box-shadow: 0 0 16px rgba(178, 83, 255, 0.35);
+}
+
+.drawer_secondary {
+    color: #d9cfe6;
+    background: transparent;
+    border: 1.5px solid rgba(178, 83, 255, 0.35);
+}
+
+.drawer_primary:active,
+.drawer_secondary:active {
+    filter: brightness(1.15);
+}
+
+.drawer_secondary:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.drawer_secondary > span {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .user_container {
@@ -236,14 +418,28 @@
 
 .hamburger {
     position: absolute;
+    top: 50%;
+    left: 8px;
+    z-index: 10001;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    background: none;
+    border: 0;
     cursor: pointer;
-    z-index: 30;
-    height: 30px;
-    width: 10%;
-    top: 17.5px;
-    left: 10px;
-    display: none !important;
+    transform: translateY(-50%);
+    -webkit-tap-highlight-color: transparent;
 }
+
+.hamburgerIcon {
+    width: 40px;
+    height: 30px;
+    pointer-events: none;
+}
+
 .navEnds {
     display: none;
 }
@@ -260,21 +456,38 @@
     .navLinks {
         display: none;
     }
+
     .mainNav {
         justify-content: center;
+        background-color: #000000;
+        background-image: url('/assets/parth&harish.png');
+        background-size: cover;
+        background-position: center;
+        height: 70px;
+        padding: 0 1rem;
+        z-index: 9999;
     }
 
     .mobile_nav {
         display: block;
         margin-left: 20px;
     }
+
     .mobile_only {
         display: block;
     }
+
     .user_name {
         color: #000;
     }
+
     .hamburger {
-        display: block !important;
+        display: flex;
+    }
+}
+
+@media (min-width: 1051px) {
+    .nav_drawer {
+        display: none;
     }
 }

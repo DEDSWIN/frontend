@@ -1,187 +1,122 @@
-import Image from 'next/image'
-import styles from './Footer.module.css'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
+"use client";
 
-// TO USE More Classes => {cn(className1, className2, className3)}
-const cn = (...classes) => {
-    return classes.filter(Boolean).join(' ')
-}
-// assets path => '/pics/footer/{name}'
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import clsx from "clsx";
+import { Mail, MapPin, Phone } from "lucide-react";
+import { FaFacebookF, FaInstagram, FaXTwitter, FaYoutube } from "react-icons/fa6";
+import styles from "./Footer.module.css";
+
+const socials = [
+  { label: "Instagram", href: "https://www.instagram.com/anwesha_iitpatna/", Icon: FaInstagram },
+  { label: "Facebook", href: "https://www.facebook.com/anwesha.iitpatna/", Icon: FaFacebookF },
+  { label: "X (Twitter)", href: "https://twitter.com/anweshaiitpat/", Icon: FaXTwitter },
+  { label: "YouTube", href: "https://www.youtube.com/@AnweshaIITP", Icon: FaYoutube },
+];
+
+const linkGroups = [
+  {
+    title: "Explore",
+    links: [
+      { label: "Events", href: "/events" },
+      { label: "Multicity", href: "/all-multicity" },
+      { label: "Gallery", href: "/gallery" },
+      { label: "Get Passes", href: "/anweshapass" },
+    ],
+  },
+  {
+    title: "Fest",
+    links: [
+      { label: "About Us", href: "/aboutus" },
+      { label: "Our Team", href: "/ourteam" },
+      { label: "Sponsors", href: "/oursponsors" },
+      { label: "Contact Us", href: "/contact" },
+    ],
+  },
+];
 
 const Footer = () => {
-    const router = useRouter();
-    return (
-        <section>
-            <div className={styles.footer}>
-                <div className={styles.footer_upper}>
-                    <div className={styles.foter_logo}>
-                        <Image
-                            src="/pics/footer/logo.svg"
-                            alt="Image description"
-                            width={394.55}
-                            height={225.76}
-                        />
-                    </div>
-                    <div className={styles.social_logo}>
-                        <div className={styles.social_logo_container}>
-                            <a
+  const isCA_page = usePathname() === "/campus-ambassador";
 
-                                href="mailto:anwesha@iitp.ac.in"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                <Image
-                                    src="/pics/footer/email.svg"
-                                    alt="Image description"
-                                    width={62.173}
-                                    height={49.173}
-                                />
-                            </a>
-                            <a
+  return (
+    <footer className={clsx(styles.footer, isCA_page && "w-[100vw]")}>
+      <div className={styles.flower} aria-hidden="true">
+        <Image src="/footer/flower.svg" alt="" width={180} height={120} />
+      </div>
 
-                                href="https://www.instagram.com/anwesha_iitpatna/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                <Image
-                                    src="/pics/footer/insta.svg"
-                                    alt="Image description"
-                                    width={62.173}
-                                    height={49.173}
-                                />
-                            </a>
-                        </div>
-                        <div className={styles.social_logo_container}>
-                            <a
+      <div className={styles.inner}>
+        <div className={styles.grid}>
+          <div className={styles.brand}>
+            <Link href="/" aria-label="Anwesha home">
+              <Image src="/navbar/logo.svg" alt="Anwesha logo" width={200} height={72} />
+            </Link>
+            <p className={styles.tagline}>The annual techno-cultural fest of IIT Patna.</p>
+            <ul className={styles.socials}>
+              {socials.map(({ label, href, Icon }) => (
+                <li key={label}>
+                  <a href={href} target="_blank" rel="noopener noreferrer" aria-label={label}>
+                    <Icon size={18} />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-                                href="https://www.facebook.com/anwesha.iitpatna/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                <Image
-                                    src="/pics/footer/facebook.svg"
-                                    alt="Image description"
-                                    width={63.173}
-                                    height={49.173}
-                                />
-                            </a>
-                        </div>
-                        <div className={styles.social_logo_container}>
-                            <a
+          {linkGroups.map((group) => (
+            <nav key={group.title} className={styles.column} aria-label={group.title}>
+              <h3>{group.title}</h3>
+              <ul>
+                {group.links.map((link) => (
+                  <li key={link.href}>
+                    <Link href={link.href}>{link.label}</Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          ))}
 
-                                href="https://twitter.com/anweshaiitpat/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                <img
-                                    src="/pics/footer/twittter.svg"
-                                    alt="Image description"
-                                    width={63.173}
-                                    height={49.173}
-                                />
-                            </a>
-                            <a
+          <div className={styles.column}>
+            <h3>Reach us</h3>
+            <ul className={styles.contact}>
+              <li>
+                <MapPin size={18} aria-hidden="true" />
+                <span>
+                  Anwesha Office, IIT Patna,
+                  <br />
+                  Bihta, Patna - 801106
+                </span>
+              </li>
+              <li>
+                <Phone size={18} aria-hidden="true" />
+                <span>
+                  Technical: <a href="tel:+918789445978">+91 87894 45978</a>
+                  <br />
+                  Payments: <a href="tel:+918467989069">+91 84679 89069</a>
+                </span>
+              </li>
+              <li>
+                <Mail size={18} aria-hidden="true" />
+                <a href="mailto:anwesha@iitp.ac.in">anwesha@iitp.ac.in</a>
+              </li>
+            </ul>
+          </div>
+        </div>
 
-                                href="https://www.youtube.com/@AnweshaIITP"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                <Image
-                                    src="/pics/footer/youtube.svg"
-                                    alt="Image description"
-                                    width={63.173}
-                                    height={49.173}
-                                />
-                            </a>
-                        </div>
-                    </div>
-                    <div className={styles.footer_address}>
-                        <h4>
-                            Anwesha Office, <br />
-                            Indian Institute of Technology Patna, <br />
-                            Bihta, Patna - 801103 <br />
-                            anwesha@iitp.ac.in ( office work only )  <br />
-                            <span
-                                onClick={() => router.push('/contact')}
-                                style={{ textDecoration: 'underline', cursor: 'pointer' }}
-                            >
-                                Contact us
-                            </span>
-                            → for technical issues
-                        </h4>
-                    </div>
-                </div>
-                {/* <div className={styles.footer_middle}>
-                    <div className={styles.footer_nav}>
-                        <div className={styles.four_fingure}>
-                            {' '}
-                            <Link href="">
-                                <h3>Events</h3>
-                            </Link>
-                            <Link href="">
-                                <h3>Merch</h3>
-                            </Link>
-                            <Link href="">
-                                <h3>Gellerty</h3>
-                            </Link>
-                            <Link href="">
-                                <h3>Teams</h3>
-                            </Link>{' '}
-                        </div>
-                        <div className={styles.four_fingure}>
-                            {' '}
-                            <Link href="">
-                                <h3>Sponsors</h3>
-                            </Link>
-                            <Link href="">
-                                <h3>Contat Us</h3>
-                            </Link>
-                            <Link href="">
-                                <h3>Profile</h3>
-                            </Link>
-                            <Link href="">
-                                <h3>Get Passes</h3>
-                            </Link>{' '}
-                        </div>
-                    </div>
-                </div> */}
-                <div className={styles.line_section}>
-                    <Image
-                        src="/pics/footer/Line.svg"
-                        alt="Image description"
-                        width={500}
-                        height={50}
-                        style={{
-                            width: '100%',
-                            height: '10px',
-                            objectFit: 'contain',
-                        }}
-                    />
-                </div>
-                <div className={styles.footer_lower}>
-                    <h4 onClick={() => { router.push('/privacy') }}> Privacy Policy </h4>
-                    <h4 onClick={() => { router.push('/terms') }}>   Terms and Condition</h4>
-                </div>
-                <div className={styles.left_helobean}>
-                    <Image
-                        src="/pics/footer/chootSmall.svg"
-                        alt="Image description"
-                        width={200}
-                        height={100}
-                    />
-                </div>
-                <div className={styles.right_helobean}>
-                    <Image
-                        src="/pics/footer/chootHead.svg"
-                        alt="Image description"
-                        width={300}
-                        height={200}
-                    />
-                </div>
-            </div>
-        </section >
-    )
-}
+        <p className={styles.note}>
+          Site not loading properly? Clear the site data or try an incognito window.
+        </p>
 
-export default Footer
+        <div className={styles.bottom}>
+          <span>© {new Date().getFullYear()} Anwesha, IIT Patna</span>
+          <div className={styles.legal}>
+            <Link href="/privacy">Privacy Policy</Link>
+            <Link href="/terms">Terms &amp; Conditions</Link>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;

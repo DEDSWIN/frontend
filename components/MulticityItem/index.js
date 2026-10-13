@@ -30,23 +30,22 @@ const index = ({ event }) => {
                     <p>
                         <b>Timings:</b>&nbsp;{event.timings}
                     </p>
-                    <span style={{ display: 'inline-flex' }}>
-                        <b>Contact Details:</b>&nbsp;
+                    <div style={{ display: 'flex', flexDirection: 'column' }}>
+                        <b>Contact Details:</b>
                         {Array.isArray(event.contact) ? (
-                            <div>
-                                {event.contact.map((item) => {
+                            <>
+                                {event.contact.map((item, idx) => {
                                     return (
-                                        <>
+                                        <span key={idx}>
                                             {item.name} ({item.phone})
-                                            <br />
-                                        </>
+                                        </span>
                                     )
                                 })}
-                            </div>
+                            </>
                         ) : (
-                            `${event.contact.name} (${event.contact.phone})`
+                            <span>{event.contact.name} ({event.contact.phone})</span>
                         )}
-                    </span>
+                    </div>
                 </div>
                 <div className={styles.eventLinks}>
                     <a

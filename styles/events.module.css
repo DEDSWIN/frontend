@@ -1,11 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Laila:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap');
 
 @font-face {
-    font-family: 'SF Ironsides'; /* Name for the font */
-    src: url('/font/SF_Ironsides.ttf') format('truetype'); /* Path to the font */
-    font-weight: normal; /* Define the weight */
-    font-style: normal;  /* Define the style */
+    font-family: 'SF Ironsides';
+    /* Name for the font */
+    src: url('/font/SF_Ironsides.ttf') format('truetype');
+    /* Path to the font */
+    font-weight: normal;
+    /* Define the weight */
+    font-style: normal;
+    /* Define the style */
 }
 
 .mainContainer {
@@ -15,45 +21,146 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-image: 
-    radial-gradient(
-            circle at center, 
-            rgba(255, 255, 255, 0.2) 0%, /* Brighter center */
-            rgba(0, 0, 0, 1) 70%, /* Darker towards the edges */
-            rgba(0, 0, 0, 1) 100% /* Fully black at the edges */
-        ),
-    url("/events/bgImg.png"); /* Add your image */
-
-    background-position: center 120px; /* Center the images horizontally */
-    background-repeat: repeat-y; /* Repeat images in the Y-direction */
-    background-size: 1200px 838.941px; /* Set the image dimensions */
-    background-blend-mode: overlay; /* Blend the image with the black background */
-
-   
+    background-color: #000;
+    position: relative;
 }
+
+.mainContainer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    /* Changed to viewport height for first page */
+    min-height: 831px;
+    /* Minimum height to maintain design */
+    background-image:
+        radial-gradient(circle at center,
+            rgba(255, 255, 255, 0.1) 0%,
+            /* Lighter center */
+            rgba(0, 0, 0, 0.3) 70%,
+            /* Much lighter towards the edges */
+            rgba(0, 0, 0, 0.5) 100%
+            /* Semi-transparent at the edges */
+        ),
+        url("/events/new_bg.png");
+    /* First page background only */
+    background-position:
+        center top,
+        /* Radial gradient position */
+        center top;
+    /* First page background at top */
+    background-repeat:
+        no-repeat,
+        /* Radial gradient doesn't repeat */
+        no-repeat;
+    /* First page background doesn't repeat */
+    background-size:
+        cover,
+        /* Radial gradient covers the area */
+        cover;
+    /* First page background covers and stretches */
+    background-blend-mode: overlay, normal;
+    pointer-events: none;
+    z-index: 0;
+}
+
+
 
 
 .container {
     margin: 0;
     display: flex;
     flex-direction: column;
-   
+    position: relative;
+    z-index: 1;
     align-items: center;
-    padding-top: 12vh;
     transition: opacity 0.5s ease-in-out;
     width: 90vw;
     margin-bottom: 40px;
-    
+
 }
 
 
 
-.searchContainer{
+.featuredEventsSection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    margin-top: 30px;
+    margin-bottom: 100px;
+    width: 100%;
+    max-width: 1065px;
+    flex-wrap: wrap;
+    padding: 0 10px;
+}
+
+.featuredCard {
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.featuredCard:hover {
+    filter: grayscale(0%) !important;
+    transform: scale(1.01);
+}
+
+.featuredCard:hover :global(.imageWrap) {
+    border: 2px solid #9333EA;
+}
+
+.searchContainer {
     width: 90%;
     display: flex;
     justify-content: space-around;
-    margin-top: 36px;
+    margin-top: 37px;
 }
+
+.searchWrapper {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin-top: 130px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.searchBackground {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.searchInput {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+    background: transparent;
+    border: none;
+    color: #FFF;
+    font-family: "Laila", serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    text-align: center;
+    outline: none;
+}
+
+.searchInput::placeholder {
+    color: #FFFFFF;
+    opacity: 0.8;
+}
+
+.searchInput:focus {
+    outline: none;
+    border: none;
+}
+
 .searchbox {
     display: flex;
     width: 610px;
@@ -61,50 +168,52 @@
     justify-content: space-between;
     align-items: center;
     transition: opacity 0.5s ease-in-out;
-    border-bottom: 1px solid var(--Color-Primary500, #50FF00);
-    background: #000;
-
-    /* My Shadow 2 */
-    box-shadow: 4.123px -104.442px 29.546px 0px rgba(0, 0, 0, 0.02), 2.748px -66.651px 26.798px 0px rgba(0, 0, 0, 0.15), 1.374px -37.792px 22.675px 0px rgba(0, 0, 0, 0.50), 0.687px -16.491px 16.491px 0px rgba(0, 0, 0, 0.85), 0px -4.123px 8.933px 0px rgba(0, 0, 0, 0.98);
-    backdrop-filter: blur(30.920454025268555px);
+    border-bottom: 1px solid #FFB6C1;
+    background: transparent;
 }
+
 .searchbar {
-   
+
     flex-grow: 1;
     color: #FFF;
-    background-color: #000;
+    background-color: transparent;
     border: none;
-    /* La/La - 20 Reg */
-    font-family: "Laila", serif;
+    /* Cormorant Garamond */
+    font-family: "Cormorant Garamond", serif;
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
-    line-height: 150%; /* 30px */
-    
+    line-height: 150%;
+    /* 30px */
+
 }
 
 .searchbar::placeholder {
-    color: #FFFFFF; /* Bright white placeholder text */
-    
+    color: #FFFFFF;
+    /* Bright white placeholder text */
+
 }
+
 .searchbar:focus {
-    outline: none; /* Ensures no border is applied when focused */
-    border: none;  /* Ensures the border property is also reset */
+    outline: none;
+    /* Ensures no border is applied when focused */
+    border: none;
+    /* Ensures the border property is also reset */
 }
 
 .searchicon {
     width: 24px;
-height: 24px;
-flex-shrink: 0;
+    height: 24px;
+    flex-shrink: 0;
 }
 
-.leftgroup{
+.leftgroup {
     width: 183.728px;
     height: 53.209px;
     flex-shrink: 0;
 }
 
-.rightgroup{
+.rightgroup {
     width: 183.728px;
     height: 53.209px;
     flex-shrink: 0;
@@ -112,7 +221,7 @@ flex-shrink: 0;
 
 .textLinkContainer {
     margin-top: 0px;
-    margin-right: 0px; 
+    margin-right: 0px;
     margin-bottom: 15px;
     display: flex;
     justify-content: flex-end;
@@ -126,10 +235,11 @@ flex-shrink: 0;
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
-    line-height: 150%; /* 30px */
+    line-height: 150%;
+    /* 30px */
     text-decoration: none;
     transition: color 0.5s ease-in-out;
-    display: inline; 
+    display: inline;
     right: 0px;
     text-shadow: 0px 0px 10px rgba(255, 255, 255, 1);
 }
@@ -159,16 +269,52 @@ flex-shrink: 0;
 .titleBox {
     display: flex;
     flex-direction: column;
+    padding-top: 200px;
     gap: 34px;
+    align-items: center;
+    justify-content: center;
+}
+
+.titleText {
+    width: 100%;
+    max-width: 600px;
+    /* Increased to fit "EXPLORE THE EVENTS" on one line */
+    height: auto;
+    min-height: 48px;
+    color: var(--Color-Primary500, white);
+    text-align: center;
+    font-family: "DM Serif Display", serif;
+    font-size: clamp(28px, 5vw, 48px);
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.2;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 15px;
+    white-space: normal;
+    /* Allows text to wrap on smaller screens */
+}
+
+.titleImage {
+    width: 476px;
+    height: 48px;
+    object-fit: contain;
 }
 
 .centergroup {
     display: flex;
-    justify-content: center; /* Centers horizontally */
-    align-items: center;    /* Centers vertically */
-    text-align: center;     /* Centers inline text within the element */
-    height: 100%;           /* Ensure the height is sufficient for vertical centering */
+    justify-content: center;
+    /* Centers horizontally */
+    align-items: center;
+    /* Centers vertically */
+    text-align: center;
+    /* Centers inline text within the element */
+    height: 100%;
+    /* Ensure the height is sufficient for vertical centering */
 }
+
 .titletext {
     color: var(--Color-Primary500, #50FF00);
     text-align: center;
@@ -176,16 +322,17 @@ flex-shrink: 0;
     font-size: 64px;
     font-style: normal;
     font-weight: 400;
-    line-height: 100%; /* 64px */
+    line-height: 100%;
+    /* 64px */
     text-transform: uppercase;
 
     background: #000;
 
     /* Thick shadow in all directions */
-    box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.5), 
-                0px -20px 50px rgba(0, 0, 0, 0.5), 
-                20px 0px 50px rgba(0, 0, 0, 0.5), 
-                -20px 0px 50px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.5),
+        0px -20px 50px rgba(0, 0, 0, 0.5),
+        20px 0px 50px rgba(0, 0, 0, 0.5),
+        -20px 0px 50px rgba(0, 0, 0, 0.5);
 
     /* Optional blur for a soft effect */
     backdrop-filter: blur(15px);
@@ -203,14 +350,45 @@ flex-shrink: 0;
     transition: opacity 0.5s ease-in-out;
 } */
 
-.cardContainer {
-    display: flex;
-    flex-wrap: wrap; /* Allow wrapping of items to the next row */
-    justify-content: center; /* Add spacing between items */
-    ; /* Space between grid items */
-    gap: 32px;
+.eventsPanel {
+    width: 100%;
     max-width: 1065px;
-    margin-top: 63px;
+    min-height: 3237px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px 20px 40px 20px;
+    /* Top padding for EVENTS title */
+    box-sizing: border-box;
+    position: relative;
+    z-index: 1;
+}
+
+.eventsPanelTitle {
+    color: #FFF;
+    text-align: center;
+    font-family: 'Cinzel', serif;
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 64px;
+    text-transform: uppercase;
+    margin-bottom: 60px;
+    width: 100%;
+}
+
+.cardContainer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* 3 columns on desktop */
+    gap: 32px;
+    width: 100%;
+    max-width: 1065px;
+    justify-items: center;
+    /* Grid will automatically wrap cards to new rows as they're added */
+    padding: 0 10px;
+    box-sizing: border-box;
 }
 
 
@@ -225,7 +403,7 @@ flex-shrink: 0;
 }
 
 
-.workshopContainer{
+.workshopContainer {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -233,31 +411,34 @@ flex-shrink: 0;
     margin-top: 100px;
     width: 90vw;
     align-items: center;
+    position: relative;
+    z-index: 1;
 }
 
-.workshoptitletext{
+.workshoptitletext {
     color: var(--Color-Primary500, #50FF00);
     text-align: center;
     font-family: "SF Ironsides", sans-serif;
     font-size: 64px;
     font-style: normal;
     font-weight: 400;
-    line-height: 100%; /* 64px */
+    line-height: 100%;
+    /* 64px */
     text-transform: uppercase;
     background: #000;
 
     /* Thick shadow in all directions */
-    box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.5), 
-                0px -20px 50px rgba(0, 0, 0, 0.5), 
-                20px 0px 50px rgba(0, 0, 0, 0.5), 
-                -20px 0px 50px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.5),
+        0px -20px 50px rgba(0, 0, 0, 0.5),
+        20px 0px 50px rgba(0, 0, 0, 0.5),
+        -20px 0px 50px rgba(0, 0, 0, 0.5);
 
     /* Optional blur for a soft effect */
     backdrop-filter: blur(15px);
 
-    
 
-    
+
+
 }
 
 /* .imageBox {
@@ -282,7 +463,7 @@ flex-shrink: 0;
     margin: 50px 0;
     width: 92vw;
     /* width: 100vw; */
-    /*display: flex;
+/*display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-evenly;
@@ -291,13 +472,16 @@ flex-shrink: 0;
 } */
 
 
-.sponsors{
+.sponsors {
     background: #000300;
     display: flex;
     width: 100%;
     padding-bottom: 48px;
+    position: relative;
+    z-index: 1;
 }
-.sponsors_title{
+
+.sponsors_title {
     display: inline-flex;
     padding: 32px 24px;
     padding-top: 20px;
@@ -310,18 +494,21 @@ flex-shrink: 0;
     width: 500px;
     min-width: 500px;
 }
-.sponsors_title > h2{
-    color: var(--Color-Primary500, #50FF00);
 
-    /* SF/SF - 64 Reg */
-    font-family: "SF Ironsides";
-    font-size: 64px;
+.sponsors_title>h2 {
+    color: #FFF;
+
+    /* DM Serif Display */
+    font-family: "DM Serif Display", serif;
+    font-size: 40px;
     font-style: normal;
     font-weight: 400;
-    line-height: 100%; /* 64px */
+    line-height: 100%;
+    /* 64px */
     text-transform: uppercase;
 }
-.sponsors_title > h3{
+
+.sponsors_title>h3 {
     color: #FFF;
 
     /* AN/AN - 24 */
@@ -331,7 +518,8 @@ flex-shrink: 0;
     font-weight: 700;
     line-height: normal;
 }
-.sponsors_images_slider{
+
+.sponsors_images_slider {
     /* display: inline-flex;
     align-items: center;
     gap: 24px; */
@@ -339,68 +527,76 @@ flex-shrink: 0;
     width: 100%;
     background-color: inherit;
     align-content: center;
-    mask-image: linear-gradient(
-        to right,
-        transparent,
-        #000,
-        transparent
-    );
+    mask-image: linear-gradient(to right,
+            transparent,
+            #000,
+            transparent);
 }
-.autoScrollSponseAnimation{
+
+.autoScrollSponseAnimation {
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     animation-name: autoScrollSponse;
 }
 
 @media only screen and (max-width: 1250px) {
-    .sponsors{
-         flex-direction: column;
-         padding: 0 64px;
-         padding-bottom: 72px;
+    .sponsors {
+        flex-direction: column;
+        padding: 0 64px;
+        padding-bottom: 72px;
     }
-    .sponsors_title{
-         margin-left: auto;
-         margin-right: auto;
-         text-align: center;
-         width: 100%;
-         max-width: 768px;
-         min-width: unset;
-         display: flex;
-         flex-direction: column;
-         align-items: center;
-         padding-left: 0;
-         padding-right: 0;
-    }
-    .sponsors{
-         padding-left: 48px;
-         padding-right: 48px;
-     }
- }
- @media only screen and (max-width: 768px){
-     .sponsors{
-         padding: 0 16px;
-         padding-bottom: 64px;
-     }
-     .sponsors_title > h2{
-         font-size: 48px;
-     }
-     .sponsors_title > h3{
-         font-size: 18px;
-     }
- }
- @media only screen and (max-width: 550px){
-     /* TODO */
-     .sponsors{
-         padding-left: 12px;
-         padding-right: 12px;
-     }
- }
- 
 
-@keyframes autoScrollSponse{
-    from{
+    .sponsors_title {
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        width: 100%;
+        max-width: 768px;
+        min-width: unset;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .sponsors {
+        padding-left: 48px;
+        padding-right: 48px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .sponsors {
+        padding: 0 16px;
+        padding-bottom: 64px;
+    }
+
+    .sponsors_title>h2 {
+        font-size: 48px;
+    }
+
+    .sponsors_title>h3 {
+        font-size: 18px;
+    }
+}
+
+@media only screen and (max-width: 550px) {
+
+    /* TODO */
+    .sponsors {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+}
+
+
+@keyframes autoScrollSponse {
+    from {
         left: -127.381px;
-    }to{
+    }
+
+    to {
         left: 100%;
     }
 }
@@ -410,12 +606,29 @@ flex-shrink: 0;
         max-width: 70vw;
         width: 100%;
     }
-    
-    .rightgroup{
+
+    .rightgroup {
         display: none;
     }
-    .leftgroup{
+
+    .leftgroup {
         display: none;
+    }
+
+    .searchWrapper {
+        max-width: 90%;
+        margin-top: 100px;
+    }
+
+    .searchInput {
+        width: 80%;
+        font-size: 18px;
+    }
+
+    .searchbox {
+        max-width: 100%;
+        width: 90%;
+        margin: 0 auto;
     }
 }
 
@@ -424,8 +637,166 @@ flex-shrink: 0;
         max-width: 80vw;
         width: 100%;
     }
-    .searchbox{
+
+    .searchbox {
+        width: 100%;
+        max-width: 90%;
+        padding: 16px 20px;
+    }
+
+    .searchWrapper {
+        max-width: 95%;
+        margin-top: 80px;
+    }
+
+    .searchInput {
+        width: 85%;
+        font-size: 16px;
+    }
+
+    .titleImage {
+        max-width: 90%;
+    }
+
+    .titleBox {
+        padding-top: 100px;
+    }
+
+    .featuredEventsSection {
+        flex-direction: column;
+        gap: 20px;
+        margin-bottom: 60px;
+        padding: 0 5px;
+    }
+
+    .cardContainer {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 0 5px;
+    }
+
+    .eventsPanelTitle {
+        font-size: 40px;
+        line-height: 44px;
+        margin-bottom: 40px;
+    }
+
+    .eventsPanel {
+        padding: 0px 15px 40px 15px;
+    }
+
+    .container {
+        width: 95vw;
+    }
+}
+
+/* Tablet responsive styles */
+@media screen and (min-width: 551px) and (max-width: 1024px) {
+    .cardContainer {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 24px;
+        padding: 0 10px;
+    }
+
+    .featuredEventsSection {
+        gap: 24px;
+        max-width: 90%;
+        flex-wrap: wrap;
+        /* Force wrap on tablet */
+        padding: 0 10px;
+    }
+
+    .titleBox {
+        padding-top: 150px;
+    }
+
+    .eventsPanel {
+        padding: 0px 15px 40px 15px;
+    }
+
+    .eventsPanelTitle {
+        font-size: 52px;
+        line-height: 56px;
+    }
+
+    .container {
+        width: 95vw;
+    }
+}
+
+
+.sexy_button {
+    all: unset;
+
+    /* REQUIRED RESET AFTER unset */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+
+    /* 🔥 SIZE (THIS FIXES height = 0) */
+    width: 100%;
+    min-width: 250px;
+    min-height: 35px;        /* IMPORTANT */
+        
+
+    /* BACKGROUND */
+    background-image: url('/events/home_button.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size:cover;
+    /* border : 2px solid black; */
+
+    /* TEXT */
+    font-family: 'SF Ironsides';
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 1;         /* IMPORTANT */
+    text-transform: uppercase;
+    color: var(--Color-Primary500, #F2E279);
+    text-align: center;
+
+    /* EFFECT */
+    filter: drop-shadow(0px -3.623px 3.623px #F2E279);
+    cursor: pointer;
+}
+.sexy_button_small {
+    max-width: 320px;
+    min-height: 94px;
+    font-size: 26px;
+    filter: drop-shadow(0px -2.996px 2.996px #F2E279);
+}
+
+.sexy_button:hover {
+    /* filter: drop-shadow(0px -3.623px 3.623px #03fa24);
+    color: var(--Color-Primary500, #00ff26); */
+    filter: drop-shadow(0px -5.623px 5.623px #F2E279);
+    color: var(--Color-Primary500, #F2E279);
+}
+
+.sexy_button:active {
+    filter: drop-shadow(1px 1px 1px white);
+}
+
+@media (max-width: 568px) {
+    .sexy_button,
+    .sexy_button_small {
+        width: 100%;
+        max-width: 100%;
+        min-height: 94px;
+        font-size: 24px;
+    }
+}
+
+
+
+@media (max-width: 568px) {
+    .hero_button {
+        width: 100%;
+        padding: 0 16px;
+    }
+
+    .hero_button > button {
         width: 100%;
     }
-   
 }
