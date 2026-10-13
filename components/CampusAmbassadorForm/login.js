@@ -7,7 +7,7 @@ import { motion } from 'framer-motion'
 import GreetingLottie from '../displaylottie'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-const host = 'backend.anwesha.live'
+const host = process.env.NEXT_PUBLIC_HOST || '/api/backend'
 
 const CampusAmbassadorLogin = () => {
     const [email, setEmail] = React.useState('')
@@ -21,7 +21,7 @@ const CampusAmbassadorLogin = () => {
         let body = { username: email, password: password }
         try {
             const response = await fetch(
-                `https://${host}/campasambassador/login`,
+                `${host}/campasambassador/login`,
                 {
                     method: 'POST',
                     headers: {
@@ -36,6 +36,13 @@ const CampusAmbassadorLogin = () => {
                 setFailure(false)
                 setErrorMsg('')
                 const data = await response.json()
+                
+                // Store JWT token from response
+                if (data.token || data.access_token) {
+                    const token = data.token || data.access_token
+                    localStorage.setItem('anwesha_token', token)
+                }
+                
                 toast.success('You are successfully logged in', {
                     position: 'top-right',
                     autoClose: 3000,
