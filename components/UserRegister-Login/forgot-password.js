@@ -2,109 +2,85 @@ import React, { useContext } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import styles from './style.module.css'
+import { ButtonLoader } from '../Loader'
 import { motion } from 'framer-motion'
 import { ToastContainer, toast } from 'react-toastify'
 import { AuthContext } from '../authContext'
 import 'react-toastify/dist/ReactToastify.css'
 
-const host = process.env.NEXT_PUBLIC_HOST
+const host = process.env.NEXT_PUBLIC_HOST || '/api/backend'
 
 const cn = (...classes) => {
     return classes.filter(Boolean).join(' ')
 }
 
 const ForgotPassword = () => {
-    const context = useContext(AuthContext)
     const [email, setEmail] = React.useState('')
+    const [loading, setLoading] = React.useState(false)
 
     const handleSubmit = async (event) => {
         event.preventDefault()
-        let body = { email: email }
-        // user input validation
-        if (email.length == 0) {
-            toast.warning('Please fill email', {
+
+        const trimmedEmail = email.trim().toLowerCase()
+        if (!trimmedEmail) {
+            toast.warning('Please enter your email address', {
                 position: 'top-right',
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
                 theme: 'light',
             })
             return
         }
+
+        const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        if (!emailRegex.test(trimmedEmail)) {
+            toast.warning('Please provide a valid email address', {
+                position: 'top-right',
+                theme: 'light',
+            })
+            return
+        }
+
+        setLoading(true)
+
         try {
-            const response = await fetch(`${host}/user/forgetpassword`, {
+            const response = await fetch(`${host}/auth/forgot-password`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(body),
-                credentials: 'include',
+                body: JSON.stringify({ email_id: trimmedEmail }),
             })
 
-            //check if request is successful
-            // console.log(response.status)
-            if (response.status === 200 || response.status === 201) {
+            const data = await response.json()
+            setLoading(false)
+
+            if (response.status === 200 || response.status === 201 || data.success) {
                 toast.success(
-                    'Please check your email for the password reset link. Make sure to check the spam folder as well.',
+                    data.message || 'Please check your email for the password reset link. Make sure to check your spam folder.',
                     {
                         position: 'top-right',
-                        autoClose: 3000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
+                        autoClose: 5000,
                         theme: 'light',
                     }
                 )
-            } else if (response.status === 409) {
-                const data = await response.json()
-                toast.error(data.message || 'Unable to reset password', {
-                    position: 'top-right',
-                    autoClose: 3000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: 'light',
-                })
             } else {
-                const data = await response.json()
-                toast.error(data.message, {
+                toast.error(data.message || 'Unable to request password reset. Please try again.', {
                     position: 'top-right',
-                    autoClose: 3000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
+                    autoClose: 4000,
                     theme: 'light',
                 })
             }
         } catch (err) {
-            console.log(err)
-            toast.error(
-                'Password reset failed. Check your internet connection',
-                {
-                    position: 'top-right',
-                    autoClose: 3000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: 'light',
-                }
-            )
+            console.error('[ForgotPassword] Error:', err)
+            setLoading(false)
+            toast.error('Password reset failed. Check your internet connection.', {
+                position: 'top-right',
+                theme: 'light',
+            })
         }
     }
 
     return (
-        <div>
+        <div className={styles.container_login}>
             <ToastContainer
                 position="top-right"
                 autoClose={3000}
@@ -123,8 +99,12 @@ const ForgotPassword = () => {
                 whileInView={{ opacity: 1, x: '0%' }}
                 transition={{ duration: 1 }}
             >
-                <div className={styles.container}>
-                    <div className={styles.form}>
+                <div style={{ 
+                    position: "relative",
+                    bottom: "70px", 
+
+                 }} className={styles.container}>
+                    <div className={styles.form_reset}>
                         <h2
                             style={{
                                 fontSize: '2rem',
@@ -141,7 +121,7 @@ const ForgotPassword = () => {
                             <input
                                 type="email"
                                 name="Email_Id"
-                                placeholder="Eg: vineet@gmail.com"
+                                placeholder="Eg: mohit.sharma@gmail.com"
                                 onChange={(e) => setEmail(e.target.value)}
                                 required
                             />
@@ -194,13 +174,11 @@ const ForgotPassword = () => {
 
                         <div className={styles.hero_button}>
                             <button
-                                className={cn(
-                                    styles.sexy_button,
-                                    styles.sexy_button_small
-                                )}
+                                className={cn(styles.register_button)}
                                 onClick={handleSubmit}
+                                disabled={loading}
                             >
-                                SUBMIT
+                                <ButtonLoader loading={loading} label="SENDING">SUBMIT</ButtonLoader>
                             </button>
                         </div>
                     </div>

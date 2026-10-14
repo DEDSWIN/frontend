@@ -5,9 +5,10 @@ import Modal from '../Modal'
 import styles from './style.module.css'
 import { motion } from 'framer-motion'
 import GreetingLottie from '../displaylottie'
+import { ButtonLoader } from '../Loader'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-const host = 'backend.anwesha.live'
+const host = process.env.NEXT_PUBLIC_HOST || '/api/backend'
 
 const CampusAmbassadorLogin = () => {
     const [email, setEmail] = React.useState('')
@@ -15,13 +16,16 @@ const CampusAmbassadorLogin = () => {
     const [success, setSuccess] = React.useState(false)
     const [failure, setFailure] = React.useState(false)
     const [errorMsg, setErrorMsg] = React.useState('')
+    const [submitting, setSubmitting] = React.useState(false)
 
     const handleSubmit = async (event) => {
         event.preventDefault()
+        if (submitting) return
         let body = { username: email, password: password }
+        setSubmitting(true)
         try {
             const response = await fetch(
-                `https://${host}/campasambassador/login`,
+                `${host}/campasambassador/login`,
                 {
                     method: 'POST',
                     headers: {
@@ -36,6 +40,13 @@ const CampusAmbassadorLogin = () => {
                 setFailure(false)
                 setErrorMsg('')
                 const data = await response.json()
+                
+                // Store JWT token from response
+                if (data.token || data.access_token) {
+                    const token = data.token || data.access_token
+                    localStorage.setItem('anwesha_token', token)
+                }
+                
                 toast.success('You are successfully logged in', {
                     position: 'top-right',
                     autoClose: 3000,
@@ -81,6 +92,8 @@ const CampusAmbassadorLogin = () => {
             }
         } catch (err) {
             console.log(err)
+        } finally {
+            setSubmitting(false)
         }
     }
 
@@ -157,7 +170,9 @@ const CampusAmbassadorLogin = () => {
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.8 }}
                     >
-                        <button onClick={(e) => handleSubmit(e)}>Submit</button>
+                        <button onClick={(e) => handleSubmit(e)} disabled={submitting}>
+                            <ButtonLoader loading={submitting} label="Submitting">Submit</ButtonLoader>
+                        </button>
                     </motion.div>
                 </motion.form>
                 {/* {success && <Modal title="Success" body="You have successfully registered for Campus Ambassador" closeHandler={setSuccess} />}

@@ -5,6 +5,26 @@ import { AuthContext } from '../components/authContext'
 import { useRouter } from 'next/router.js'
 import { proniteRegistration } from '../components/Event Registration/proniteRegistration'
 
+const ImageWithText = ({ url, title, body, divRef, active, style }) => {
+    return (
+        <div
+            ref={divRef}
+            style={{
+                width: active ? '370px' : '319.61px',
+                height: active ? '414px' : '358.481px',
+                backgroundImage: `url(${url})`,
+                ...(style || {}),
+            }}
+            className={styles.events_image}
+        >
+            <div>
+                <h2>{title}</h2>
+                <h3>{body}</h3>
+            </div>
+        </div>
+    )
+}
+
 const FireSkullHeadLeft = () => {
     return (
         <svg
@@ -279,14 +299,15 @@ const EventSlider = ({ images, currIndex, nextEventImage, previouseEventImage })
     );
 };
 
-function anweshapass() {
+function Anweshapass() {
     const userData = useContext(AuthContext)
-    const host = process.env.NEXT_PUBLIC_HOST
+    const host = process.env.NEXT_PUBLIC_HOST || '/api/backend'
     const router = useRouter()
     const [events, setEvents] = useState([]);
     const [isloading, setisloading] = useState(false);
     const [eventActiveImageIndex, setEventActiveImageIndex] = useState(2); // don't set on boundary
     const [eventActiveImageIndexPrevDir, setEventActiveImageIndexPrevDir] = useState(false);
+    const [garbaEvent, setGarbaEvent] = useState(null);
 
     useEffect(() => {
         const refreshPage = () => {
@@ -294,6 +315,21 @@ function anweshapass() {
         };
 
         refreshPage();
+    }, []);
+
+    useEffect(() => {
+        async function fetchGarbaEvent() {
+            try {
+                const res = await fetch(`${host}/events/special`)
+                const data = await res.json()
+                const list = data.events || data.special_events || data || []
+                const garba = Array.isArray(list) ? list.find(e => e.special_event_type === 'GARBA' || (e.name && e.name.toLowerCase().includes('garba'))) : null
+                if (garba) setGarbaEvent(garba)
+            } catch (e) {
+                console.log('Failed to fetch garba event')
+            }
+        }
+        fetchGarbaEvent()
     }, []);
 
     useEffect(() => {
@@ -318,18 +354,19 @@ function anweshapass() {
         setEventActiveImageIndex((eventActiveImageIndex === pseudoEventImage.length - 1) ? 0 : (eventActiveImageIndex + 1))
     }
     function handlefestpass() {
-        if (userData.isAuth) {
-            setisloading(true);
-            proniteRegistration('FESTPASS',
-                userData.state.user.email_id,
-                userData.state.user.phone_number,
-                userData.state.user.anwesha_id,
-                userData.state.user.user_type,
-                setisloading,
-                router)
-        } else {
-            router.push('/userLogin')
-        }
+        alert("Online registrations closed")
+        // if (userData.isAuth) {
+        //     setisloading(true);
+        //     proniteRegistration('FESTPASS',
+        //         userData.state.user.email_id,
+        //         userData.state.user.phone_number,
+        //         userData.state.user.anwesha_id,
+        //         userData.state.user.user_type,
+        //         setisloading,
+        //         router)
+        // } else {
+        //     router.push('/userLogin')
+        // }
     }
     return (
         // <div className={styles.parentContainer}>
@@ -376,50 +413,90 @@ function anweshapass() {
         //     </div>
         // </div>
         <div className={styles.container}>
-            <div className={styles.linkContainer}>
-                <a
-                    href="https://drive.google.com/file/d/173X6YlCzY5McPT-5tA_-l2O4I0Pm-n0K/view?usp=drivesdk"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    How to buy the festival passes
-                </a>
-            </div>
+            {/* -------------------------------------Garba Night Pass---------------------------------------- */}
+            <section className={styles.Melody_Night}>
+                <div className={styles.linkContainer}>
+                    <a
+                        href="https://drive.google.com/file/d/173X6YlCzY5McPT-5tA_-l2O4I0Pm-n0K/view?usp=drivesdk"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        How to buy the festival passes
+                    </a>
+                </div>
+                <div className={styles.Melody_Night_hero}>
+                    <div className={styles.Melody_Night_background} />
+                    <div className={styles.Melody_Night_imgbg}>
+                        {garbaEvent && (
+                            <img src={garbaEvent.poster_url || garbaEvent.poster} width="420" alt="Garba Passes" style={{ borderRadius: '8px', maxWidth: '100%', height: 'auto' }} />
+                        )}
+                    </div>
+                </div>
+                <div className={styles.Melody_Night_body}>
+                    <div>
+                        <h2 style={{ marginBottom: '20px' }}>GARBA PASSES</h2>
+                        <h3>Rhythm, Tradition, and Celebration</h3>
+                    </div>
+                    <p>
+                        Get ready to twirl, clap, and dance the night away! Brought to you by Anwesha—the annual techno-cultural fest of IIT Patna—this Garba night promises an unforgettable evening of music, color, and culture.
+                    </p>
+                    <div style={{ marginTop: '20px' }}>
+                        <a
+                            href={`/events/${garbaEvent?.id || 'EVT-108c0047-dc9f-4c85-b60e-348db7f4a721'}`}
+                        >
+                            <button className={styles.register_button}>
+                                GRAB NOW
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </section>
 
             {/* ------------------------Pass container--------------------------------------------------- */}
             <section className={styles.passcontainer} id="passcontainer">
                 <div className={styles.passcontainer_body}>
 
                     <div>
-                        <h2>Anwesha 2025 FESTIVAL Passes</h2>
-                        <h3>Own the Unforgettable Experience</h3>
+                        <h2>Anwesha 2026 FESTIVAL Passes</h2>
+                        <h3>STEP INTO THE REVERIE</h3>
                     </div>
                     <p>
-                        As the night deepens, the echoes grow louder. Shadows dance, whispers slither through the air, and the abyss calls your name. This pass grants you entry into a realm where the eerie meets the extraordinary. Brace yourself for a night of spine-chilling performances, haunting melodies, and events that will test your courage.
+                        As the night blooms, the dreams grow vivid. Stardust dances, whispers of possibility float through the air, and the horizon calls your name. This pass grants you entry into a realm where the ethereal meets the eternal. Brace yourself for a night of soul-stirring performances, radiant melodies, and moments that feel like a waking dream.
+                        {/* As the night deepens, the echoes grow louder. Shadows dance, whispers slither through the air, and the abyss calls your name. This pass grants you entry into a realm where the eerie meets the extraordinary. Brace yourself for a night of spine-chilling performances, haunting melodies, and events that will test your courage. */}
                     </p>
-                    <p style={{ marginTop: '-15px' }}>🔮 Beware: Once you enter, there’s no turning back.
+                    <p style={{ marginTop: '-15px' }}>🔮 Beware: Embrace the magic: Once you enter, reality fades. Hold on to your pass... it is your only anchor in this ocean of dreams.
 
-                        Hold on to your pass… it may be the only thing keeping you from vanishing into the abyss.</p>
+                        {/* Hold on to your pass… it may be the only thing keeping you from vanishing into the abyss. */}
+                    </p>
                     <br />
                 </div>
 
-                <div className={styles.passcontainer_hero}>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
 
-                    <div className={styles.passcontainer_background} />
-                    <div className={styles.passcontainer_hero_fix}>
-                        <div className={styles.passcontainer_tshirts}>
-                            <div className={styles.tshirt_white} />
-                            <div className={styles.tshirt_black_parent}>
-                                <div className={styles.tshirt_black} />
+                    <div className={styles.passcontainer_hero}>
+
+                        <div className={styles.passcontainer_background} />
+                        <div className={styles.passcontainer_hero_fix}>
+
+                            <div className={styles.passcontainer_tshirts}>
+                                <div className={styles.tshirt_white} />
+                                <div className={styles.tshirt_black_parent}>
+                                    <div className={styles.tshirt_black} />
+                                </div>
+                                <div className={styles.tshirt_blue} />
                             </div>
-                            <div className={styles.tshirt_blue} />
-                        </div>
-                        <div className={styles.passcontainer_button} >
-                            <button className={styles.sexy_button} onClick={handlefestpass}>
-                                {isloading ? 'GRABBING...' : 'GRAB NOW'}
-                            </button>
-                            {/* <div className={styles.earlybird}><p>💀 Early Bird Offer ! Till 6 Feb 11:59 PM 💀</p></div>
+                            <div className={styles.passcontainer_button} >
+                                <button
+                                    className={styles.register_button}
+                                    disabled
+                                    style={{ opacity: 1, cursor: 'not-allowed', pointerEvents: 'none' }}
+                                >
+                                    CLOSED
+                                </button>
+                                <div className={styles.event_dates}><p>for 6th, 7th, and 8th Feb</p></div>
+                                {/* <div className={styles.earlybird}><p>💀 Early Bird Offer ! Till 6 Feb 11:59 PM 💀</p></div>
                             <div className={styles.earlybird1} style={{ fontSize: '18px' }}><p>Prices will be ₹949 after</p></div>*/}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -500,16 +577,19 @@ function anweshapass() {
 
                 <div className={styles.Melody_Night_hero}>
                     <div className={styles.Melody_Night_background} />
-                    <div className={styles.Melody_Night_imgbg}><img src='/passes/melody_night_poster2.png' width="370"></img></div>
+                    <div className={styles.Melody_Night_imgbg}><img src='/passes/allartists.png' width="370"></img></div>
 
                 </div>
                 <div className={styles.Melody_Night_body}>
                     <div>
-                        <h2>Melody Night</h2>
+                        <h2 >Melody Night: Echoes of the Extraordinary</h2>
+                        {/* <h3>Darshan Raval | Nikhita Gandhi | Chaar Diwari</h3> */}
+                        <h3>Three Icons. One Stage. Infinite Vibes</h3>
 
                     </div>
                     <p>
-                        Dive into sonic bliss at our Melody night. Let DJs weave exhilarating beats on the dance floor, creating an unforgettable experience of pulsating rhythms. Join us for an immersive night of electronic enchantment with vibrant lights, energetic beats, and contagious energy.
+                        Prepare for a sonic explosion as three musical titans collide on the Anwesha stage! Experience the heart-tugging romance of Darshan Raval, the electric versatility of Nikhita Gandhi, and the raw, revolutionary energy of Chaar Diwari all in one place. From soulful Bollywood ballads to underground anthems, this isn't just a concert—it's a genre-bending journey you cannot miss. Join the crowd, feel the bass, and witness the biggest musical blockbuster of the year.
+                        {/* Dive into sonic bliss at our Melody night. Let DJs weave exhilarating beats on the dance floor, creating an unforgettable experience of pulsating rhythms. Join us for an immersive night of electronic enchantment with vibrant lights, energetic beats, and contagious energy. */}
                     </p>
                 </div>
             </section>
@@ -517,18 +597,22 @@ function anweshapass() {
             {/* -------------------------------------DJ Night---------------------------------------- */}
 
             <section className={styles.cultural_Night}>
+
                 <div className={styles.cultural_Night_body}>
+
                     <div>
-                        <h2>DJ Night</h2>
+                        <h2>Electric Euphoria: The Ultimate EDM Night</h2>
 
                     </div>
                     <p>
-                        Anwesha's DJ Night brings an electrifying fusion of beats and energy, headlined by the sensational DJ Anshika. Get ready to lose yourself in pulsating rhythms, high-energy drops, and an unforgettable night of non-stop music. With heart-thumping bass and a euphoric atmosphere, this night promises an experience where the crowd moves as one, the lights sync with the beats, and every moment turns into a memory. Let the music take control—DJ Night at Anwesha is where the night truly comes alive!
+                        Prepare for a sonic storm that will shake the ground beneath your feet! We are gearing up to unleash a night of pulsating beats, blinding lasers, and infectious energy that will turn the campus into one massive dance floor. The master of the console who will lead this audio-visual spectacle is yet to be revealed. Keep your eyes peeled a massive headliner announcement is dropping soon to ignite the night!
+
+                        {/* Anwesha&apos;s DJ Night brings an electrifying fusion of beats and energy, headlined by the sensational DJ Anshika. Get ready to lose yourself in pulsating rhythms, high-energy drops, and an unforgettable night of non-stop music. With heart-thumping bass and a euphoric atmosphere, this night promises an experience where the crowd moves as one, the lights sync with the beats, and every moment turns into a memory. Let the music take control—DJ Night at Anwesha is where the night truly comes alive! */}
                     </p>
                 </div>
                 <div className={styles.cultural_Night_hero}>
                     <div className={styles.cultural_Night_background} />
-                    <div className={styles.cultural_Night_imgbg}><img src='/passes/dj_Night.png' width="370"></img></div>
+                    <div className={styles.cultural_Night_imgbg}><img src='/passes/dj_night3.jpg' width="470"></img></div>
                 </div>
             </section>
 
@@ -540,4 +624,4 @@ function anweshapass() {
     )
 }
 
-export default anweshapass
+export default Anweshapass

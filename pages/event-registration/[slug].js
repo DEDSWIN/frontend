@@ -1,19 +1,20 @@
 import { setRequestMeta } from 'next/dist/server/request-meta'
 import React, { useState, useEffect, useContext } from 'react'
 import {
-    teamEventRegistration,
-    teamEventRegistrationiitp,
+    teamEventRegistrationNew,
 } from '../../components/Event Registration/teamEventRegistration'
 import styles from '../../styles/EventRegistration.module.css'
+import { ButtonLoader } from '../../components/Loader'
 import { AuthContext } from '../../components/authContext'
 import { useRouter } from 'next/router'
 import { motion } from 'framer-motion'
+import Head from 'next/head'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+ 
 
 
-
-const eventRegistration = () => {
+const EventRegistration = () => {
     const data = useContext(AuthContext)
     const router = useRouter()
     const userData = useContext(AuthContext)
@@ -28,53 +29,36 @@ const eventRegistration = () => {
         tags,
     } = router.query
 
-    const handleSubmit = (e) => {
+    const [isSubmitting, setIsSubmitting] = useState(false)
+
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        if (
-            userData.state.user.user_type ===
-            'iitp_student'
-        ) {
-            if (tags !== '5')
-                teamEventRegistrationiitp(
-                    id,
-                    teamName,
-                    memberID,
-                    router
-                )
-            else {
-                teamEventRegistration(
-                    id,
-                    teamName,
-                    memberID,
-                    userData.state.user.email_id,
-                    userData.state.user
-                        .phone_number,
-                    registration_fee,
-                    router,
-                    toast
-                )
-            }
-        } else {
-            // if (registration_fee !== "0.00")
-            teamEventRegistration(
+        if (isSubmitting) return // prevent double submission
+
+        setIsSubmitting(true)
+        try {
+            // Always use the new unified registration endpoint
+            await teamEventRegistrationNew(
                 id,
                 teamName,
                 memberID,
-                userData.state.user.email_id,
-                userData.state.user.phone_number,
-                registration_fee,
-                router,
-                toast
+                router
             )
-            // else
-            //     teamEventRegistrationiitp(
-            //         id,
-            //         teamName,
-            //         memberID,
-            //         router,
-            //     )
+        } catch (error) {
+            console.error('[EventRegistration] Submit error:', error)
+            toast.error('Something went wrong. Please try again.', {
+                position: 'top-right',
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: 'light',
+            })
+        } finally {
+            setIsSubmitting(false)
         }
-
     }
 
     useEffect(() => {
@@ -86,7 +70,7 @@ const eventRegistration = () => {
         arr[0] = anwID
         setMemberID(arr)
         if (!data.isAuth) {
-            router.push('/userLogin')
+            router.push(`/userLogin?callbackUrl=${encodeURIComponent(router.asPath)}`)
         }
     }, [data])
 
@@ -99,18 +83,10 @@ const eventRegistration = () => {
 
     return (
         <div>
-            <ToastContainer
-                position="top-right"
-                autoClose={3000}
-                hideProgressBar={false}
-                newestOnTop
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="light"
-            />
+            <Head>
+                <title>{name ? `${name.split('#')[0]} Registration - Anwesha 2027` : 'Event Registration - Anwesha 2027'}</title>
+                <link rel="icon" href="/logo_no_bg.svg" />
+            </Head>
             <div className={styles.container}>
                 <div className={styles.effectcontainer}>
                     <div className={styles.content}>
@@ -189,8 +165,8 @@ const eventRegistration = () => {
                                                     }}
                                                     // key={index + 1}
                                                     required
-                                                    minLength={7}
-                                                    maxLength={7}
+                                                    minLength={4}
+                                                    maxLength={4}
                                                 />
                                                 {index >= min_team_size ? (
                                                     <img
@@ -223,8 +199,9 @@ const eventRegistration = () => {
                                     <button
                                         className={cn(styles.register_button, styles.register_button_small)}
                                         type='submit'
+                                        disabled={isSubmitting}
                                     >
-                                        REGISTER
+                                        <ButtonLoader loading={isSubmitting} label='REGISTERING'>REGISTER</ButtonLoader>
                                     </button>
                                 </div>
                             </motion.div>
@@ -237,4 +214,4 @@ const eventRegistration = () => {
     )
 }
 
-export default eventRegistration
+export default EventRegistration

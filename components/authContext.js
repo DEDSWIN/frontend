@@ -1,98 +1,240 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/router'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-const host = process.env.NEXT_PUBLIC_HOST
+const host = process.env.NEXT_PUBLIC_HOST || '/api/backend'
 
 const AuthContext = React.createContext()
-
 const { Provider } = AuthContext
+
+const decodeJwt = (token) => {
+    if (!token || typeof token !== 'string') return null
+    try {
+        const parts = token.split('.')
+        if (parts.length !== 3) return null
+        const payload = atob(parts[1].replace(/-/g, '+').replace(/_/g, '/'))
+        return JSON.parse(payload)
+    } catch {
+        return null
+    }
+}
+
+const isTokenExpired = (token) => {
+    const decoded = decodeJwt(token)
+    if (!decoded || !decoded.exp) return false
+    return decoded.exp * 1000 <= Date.now() + 5000
+}
+
+const getTokenRemainingMs = (token) => {
+    const decoded = decodeJwt(token)
+    if (!decoded || !decoded.exp) return 0
+    return Math.max(0, decoded.exp * 1000 - Date.now())
+}
 
 const PrivateRoute = ({ children }) => {
     const router = useRouter()
-    const authContext = React.useContext(AuthContext)
+    const auth = React.useContext(AuthContext)
 
     useEffect(() => {
-        // Redirect to login if the user is unauthenticated and trying to access protected routes
-        if (
-            !authContext.isAuth &&
-            [
-                '/event-registration',
-                '/event-registrations',
-                '/profile',
-            ].includes(router.pathname)
-        ) {
-            router.push('/userLogin')
+        const protectedPrefixes = [
+            '/profile',
+            '/event-registration',
+            '/event-registrations',
+            '/submit-id',
+            '/accommodation'
+        ]
+        const isProtectedRoute = protectedPrefixes.some((route) =>
+            router.pathname.startsWith(route)
+        )
+
+        // Never redirect public, ticket, auth, or password reset pages to login
+        const isPublicAuthPage = [
+            '/ticket',
+            '/userLogin',
+            '/userRegister',
+            '/ca-login',
+            '/ca-register',
+            '/forgot-password',
+            '/password-reset',
+            '/reset-password',
+            '/user/reset_password',
+            '/verify-email',
+            '/send-verification',
+        ].some((route) => router.pathname.startsWith(route))
+
+        const hasStoredToken =
+            typeof window !== 'undefined' &&
+            Boolean(localStorage.getItem('anwesha_token')) &&
+            !isTokenExpired(localStorage.getItem('anwesha_token'))
+
+        if (!auth.isAuth && !hasStoredToken && isProtectedRoute && !isPublicAuthPage) {
+            const callback = encodeURIComponent(router.asPath || router.pathname)
+            router.push(`/userLogin?callbackUrl=${callback}`)
         }
-        // Redirect logged-in users away from the login page
+
+        // Redirect logged-in users away from the login/register page
         if (
-            authContext.isAuth &&
+            auth.isAuth &&
             (router.pathname === '/userLogin' ||
                 router.pathname === '/userRegister')
         ) {
-            router.push('/profile')
+            const target =
+                router.query.callbackUrl ||
+                router.query.redirect ||
+                router.query.returnUrl ||
+                '/profile'
+            router.push(target)
         }
-    }, [authContext.isAuth, router.pathname]) // Dependency array ensures this effect runs on changes to auth status or path
+    }, [auth.isAuth, router.pathname, router.asPath, router.query])
 
     return children
 }
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
+    const [token, setToken] = useState(null)
     const router = useRouter()
+    const expiryTimerRef = useRef(null)
 
-    // Function to fetch user data and update the state
-    const getUser = async () => {
-        try {
-            const response = await fetch(`${host}/user/editprofile`, {
-                method: 'GET',
-                credentials: 'include',
-                redirect: 'follow',
+    const logout = (message) => {
+        if (expiryTimerRef.current) {
+            clearTimeout(expiryTimerRef.current)
+            expiryTimerRef.current = null
+        }
+        persistToken(null)
+        setUser(null)
+
+        if (message) {
+            toast.error(message, {
+                position: 'top-right',
+                autoClose: 3500,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: 'light',
             })
-            const result = await response.json()
-
-            // Check for specific unauthenticated messages
-            if (
-                result.message ===
-                'You are unauthenticated. Please log in first.' ||
-                result.message ===
-                'Your token is expired. Please generate a new one.' ||
-                result.message === 'Your token is expired. Please log in again.'
-            ) {
-                setUser(null) // Mark the user as unauthenticated
-
-                // Show error message if accessing restricted routes
-                if (
-                    [
-                        '/profile',
-                        '/event-registration',
-                        '/event-registrations',
-                    ].includes(router.pathname)
-                ) {
-                    toast.error(result.message, {
-                        position: 'top-right',
-                        autoClose: 3000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: 'light',
-                    })
-                }
-            } else {
-                setUser(result) // Successfully authenticated, set the user data
-            }
-        } catch (error) {
-            console.error('Error fetching user data:', error)
         }
     }
 
-    // Fetch user data on component mount
+    const persistToken = (value) => {
+        if (value && isTokenExpired(value)) {
+            console.warn('[Auth] Attempted to persist expired token')
+            value = null
+        }
+
+        setToken(value)
+        if (typeof window !== 'undefined') {
+            if (value) {
+                localStorage.setItem('anwesha_token', value)
+            } else {
+                localStorage.removeItem('anwesha_token')
+            }
+        }
+    }
+
+    const getAuthHeaders = () => {
+        if (!token) return {}
+        return { Authorization: `Bearer ${token}` }
+    }
+
+    // Function to fetch user data and update the state
+    const getUser = async () => {
+        const currentToken =
+            token ||
+            (typeof window !== 'undefined'
+                ? localStorage.getItem('anwesha_token')
+                : null)
+        if (!currentToken) {
+            console.warn('[Auth] No token available for getUser')
+            setUser(null)
+            return
+        }
+
+        if (isTokenExpired(currentToken)) {
+            logout('Session expired. Please login again.')
+            return
+        }
+
+        try {
+            const headers = {
+                Authorization: `Bearer ${currentToken}`,
+            }
+
+            const response = await fetch(`${host}/users/profile`, {
+                method: 'GET',
+                headers,
+                redirect: 'follow',
+            })
+
+            if (response.status === 401 || response.status === 403) {
+                logout('Session expired. Please login again.')
+                return
+            }
+
+            if (!response.ok) {
+                console.error(`[Auth] /users/profile returned ${response.status}`)
+                setUser(null)
+                return
+            }
+
+            const result = await response.json()
+            console.log('[Auth] User data loaded:', result)
+            setUser(result.data || result) // Successfully authenticated, set the user data
+        } catch (error) {
+            console.error('[Auth] Error fetching user data:', error)
+        }
+    }
+
+    // Load token on mount & check expiry
     useEffect(() => {
-        getUser()
+        if (typeof window !== 'undefined') {
+            const stored = localStorage.getItem('anwesha_token')
+            if (stored) {
+                if (isTokenExpired(stored)) {
+                    localStorage.removeItem('anwesha_token')
+                    setToken(null)
+                } else {
+                    setToken(stored)
+                }
+            }
+        }
     }, [])
+
+    // Fetch user data & manage auto-logout timer when token changes
+    useEffect(() => {
+        if (expiryTimerRef.current) {
+            clearTimeout(expiryTimerRef.current)
+            expiryTimerRef.current = null
+        }
+
+        if (token) {
+            if (isTokenExpired(token)) {
+                logout('Session expired. Please login again.')
+                return
+            }
+
+            const remainingMs = getTokenRemainingMs(token)
+            if (remainingMs > 0) {
+                expiryTimerRef.current = setTimeout(() => {
+                    logout('Session expired. Please login again.')
+                }, remainingMs)
+            }
+
+            getUser()
+        } else {
+            setUser(null)
+        }
+
+        return () => {
+            if (expiryTimerRef.current) {
+                clearTimeout(expiryTimerRef.current)
+                expiryTimerRef.current = null
+            }
+        }
+    }, [token])
 
     return (
         <>
@@ -100,8 +242,13 @@ const AuthProvider = ({ children }) => {
                 value={{
                     state: { user },
                     setUser,
-                    isAuth: user !== null, // Ensure isAuth is correctly tied to user state
+                    token,
+                    isAuth: Boolean(token),
                     getUser,
+                    persistToken,
+                    logout,
+                    getAuthHeaders,
+                    decodeJwt: () => decodeJwt(token),
                 }}
             >
                 {children}

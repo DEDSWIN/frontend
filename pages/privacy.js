@@ -1,19 +1,18 @@
+/* eslint-disable react/no-unescaped-entities */
 import React from 'react'
-import styles from '/styles/terms.module.css'
+import Link from 'next/link'
+import styles from '../styles/terms.module.css'
 
 const privacy = () => {
     return (
-        <div
-            className={styles.parentcontainer}
-            style={{ paddingInline: '3vw' }}
-        >
-            <h2 style={{ fontSize: '2.5em', marginTop: '10px' }}>
+        <div className={styles.parentcontainer}>
+            <h2 className={styles.head}>
                 <strong>Privacy Policy for Anwesha</strong>
                 <hr className={styles.hr}/>
             </h2>
             <div className={styles.sec}>
                 <p className={styles.para}>
-                    At anwesha.iitp.ac.in, accessible from <a style={{ all: 'unset', cursor :'pointer' }} href="/">https://anwesha.iitp.ac.in</a>, one
+                     At anwesha.iitp.ac.in, accessible from <Link href="/">https://anwesha.iitp.ac.in</Link>, one
                     of our main priorities is the privacy of our visitors. This
                     Privacy Policy document contains types of information that
                     is collected and recorded by anwesha.live and how we use it.
