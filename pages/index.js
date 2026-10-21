@@ -24,8 +24,14 @@ import VideoPlayer from './jumscare'
 // import { motion } from 'framer-motion'
 import CountdownTimer from './jumscaretimeout'
 import HeroSection from '../components/Hero/Hero'
+import EventDetailsModal from '../components/BigModal'
+import SpecialEventFeature from '../components/SpecialEvent/SpecialEventFeature'
+import AccommodationModal from '../components/Accommodation/AccommodationModal'
+import AccommodationSection from '../components/Accommodation/AccommodationSection'
 // import Spline from '@splinetool/react-spline';
 import { useRouter } from 'next/router'
+
+const dmSerif = { className: 'font-dm-serif' }
 
 const cn = (...classes) => {
     return classes.filter(Boolean).join(' ')
@@ -116,64 +122,60 @@ const FireSkullHeadRight = () => {
         </svg>
     )
 }
-const BatLeft = ({ width = 65, height = 85 }) => {
+const BatLeft = ({ width = 85, height = 85 }) => {
     return (
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
+        <Image
+            src="/home/left_button.png"
+            alt="Bat Left"
             width={width}
             height={height}
-            viewBox="10 0 65 85"
-            fill="none"
-        >
-            <g clipPath="url(#clip0_865_9808)">
-                <path
-                    d="M44.2656 50.7915H48.786C48.6235 50.6538 48.4554 50.5009 48.2871 50.3326C47.3576 49.4031 46.3906 47.9709 46.3906 46.0415C46.3906 44.1121 47.3576 42.68 48.2871 41.7505C48.4554 41.5821 48.6235 41.4292 48.786 41.2915H44.2656H43.7656V40.7915C43.7656 38.8663 44.6738 37.3204 45.9752 36.1057C47.2694 34.8978 48.9736 33.9948 50.6424 33.3273C52.3162 32.6578 53.9847 32.2133 55.2314 31.9362C55.8557 31.7975 56.3765 31.7003 56.7422 31.6376C56.8847 31.6131 57.0037 31.5939 57.0963 31.5796C60.4168 26.483 61.2656 20.3432 61.2656 15.4165C61.2656 12.929 61.0493 10.7653 60.833 9.22428C60.7702 8.77733 60.7076 8.38305 60.6502 8.04877C58.5943 11.0158 54.9918 12.7251 51.8523 13.7062C50.0731 14.2622 48.4077 14.5951 47.1879 14.7892C46.5775 14.8863 46.0773 14.9489 45.7285 14.9872C45.6966 14.9907 45.666 14.994 45.6366 14.9972C45.5152 21.8612 42.651 25.4107 39.7152 27.2173C38.231 28.1306 36.7506 28.5855 35.6434 28.8126C35.1252 28.9189 34.6864 28.9758 34.3639 29.0062C35.9284 37.5204 33.54 41.9661 30.5705 44.2503C29.3824 45.1642 28.1256 45.7123 27.0459 46.0415C28.1256 46.3707 29.3824 46.9188 30.5705 47.8327C33.54 50.1169 35.9284 54.5626 34.3639 63.0768C34.6864 63.1072 35.1252 63.1641 35.6434 63.2705C36.7506 63.4976 38.231 63.9524 39.7152 64.8657C42.651 66.6723 45.5152 70.2218 45.6366 77.0858C45.666 77.089 45.6966 77.0923 45.7285 77.0958C46.0773 77.1341 46.5775 77.1967 47.1879 77.2938C48.4077 77.4879 50.0731 77.8208 51.8523 78.3768C54.9918 79.3579 58.5943 81.0672 60.6502 84.0342C60.7076 83.7 60.7702 83.3057 60.833 82.8587C61.0493 81.3177 61.2656 79.154 61.2656 76.6665C61.2656 71.7399 60.4168 65.6 57.0963 60.5034C57.0037 60.4891 56.8847 60.4699 56.7422 60.4454C56.3765 60.3828 55.8557 60.2855 55.2314 60.1468C53.9847 59.8697 52.3162 59.4252 50.6424 58.7557C48.9736 58.0882 47.2694 57.1852 45.9752 55.9773C44.6738 54.7626 43.7656 53.2167 43.7656 51.2915V50.7915H44.2656Z"
-                    fill="#FBFF00"
-                    stroke="black"
-                />
-            </g>
-            <defs>
-                <clipPath id="clip0_865_9808">
-                    <rect
-                        width="84"
-                        height="84"
-                        fill="white"
-                        transform="matrix(-1 0 0 1 84.9531 0.104004)"
-                    />
-                </clipPath>
-            </defs>
-        </svg>
+            priority
+            style={{ transform: 'rotate(-90deg)' }}
+        />
     )
 }
-const BatRight = ({ width = 65, height = 85 }) => {
+
+const BatRight = ({ width = 85, height = 85 }) => {
     return (
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
+        <Image
+            src="/home/left_button.png"
+            alt="Bat Right"
             width={width}
             height={height}
-            viewBox="10 0 65 85"
-            fill="none"
-        >
-            <g clipPath="url(#clip0_865_9817)">
-                <path
-                    d="M41.2969 50.7915H36.7765C36.939 50.6538 37.1071 50.5009 37.2754 50.3326C38.2049 49.4031 39.1719 47.9709 39.1719 46.0415C39.1719 44.1121 38.2049 42.68 37.2754 41.7505C37.1071 41.5821 36.939 41.4292 36.7765 41.2915H41.2969H41.7969V40.7915C41.7969 38.8663 40.8887 37.3204 39.5873 36.1057C38.2931 34.8978 36.5889 33.9948 34.9201 33.3273C33.2463 32.6578 31.5778 32.2133 30.3311 31.9362C29.7068 31.7975 29.186 31.7003 28.8203 31.6376C28.6778 31.6131 28.5588 31.5939 28.4662 31.5796C25.1457 26.483 24.2969 20.3432 24.2969 15.4165C24.2969 12.929 24.5132 10.7653 24.7295 9.22428C24.7923 8.77733 24.8549 8.38305 24.9123 8.04877C26.9682 11.0158 30.5707 12.7251 33.7102 13.7062C35.4894 14.2622 37.1548 14.5951 38.3746 14.7892C38.985 14.8863 39.4852 14.9489 39.834 14.9872C39.8659 14.9907 39.8965 14.994 39.9259 14.9972C40.0473 21.8612 42.9115 25.4107 45.8473 27.2173C47.3315 28.1306 48.8119 28.5855 49.9191 28.8126C50.4373 28.9189 50.8761 28.9758 51.1986 29.0062C49.6341 37.5204 52.0225 41.9661 54.992 44.2503C56.1801 45.1642 57.4369 45.7123 58.5166 46.0415C57.4369 46.3707 56.1801 46.9188 54.992 47.8327C52.0225 50.1169 49.6341 54.5626 51.1986 63.0768C50.8761 63.1072 50.4373 63.1641 49.9191 63.2705C48.8119 63.4976 47.3315 63.9524 45.8473 64.8657C42.9115 66.6723 40.0473 70.2218 39.9259 77.0858C39.8965 77.089 39.8659 77.0923 39.834 77.0958C39.4852 77.1341 38.985 77.1967 38.3746 77.2938C37.1548 77.4879 35.4894 77.8208 33.7102 78.3768C30.5707 79.3579 26.9682 81.0672 24.9123 84.0342C24.8549 83.7 24.7923 83.3057 24.7295 82.8587C24.5132 81.3177 24.2969 79.154 24.2969 76.6665C24.2969 71.7399 25.1457 65.6 28.4662 60.5034C28.5588 60.4891 28.6778 60.4699 28.8203 60.4454C29.186 60.3828 29.7068 60.2855 30.3311 60.1468C31.5778 59.8697 33.2463 59.4252 34.9201 58.7557C36.5889 58.0882 38.2931 57.1852 39.5873 55.9773C40.8887 54.7626 41.7969 53.2167 41.7969 51.2915V50.7915H41.2969Z"
-                    fill="#FBFF00"
-                    stroke="black"
-                />
-            </g>
-            <defs>
-                <clipPath id="clip0_865_9817">
-                    <rect
-                        width="84"
-                        height="84"
-                        fill="white"
-                        transform="translate(0.609375 0.104004)"
-                    />
-                </clipPath>
-            </defs>
-        </svg>
+            priority
+            style={{ transform: 'rotate(90deg)' }}
+        />
     )
 }
+// const BatRight = ({ width = 65, height = 85 }) => {
+//     return (
+//         <svg
+//             xmlns="http://www.w3.org/2000/svg"
+//             width={width}
+//             height={height}
+//             viewBox="10 0 65 85"
+//             fill="none"
+//         >
+//             <g clipPath="url(#clip0_865_9817)">
+//                 <path
+//                     d="M41.2969 50.7915H36.7765C36.939 50.6538 37.1071 50.5009 37.2754 50.3326C38.2049 49.4031 39.1719 47.9709 39.1719 46.0415C39.1719 44.1121 38.2049 42.68 37.2754 41.7505C37.1071 41.5821 36.939 41.4292 36.7765 41.2915H41.2969H41.7969V40.7915C41.7969 38.8663 40.8887 37.3204 39.5873 36.1057C38.2931 34.8978 36.5889 33.9948 34.9201 33.3273C33.2463 32.6578 31.5778 32.2133 30.3311 31.9362C29.7068 31.7975 29.186 31.7003 28.8203 31.6376C28.6778 31.6131 28.5588 31.5939 28.4662 31.5796C25.1457 26.483 24.2969 20.3432 24.2969 15.4165C24.2969 12.929 24.5132 10.7653 24.7295 9.22428C24.7923 8.77733 24.8549 8.38305 24.9123 8.04877C26.9682 11.0158 30.5707 12.7251 33.7102 13.7062C35.4894 14.2622 37.1548 14.5951 38.3746 14.7892C38.985 14.8863 39.4852 14.9489 39.834 14.9872C39.8659 14.9907 39.8965 14.994 39.9259 14.9972C40.0473 21.8612 42.9115 25.4107 45.8473 27.2173C47.3315 28.1306 48.8119 28.5855 49.9191 28.8126C50.4373 28.9189 50.8761 28.9758 51.1986 29.0062C49.6341 37.5204 52.0225 41.9661 54.992 44.2503C56.1801 45.1642 57.4369 45.7123 58.5166 46.0415C57.4369 46.3707 56.1801 46.9188 54.992 47.8327C52.0225 50.1169 49.6341 54.5626 51.1986 63.0768C50.8761 63.1072 50.4373 63.1641 49.9191 63.2705C48.8119 63.4976 47.3315 63.9524 45.8473 64.8657C42.9115 66.6723 40.0473 70.2218 39.9259 77.0858C39.8965 77.089 39.8659 77.0923 39.834 77.0958C39.4852 77.1341 38.985 77.1967 38.3746 77.2938C37.1548 77.4879 35.4894 77.8208 33.7102 78.3768C30.5707 79.3579 26.9682 81.0672 24.9123 84.0342C24.8549 83.7 24.7923 83.3057 24.7295 82.8587C24.5132 81.3177 24.2969 79.154 24.2969 76.6665C24.2969 71.7399 25.1457 65.6 28.4662 60.5034C28.5588 60.4891 28.6778 60.4699 28.8203 60.4454C29.186 60.3828 29.7068 60.2855 30.3311 60.1468C31.5778 59.8697 33.2463 59.4252 34.9201 58.7557C36.5889 58.0882 38.2931 57.1852 39.5873 55.9773C40.8887 54.7626 41.7969 53.2167 41.7969 51.2915V50.7915H41.2969Z"
+//                     fill="#FBFF00"
+//                     stroke="black"
+//                 />
+//             </g>
+//             <defs>
+//                 <clipPath id="clip0_865_9817">
+//                     <rect
+//                         width="84"
+//                         height="84"
+//                         fill="white"
+//                         transform="translate(0.609375 0.104004)"
+//                     />
+//                 </clipPath>
+//             </defs>
+//         </svg>
+//     )
+// }
 const GreenCircle = ({ width = 626, height = 626 }) => {
     return (
         <svg
@@ -254,6 +256,36 @@ function all(iterable) {
     return true
 }
 
+const makePosterUrl = (url) => {
+    if (!url) return '/events/poster.png'
+
+    // If it's already an absolute URL, return as-is
+    if (url.startsWith('http://') || url.startsWith('https://')) {
+        return url
+    }
+
+    if (
+        url === '/events/poster.png' ||
+        url === '/events/poster1.png' ||
+        url === 'events/poster.png' ||
+        url === 'events/poster1.png' ||
+        url.startsWith('/images/') ||
+        url.startsWith('/pics/') ||
+        url.startsWith('/home/') ||
+        url.startsWith('/assets/') ||
+        url.startsWith('/multicity/')
+    ) {
+        return url.startsWith('/') ? url : `/${url}`
+    }
+
+    const host = process.env.NEXT_PUBLIC_HOST || '/api/backend'
+    const mediaBase =
+        process.env.NEXT_PUBLIC_MEDIA_BASE || host
+    const base = (mediaBase || '').replace(/\/$/, '')
+    const path = url.startsWith('/') ? url : `/${url}`
+    return `${base}${path}`
+}
+
 const ImageWithText = ({
     url,
     title,
@@ -265,13 +297,14 @@ const ImageWithText = ({
     onClick,
     style,
 }) => {
+    const posterUrl = makePosterUrl(url)
     return (
         <div
             ref={divRef}
             style={{
                 width: width || (active ? '370px' : '319.61px'),
                 height: height || (active ? '414px' : '358.481px'),
-                backgroundImage: `url(${url})`,
+                backgroundImage: `url(${posterUrl})`,
                 ...(style || {}), // Merge additional styles
             }}
             className={styles.events_image}
@@ -312,69 +345,38 @@ const EventSlider = ({
 
     useEffect(() => {
         if (images.length === 0) return
-        if (!imageRefs.current.every((ref) => ref.current)) return
+        if (imageRefs.current.length !== images.length) return
+        if (!imageRefs.current.every((ref) => ref && ref.current)) return
         if (currIndex === oldIndex) return
+
+        const setStyle = (idx, props) => {
+            const ref = imageRefs.current[idx]
+            if (!ref || !ref.current) return
+            Object.assign(ref.current.style, props)
+        }
 
         if (
             currIndex === oldIndex + 1 ||
             (currIndex === 0 && oldIndex === images.length - 1)
         ) {
             // Toward left
-            imageRefs.current[prevprevprev].current.style.zIndex = '-1'
-            imageRefs.current[prevprev].current.style.zIndex = '1'
-            imageRefs.current[
-                prevprev
-            ].current.style.transform = `translateY(-50%) translateX(calc(-50% - ${
-                2 * offset
-            }px))`
-            imageRefs.current[prev].current.style.zIndex = '2'
-            imageRefs.current[
-                prev
-            ].current.style.transform = `translateY(-50%) translateX(calc(-50% - min(50vw - 200px, ${offset}px)))`
-            imageRefs.current[currIndex].current.style.zIndex = '3'
-            imageRefs.current[
-                currIndex
-            ].current.style.transform = `translateY(-50%) translateX(calc(-50%))`
-            imageRefs.current[next].current.style.zIndex = '2'
-            imageRefs.current[
-                next
-            ].current.style.transform = `translateY(-50%) translateX(calc(-50% + min(50vw - 200px, ${offset}px)))`
-            imageRefs.current[nextnext].current.style.zIndex = '-1'
-            imageRefs.current[
-                nextnext
-            ].current.style.transform = `translateY(-50%) translateX(calc(-50% + ${
-                2 * offset
-            }px))`
+            setStyle(prevprevprev, { zIndex: '-1' })
+            setStyle(prevprev, { zIndex: '1', transform: `translateY(-50%) translateX(calc(-50% - ${2 * offset}px))` })
+            setStyle(prev, { zIndex: '2', transform: `translateY(-50%) translateX(calc(-50% - min(50vw - 200px, ${offset}px)))` })
+            setStyle(currIndex, { zIndex: '3', transform: `translateY(-50%) translateX(calc(-50%))` })
+            setStyle(next, { zIndex: '2', transform: `translateY(-50%) translateX(calc(-50% + min(50vw - 200px, ${offset}px)))` })
+            setStyle(nextnext, { zIndex: '-1', transform: `translateY(-50%) translateX(calc(-50% + ${2 * offset}px))` })
         } else if (
             currIndex === oldIndex - 1 ||
             (currIndex === images.length - 1 && oldIndex === 0)
         ) {
             // Toward Right
-            imageRefs.current[prevprev].current.style.zIndex = '-1'
-            imageRefs.current[
-                prevprev
-            ].current.style.transform = `translateY(-50%) translateX(calc(-50% - ${
-                2 * offset
-            }px))`
-            imageRefs.current[prev].current.style.zIndex = '2'
-            imageRefs.current[
-                prev
-            ].current.style.transform = `translateY(-50%) translateX(calc(-50% - min(50vw - 200px, ${offset}px)))`
-            imageRefs.current[currIndex].current.style.zIndex = '3'
-            imageRefs.current[
-                currIndex
-            ].current.style.transform = `translateY(-50%) translateX(calc(-50%))`
-            imageRefs.current[next].current.style.zIndex = '2'
-            imageRefs.current[
-                next
-            ].current.style.transform = `translateY(-50%) translateX(calc(-50% + min(50vw - 200px, ${offset}px)))`
-            imageRefs.current[nextnext].current.style.zIndex = '1'
-            imageRefs.current[
-                nextnext
-            ].current.style.transform = `translateY(-50%) translateX(calc(-50% + ${
-                2 * offset
-            }px))`
-            imageRefs.current[nextnextnext].current.style.zIndex = '-1'
+            setStyle(prevprev, { zIndex: '-1', transform: `translateY(-50%) translateX(calc(-50% - ${2 * offset}px))` })
+            setStyle(prev, { zIndex: '2', transform: `translateY(-50%) translateX(calc(-50% - min(50vw - 200px, ${offset}px)))` })
+            setStyle(currIndex, { zIndex: '3', transform: `translateY(-50%) translateX(calc(-50%))` })
+            setStyle(next, { zIndex: '2', transform: `translateY(-50%) translateX(calc(-50% + min(50vw - 200px, ${offset}px)))` })
+            setStyle(nextnext, { zIndex: '1', transform: `translateY(-50%) translateX(calc(-50% + ${2 * offset}px))` })
+            setStyle(nextnextnext, { zIndex: '-1' })
         }
         setOldIndex(currIndex)
     }, [currIndex, images])
@@ -449,6 +451,7 @@ const EventSlider = ({
                         transition:
                             'transform .15s linear, width .15s linear, height .15s linear', // Smooth transition
                     }}
+                    onClick={() => window.open(`/events/${image.id}`, '_blank')}
                 />
             ))}
         </div>
@@ -506,7 +509,13 @@ const ImagesSlider = ({
     const offset = 864 + 20 // Width of the image + gap (20px)
 
     // Refs for images to track current position
-    const imageRefs = images.map(() => useRef(null))
+    const imageRefs = useRef([])
+
+    useEffect(() => {
+        imageRefs.current = images.map(
+            (_, i) => imageRefs.current[i] || React.createRef()
+        )
+    }, [images])
 
     // State to track the animation trigger
     const [oldIndex, setOldIndex] = useState(currIndex)
@@ -514,7 +523,7 @@ const ImagesSlider = ({
 
     // Set up transition for images when currIndex changes
     useEffect(() => {
-        if (!all(imageRefs)) return
+        if (!all(imageRefs.current)) return
         if (currIndex === oldIndex) return
         const prev = currIndex === 0 ? images.length - 1 : currIndex - 1
         const next = currIndex + 1 === images.length ? 0 : currIndex + 1
@@ -527,32 +536,32 @@ const ImagesSlider = ({
             (currIndex === 0 && oldIndex === images.length - 1)
         ) {
             // Toward left
-            imageRefs[prevprevprev].current.style.zIndex = '-1'
-            imageRefs[
+            imageRefs.current[prevprevprev].current.style.zIndex = '-1'
+            imageRefs.current[
                 prevprevprev
             ].current.style.transform = `translateX(calc(-50% + ${
                 3 * offset
             }px))`
-            imageRefs[prevprev].current.style.zIndex = '4'
-            imageRefs[
+            imageRefs.current[prevprev].current.style.zIndex = '4'
+            imageRefs.current[
                 prevprev
             ].current.style.transform = `translateX(calc(-50% - ${
                 2 * offset
             }px))`
-            imageRefs[prev].current.style.zIndex = '3'
-            imageRefs[
+            imageRefs.current[prev].current.style.zIndex = '3'
+            imageRefs.current[
                 prev
-            ].current.style.transform = `translateX(calc(-50% - ${offset}px))`
-            imageRefs[currIndex].current.style.zIndex = '5'
-            imageRefs[
+            ].current.style.transform = `translateX(calc(-50% - ${offset}px)`
+            imageRefs.current[currIndex].current.style.zIndex = '5'
+            imageRefs.current[
                 currIndex
             ].current.style.transform = `translateX(calc(-50%))`
-            imageRefs[next].current.style.zIndex = '2'
-            imageRefs[
+            imageRefs.current[next].current.style.zIndex = '2'
+            imageRefs.current[
                 next
-            ].current.style.transform = `translateX(calc(-50% + ${offset}px))`
-            imageRefs[nextnext].current.style.zIndex = '1'
-            imageRefs[
+            ].current.style.transform = `translateX(calc(-50% + ${offset}px)`
+            imageRefs.current[nextnext].current.style.zIndex = '1'
+            imageRefs.current[
                 nextnext
             ].current.style.transform = `translateX(calc(-50% + ${
                 2 * offset
@@ -562,32 +571,32 @@ const ImagesSlider = ({
             (currIndex === images.length - 1 && oldIndex === 0)
         ) {
             // Toward Right
-            imageRefs[prevprev].current.style.zIndex = '1'
-            imageRefs[
+            imageRefs.current[prevprev].current.style.zIndex = '1'
+            imageRefs.current[
                 prevprev
             ].current.style.transform = `translateX(calc(-50% - ${
                 2 * offset
             }px))`
-            imageRefs[prev].current.style.zIndex = '2'
-            imageRefs[
+            imageRefs.current[prev].current.style.zIndex = '2'
+            imageRefs.current[
                 prev
-            ].current.style.transform = `translateX(calc(-50% - ${offset}px))`
-            imageRefs[currIndex].current.style.zIndex = '5'
-            imageRefs[
+            ].current.style.transform = `translateX(calc(-50% - ${offset}px)`
+            imageRefs.current[currIndex].current.style.zIndex = '5'
+            imageRefs.current[
                 currIndex
             ].current.style.transform = `translateX(calc(-50%))`
-            imageRefs[next].current.style.zIndex = '3'
-            imageRefs[
+            imageRefs.current[next].current.style.zIndex = '3'
+            imageRefs.current[
                 next
-            ].current.style.transform = `translateX(calc(-50% + ${offset}px))`
-            imageRefs[nextnext].current.style.zIndex = '4'
-            imageRefs[
+            ].current.style.transform = `translateX(calc(-50% + ${offset}px)`
+            imageRefs.current[nextnext].current.style.zIndex = '4'
+            imageRefs.current[
                 nextnext
             ].current.style.transform = `translateX(calc(-50% + ${
                 2 * offset
             }px))`
-            imageRefs[nextnextnext].current.style.zIndex = '-1'
-            imageRefs[
+            imageRefs.current[nextnextnext].current.style.zIndex = '-1'
+            imageRefs.current[
                 nextnextnext
             ].current.style.transform = `translateX(calc(-50% - ${
                 3 * offset
@@ -641,7 +650,7 @@ const ImagesSlider = ({
                     key={index}
                     width={864}
                     height={546}
-                    ref={imageRefs[index]}
+                    ref={imageRefs.current[index]}
                     style={{
                         position: 'absolute',
                         left: '50%',
@@ -660,7 +669,7 @@ const ImagesSlider = ({
     )
 }
 
-const index = () => {
+const IndexPage = () => {
     const [eventActiveImageIndex, setEventActiveImageIndex] = useState(2) // don't set on boundary
     const [eventActiveImageIndexPrevDir, setEventActiveImageIndexPrevDir] =
         useState(false)
@@ -693,128 +702,108 @@ const index = () => {
 
     // events thingyy
     const [events, setEvents] = useState([])
+    const [specialEvents, setSpecialEvents] = useState([])
+    const [selectedSpecialEvent, setSelectedSpecialEvent] = useState(null)
+    const [showAccommodationModal, setShowAccommodationModal] = useState(false)
+
     useEffect(() => {
-        let host = process.env.NEXT_PUBLIC_HOST
+        // Show accommodation modal once per session / visit
+        if (typeof window !== 'undefined') {
+            const hasSeen = sessionStorage.getItem('anwesha_acc_modal_shown')
+            if (!hasSeen) {
+                const timer = setTimeout(() => {
+                    setShowAccommodationModal(true)
+                    sessionStorage.setItem('anwesha_acc_modal_shown', 'true')
+                }, 1000)
+                return () => clearTimeout(timer)
+            }
+        }
+    }, [])
+    useEffect(() => {
+        let host = process.env.NEXT_PUBLIC_HOST || '/api/backend'
 
         async function callAPI() {
             try {
-                const res = await fetch(`${host}/event/allevents`, {
+                const res = await fetch(`${host}/events`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                 })
                 const data = await res.json()
-                setEvents(data)
+                const eventList = data.events || data || []
+                setEvents(eventList)
+
+                const specialRes = await fetch(`${host}/events/special`, {
+                    method: 'GET',
+                    headers: { 'Content-Type': 'application/json' },
+                })
+                const specialData = await specialRes.json()
+                const specialList = specialData.events || specialData.special_events ||
+                    specialData.specialEvents || specialData.data || specialData || []
+                setSpecialEvents(Array.isArray(specialList) ? specialList : [])
             } catch (e) {
                 console.log('Failed to fetch')
             }
         }
         callAPI()
     }, [])
-    // url - events[<index>].poster
+    // url - events[<index>].poster_file || events[<index>].poster (prioritize poster_file)
     // title - events[<index>].name.split('#')[0]
     // body - events[<index>].name.split('#')[1]
     const pseudoEventImage = adjustList(
-        events.map((event) => ({
-            url: event.poster,
-            title: event.name.split('#')[0],
-            body: event.name.split('#')[1],
-        })),
+        events.map((event, idx) => {
+            const posterUrl =
+                event.poster_url ||
+                event.poster_file ||
+                event.poster ||
+                '/events/poster.png'
+            console.log(`[HomePage] Event ${idx} poster:`, posterUrl)
+            return {
+                id: event.id || event._id,
+                url: posterUrl,
+                title: event.name.split('#')[0],
+                body: event.name.split('#')[1],
+            }
+        }),
         6
     )
-    // const pseudoEventImage = adjustList(_pseudoEventImage, 6);
-    // console.log(pseudoEventImage);
 
     const router = useRouter()
 
-    // const sponsorImages = [
-    //     'https://drive.google.com/uc?export=view&id=1sk_dXvHZCLN5QGH8x5ae4vjunza7kdwo', // 'Allen Cooper'
-    //     'https://drive.google.com/uc?export=view&id=1sO3UC-XMYPAggeQ_P3loZCSxjbXKiTzk', // 'Bihar Tourism'
-    //     'https://drive.google.com/uc?export=view&id=1NzTZh6D-THmqConUzrZ2tvC3PaJU3Ets', // 'Biryani'
-    //     'https://drive.google.com/uc?export=view&id=10JmGTjBV_wliW6EoE4ozwnErEHNWZlGe', // 'Boult'
-    //     'https://drive.google.com/uc?export=view&id=1sD17yO4Zwm449d9ilTh9cPRoTeUd4tpy', // 'Bihar Rajya Pul Nirman Nigam'
-    //     'https://drive.google.com/uc?export=view&id=1yCcmexPef2xI3lQXo7wJAzliDEyUIxh-', // 'Bihar State Aids Control Society'
-    //     'https://drive.google.com/uc?export=view&id=1QZLHYPSJsMLQUKssih7HPqU5DwMGkcnc', // 'Bihar State Electronics Development Corporation'
-    //     'https://drive.google.com/uc?export=view&id=1UBiVYAM7HGv-tjMiyTofA7_ZCWS959MG', // 'Bihar Council on Science and Technology'
-    //     'https://drive.google.com/uc?export=view&id=1gg9J_on8QTdBs64u7TVwpwkc45ydw4Eq', // 'Department of Information Technology'
-    //     'https://drive.google.com/uc?export=view&id=1FOtkwzHkA74tK7uMzHYaxSbz8W-N40EN', // 'Department of Industries'
-    //     'https://drive.google.com/uc?export=view&id=1EKapSE6Q9xbDmycY0XecwCEHKjxUqZzO', // 'Dominos'
-    //     'https://drive.google.com/uc?export=view&id=1_LI78ee0KbgufhKeFSNQJSK7DzqG6T6q', // 'Fueling'
-    //     'https://drive.google.com/uc?export=view&id=1NXlcqgtvPwuaGzr0KxNWWaIGvNgUWDax', // 'Hydration'
-    //     'https://drive.google.com/uc?export=view&id=1Ge6eJMxha0lNxzF8AXW-aT8fP11FXJHA', // 'Kala Akchar'
-    //     'https://drive.google.com/uc?export=view&id=1lvnREbJ84WauvAhwBCrtO7P11HO-HUz9', // 'NHAI'
-    //     'https://drive.google.com/uc?export=view&id=13oaVnvbhSXcAZTTajdcwXVJ-4YjGtRBu', // 'NTPC'
-    //     'https://drive.google.com/uc?export=view&id=12n_N2f4FyomvBlLOELPnGhLjgPdzCfkb', // 'Red FM'
-    //     'https://drive.google.com/uc?export=view&id=13M6yySVuABxMP7pus6Hy2HVbianRpSnA', // 'Road Chef'
-    //     'https://drive.google.com/uc?export=view&id=1MLfxr5ipb_m3VUkNCiAB3sc00hxz5fi-', // 'State Bank of India'
-    //     'https://drive.google.com/uc?export=view&id=1Vbu1tCEMNPzoeOqpydOcOSxHlPzVz3up', // 'Startup Bihar'
-    //     'https://drive.google.com/uc?export=view&id=1AA3qGrGqqTbmfo2DAWmkAWXs8KWTDC07', // 'The Community Events'
-    //     'https://drive.google.com/uc?export=view&id=1Ub5Ntbu30Kp-1dpYSeB0M_QtbjGsiVpI', // 'Times of India'
-    //     'https://drive.google.com/uc?export=view&id=1mX_WeCIywRV838QPn8AywiEWTSXSzMbM', // 'Waffcha'
-    //     'https://drive.google.com/uc?export=view&id=183hiDaFhULaFvHURLFMCWBPmT7RjMRWI', // 'Wat A Burger'
-    // ]
-
     const sponsorImages = [
-        // Arista
-        'https://drive.google.com/uc?export=view&id=1dXMeVRz2jbkW4oFGbCYeNr2ooNPbx9Ox',
-
-        // State Bank of India
-        'https://drive.google.com/uc?export=view&id=1MLfxr5ipb_m3VUkNCiAB3sc00hxz5fi-',
-
-        // Indian Oil & XP95
-        'https://drive.google.com/uc?export=view&id=1S8D9eehYFohjFcOB4acJxmBgc2q8ZQNk',
-
-        // Spic Macay
-        'https://drive.google.com/uc?export=view&id=1a18oT-fdAI_A5oOjKEqAkJYqxsqHhFLf',
-
-        // Software Technology Parks of India
-        'https://drive.google.com/uc?export=view&id=1tCIRaCaE8h8jSht2kXvrOI8Df_5CSD42',
-
-        // Department of Industries
-        'https://drive.google.com/uc?export=view&id=1FOtkwzHkA74tK7uMzHYaxSbz8W-N40EN',
-
-        // Startup Bihar
-        'https://drive.google.com/uc?export=view&id=1Vbu1tCEMNPzoeOqpydOcOSxHlPzVz3up',
-
-        // Bihar Tourism
-        'https://drive.google.com/uc?export=view&id=1pRqsKrhyTbhOpnxnNOKNTVwQxW4krm-L',
-
-        // Public Health Engineering Department, Bihar
-        'https://drive.google.com/uc?export=view&id=1oX-0boxmmSYbzBAVuPGMzUujaru3wm5D',
-
-        // Bihar State AIDS Control Society
-        'https://drive.google.com/uc?export=view&id=1yCcmexPef2xI3lQXo7wJAzliDEyUIxh-',
-
-        // Bihar State Building Construction Corporation Limited
-        'https://drive.google.com/uc?export=view&id=12rzaQ86RQfHFE_T0XGc-c8uRi_sQILRZ',
-
-        // Ceigall India Limited
-        'https://drive.google.com/uc?export=view&id=1CxQTY0H12QpCqC0YziCUZrpCFTnZkTsB',
-
-        // KFC
-        'https://drive.google.com/uc?export=view&id=1wujyrcqa-j8QVYTJ8aA6NAP8mGQS2w5Z',
-
-        // Waffcha
-        'https://drive.google.com/uc?export=view&id=1mX_WeCIywRV838QPn8AywiEWTSXSzMbM',
-
-        // Konnifel
-        'https://drive.google.com/uc?export=view&id=1PSx1RqfdGkvXoKL4e11PuG8X_ORouj4Z',
-
-        // Garda Patna
-        'https://drive.google.com/uc?export=view&id=1VIItQYV-XlG0gld1B_Z1aRPyOmgqQVhV',
-
-        // Asian Times
-        'https://drive.google.com/uc?export=view&id=1vYUNAIOyvqXlwoeamDbfaq0aKHN7e5hc',
-
-        // Explore Bihar
-        'https://drive.google.com/uc?export=view&id=1qqUiTYE_DT4W2KjzodLJak9EE1R7TfLe',
-
-        // Patna Beats
-        'https://drive.google.com/uc?export=view&id=10oF_KynDEuXJTsiBOo-U1XBvMrAMMkeP',
-
-        // JioSaavn
-        'https://drive.google.com/uc?export=view&id=1X0KmGY2Y2jO8mEq3x3DoxqmCfd83ptWP',
+        'https://drive.google.com/uc?export=view&id=1l_vpcAfYAtr3AP4Md-paIDs8hCW63f8F',
+        'https://drive.google.com/uc?export=view&id=1OcvrKTeQ8phRXxsWu0YcyzoAab1mHR49',
+        'https://drive.google.com/uc?export=view&id=1PXcineBGikMCaFLUoTTuUQaym8pJ1Sc6',
+        'https://drive.google.com/uc?export=view&id=1Z5NoN4Vmqn1fIhUKDLP_sHYEq4q-94Yp',
+        'https://drive.google.com/uc?export=view&id=1SLrXJ80AVdQpPUF13I0b7NXbg1v7Nj_U',
+        'https://drive.google.com/uc?export=view&id=12QRWpz1VcmGWjpzEhJjY2nWklnMSPyB5',
+        'https://drive.google.com/uc?export=view&id=1URhEbkKWoYat8VcvzZRuklBAtnD42G_j',
+        'https://drive.google.com/uc?export=view&id=1k_iwlhOsIEFMw-iJ2YAh98QEDCHgtAi5',
+        'https://drive.google.com/uc?export=view&id=1tpyLgLBAxsmKnhxiXooqcf8GAKAMMIgM',
+        'https://drive.google.com/uc?export=view&id=18dIDe9EUzqScqL1_vAONFhAsGG4PmRF4',
+        'https://drive.google.com/uc?export=view&id=1TpQ19hmSOS2TNUJi6oidSw7Y602ft2El',
+        'https://drive.google.com/uc?export=view&id=1hWWaY3ziGTs2fAtamI4muzcRP4kQkD7G',
+        'https://drive.google.com/uc?export=view&id=15CbVUgi5i_ARRAtobM9_Pn2GjLyBjaAp',
+        'https://drive.google.com/uc?export=view&id=1XvW-FVYrOL8aZCsXs4Urw4FzEO7DMjBm',
+        // 'https://drive.google.com/uc?export=view&id=1MRbo4eu7KrYeSjq090nmItjAbv_OQEok',
+        'https://drive.google.com/uc?export=view&id=1sNg1jeEC5MRsFseSgM7VXPH8iwbBUTOD',
+        'https://drive.google.com/uc?export=view&id=1pNXnnkDvLYUYUqU7-dh_ZDxLqZToHjxn',
+        'https://drive.google.com/uc?export=view&id=1BqokvuSQnMepjv0y41KTlgcCKeaMuAWO',
+        'https://drive.google.com/uc?export=view&id=1CBELU9HNCW-9UPzF5aFNduSti6FT0WO-',
+        'https://drive.google.com/uc?export=view&id=1ER70uJpKmRnH8AWQN3xok84_Sesi5zHw',
+        'https://drive.google.com/uc?export=view&id=1WJ4_WS3-x-BqtCItSSqQ2AxtxNX723vm',
+        'https://drive.google.com/uc?export=view&id=1i3YuJQMgDqE6ig0JqZAEE0Fe_S9Kn0GD',
+        'https://drive.google.com/uc?export=view&id=1xcQdl747tYi3ZY3uxeecoVVXjHpLn0J_',
+        'https://drive.google.com/uc?export=view&id=18O2pdC3iAelrCxZATs-lZ1ySKyPR7nUp',
+        'https://drive.google.com/uc?export=view&id=1wMgI-ijHi7fF6IbNzxtfN-JHhUdUBXja',
+        'https://drive.google.com/uc?export=view&id=1eY1Kfmj6-48BvKbezYjLBLLxR5UD0-Dj',
+        'https://drive.google.com/uc?export=view&id=1qJfVG_fdIyZxQrURGjUJIefdj_EXJnvX',
+        'https://drive.google.com/uc?export=view&id=1YhJLV3VoL9o4lNF8MSf0jqNmOr10EmRs',
+        // 'https://drive.google.com/uc?export=view&id=1UaIXFovMDArchg1xgKpO6jN6kx5Je2yD',
+        'https://drive.google.com/uc?export=view&id=1TewMkN2e3bI_-ahRpD3sWk5J_7hvnj2Q',
+        'https://drive.google.com/uc?export=view&id=1Y5m4LFHEMFWFDJPhsZSpIT02P0U8qU1e',
+        'https://drive.google.com/uc?export=view&id=1wKHW-An6PKqP-wBUqPStms4IFg_sH5aR',
     ]
 
     const [momentsActiveImageIndex, setMomentsActiveImageIndex] = useState(2) // don't set on boundary
@@ -916,316 +905,342 @@ const index = () => {
             {countdownTimer && <CountdownTimer />}
 
             <Head>
-                <title>Anwesha 2025</title>
-                <meta name="description" content="Anwesha 2025" />
-                <link rel="icon" href="./logo_no_bg.svg" />
+                <title>Anwesha 2027 | Annual Socio-Cultural Festival | IIT Patna</title>
+                <meta name="description" content="Anwesha 2027 is the annual socio-cultural festival of IIT Patna featuring Pronites, star concerts, cultural competitions, exhibitions, and workshops." />
+                <link rel="icon" href="/logo_no_bg.svg" />
+                <link rel="canonical" href="https://anwesha.iitp.ac.in" />
             </Head>
 
             <div className={styles.bg}>
-                {/* HERO */}
                 <HeroSection className={styles.hero}>
+                    {/* BACKGROUND VIDEO */}
+                    <video
+                        className={styles.hero_video}
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                    >
+                        <source src="/home/hero_bg.mp4" type="video/mp4" />
+                    </video>
+
+                    {/* HERO CONTENT */}
                     <div className={styles.hero_text}>
                         <Image
-                            src={'/pics/hero_image-export.svg'}
-                            width={1047}
-                            height={589}
+                            src={'/newanweshalogo.svg'}
+                            width={1000}
+                            height={356}
+                            className={styles.hero_title_img}
+                            alt="Anwesha Logo"
+                            priority
                         />
-                        {/* <div style={{height: 570, width: 570, zIndex: 9, overflow: 'hidden', borderRadius: "9999px"}}>
-                        <div style={{height: 589, width: 589}}>
-                            <Spline scene="https://prod.spline.design/0cIZkQpUYfHX-VX8/scene.splinecode" width="589" height="589"/>
-                        </div>
-                    </div> */}
-                        <h2>Welcome To Your Nightmare</h2>
                     </div>
+
                     <div className={styles.hero_button}>
                         <button
                             className={cn(
                                 styles.sexy_button,
                                 styles.sexy_button_small
                             )}
-                            onClick={() => {
-                                setcountdowntimer(true)
-                                setTimeout(() => {
-                                    setShowsound(true)
-                                    setShowVideo(true)
-                                }, 3000)
-                                setTimeout(() => {
-                                    router.push('/userRegister')
-                                }, timeee + 3000 - 100)
-                            }}
+                            onClick={() => router.push('/userRegister')}
                         >
-                            REGISTER
+                            Register
+                        </button>
+                        <button
+                            className={cn(
+                                styles.sexy_button,
+                                styles.sexy_button_small
+                            )}
+                            onClick={() => router.push('/anweshapass')}
+                        >
+                            Get Passes
                         </button>
                     </div>
                 </HeroSection>
 
-                {/* Events */}
-                <section className={styles.events}>
-                    <div className={styles.events_title}>
-                        <FireSkullHeadLeft />
-                        <div>
-                            <h2>Explore the Events</h2>
-                            <h3>Dare to face the Unseen</h3>
-                        </div>
-                        <FireSkullHeadRight />
-                    </div>
-                    <div className={styles.events_images_parent}>
-                        <button
-                            className={styles.bat_scroll_button}
-                            onClick={previouseEventImage}
-                        >
-                            <BatLeft />
-                        </button>
-                        <EventSlider
-                            images={pseudoEventImage}
-                            currIndex={eventActiveImageIndex}
-                            nextEventImage={nextEventImage}
-                            previouseEventImage={previouseEventImage}
-                        />
-                        <button
-                            className={styles.bat_scroll_button}
-                            onClick={nextEventImage}
-                        >
-                            <BatRight />
-                        </button>
-                    </div>
-                    <div className={styles.events_button}>
-                        <button
-                            className={cn(
-                                styles.sexy_button,
-                                styles.sexy_button_small
-                            )}
-                            onClick={() => {
-                                router.push('/events')
-                            }}
-                        >
-                            VIEW MORE
-                        </button>
-                    </div>
-                </section>
-
-                {/* MERCH */}
-                <section className={styles.merch} id="merch">
-                    <div className={styles.merch_body}>
-                        <div>
-                            <h2>Anwesha 2025 Official Merchandise</h2>
-                            <h3>Own the Unforgettable Experience</h3>
-                        </div>
-                        <p>
-                            The designs are a fusion of elegance and innovation,
-                            capturing the true spirit of Anwesha. T-shirts are
-                            made of supreme quality with GSM 200 and 100%
-                            cotton, ensuring maximum comfort and durability.
-                            Hoodies are made from Premium Quality Woven Cotton
-                            with 350+ GSM cloth.
-                        </p>
-                    </div>
-                    <div className={styles.merch_hero}>
-                        <div className={styles.merch_background} />
-                        <div className={styles.merch_hero_fix}>
-                            <div className={styles.merch_tshirts}>
-                                {/* <div className={styles.tshirt_white} /> */}
-                                {/* <div className={styles.tshirt_black_parent}> */}
-                                {/* <div className={styles.tshirt_black} /> */}
-                                {/* </div> */}
-                                {/* <div className={styles.tshirt_blue} /> */}
+                <div className={styles.fixed_bg}>
+                    {/* Events */}
+                    {events.length > 0 && (
+                        <section className={styles.events}>
+                            <div className={styles.events_title}>
+                                <div>
+                                    <h2 className={dmSerif.className}>
+                                        Explore the Events
+                                    </h2>
+                                </div>
                             </div>
-                            <div className={styles.merch_button}>
+                            <div className={styles.events_images_parent}>
                                 <button
-                                    className={styles.sexy_button}
-                                    onClick={() =>
-                                        window.open(
-                                            'https://docs.google.com/forms/d/1B6yMQs6Y8UV5GDrnxYipGIrDWCY4mcZZvPVboi5Q1nU/edit'
-                                        )
-                                    }
+                                    className={styles.bat_scroll_button}
+                                    onClick={nextEventImage}
                                 >
-                                    GRAB NOW
+                                    <BatLeft />
+                                </button>
+                                <EventSlider
+                                    images={pseudoEventImage}
+                                    currIndex={eventActiveImageIndex}
+                                    nextEventImage={nextEventImage}
+                                    previouseEventImage={previouseEventImage}
+                                />
+                                <button
+                                    className={styles.bat_scroll_button}
+                                    onClick={previouseEventImage}
+                                >
+                                    <BatRight />
                                 </button>
                             </div>
-                        </div>
-                    </div>
-                </section>
-
-                {/* Anwesha Through the Lens */}
-                <section className={styles.moments}>
-                    <div className={styles.sexy_title}>
-                        <h2>Anwesha Through the Lens</h2>
-                        <h3>Relive the Moments That Defined Us</h3>
-                    </div>
-                    <div className={styles.moments_images_parent}>
-                        <div
-                            className={cn(
-                                styles.moments_images_top_curve,
-                                styles.moments_images_curve
-                            )}
-                        />
-                        <ImagesSlider
-                            images={pseudoMomentImage}
-                            currIndex={momentsActiveImageIndex}
-                            nextMomentImage={nextMomentImage}
-                            previouseMomentImage={previouseMomentImage}
-                        />
-                        <div
-                            className={cn(
-                                styles.moments_images_bottom_curve,
-                                styles.moments_images_curve
-                            )}
-                        />
-                    </div>
-                    <br />
-                    <div className={styles.moments_button}>
-                        <button
-                            className={styles.bat_scroll_button}
-                            onClick={nextMomentImage}
-                        >
-                            <BatLeft width={40} height={60} />
-                        </button>
-                        <button
-                            className={cn(
-                                styles.sexy_button,
-                                styles.sexy_button_small
-                            )}
-                            onClick={() => {
-                                router.push('/gallery')
-                            }}
-                        >
-                            VIEW MORE
-                        </button>
-                        <button
-                            className={styles.bat_scroll_button}
-                            onClick={previouseMomentImage}
-                        >
-                            <BatRight width={40} height={60} />
-                        </button>
-                    </div>
-                </section>
-
-                {/* The Aftermovie */}
-                <section section className={styles.aftermovie}>
-                    <div className={styles.sexy_title}>
-                        <h2>Anwesha 2024: The Aftermovie</h2>
-                        <h3>Last Year's Magic in 3 Minutes</h3>
-                    </div>
-                    <div className={styles.aftermovie_video}>
-                        {/* <Image
-                        src="/pics/aftermovie.jpg"
-                        width={1226}
-                        height={607}
-                    /> */}
-                        <video
-                            ref={videoRef}
-                            autoPlay
-                            muted={isMuted}
-                            loop
-                            width={1226}
-                            height={607}
-                        >
-                            <source
-                                src="https://astounding-madeleine-371471.netlify.app/assets/Anwesha25Aftermovie.mp4"
-                                type="video/mp4"
-                            />
-                        </video>
-                        {/* <iframe src="https://drive.google.com/file/d/17qtrN_8Qg9vUAEps515INNUQRGd3oMla/preview" width="1226" height="607" allow="autoplay"></iframe> */}
-                        {/* <iframe src="https://streamable.com/e/4qofi9" width={1226} height={607} frameborder="0" allowfullscreen></iframe> */}
-                        <div>
-                            <button
-                                onClick={toggleMute}
-                                style={{ width: 32, height: 32 }}
-                            >
-                                {isMuted ? (
-                                    <MuteIcon width={32} height={32} />
-                                ) : (
-                                    <UnmuteIcon width={32} height={32} />
-                                )}
-                            </button>
-                        </div>
-                    </div>
-                </section>
-
-                {/* CTA or This Year's Theme */}
-                <section section className={styles.cta}>
-                    <div className={styles.sexy_title}>
-                        <h2>This Year's Theme</h2>
-                        <h3>Echoes Of the Abyss</h3>
-                    </div>
-                    <div className={styles.cta_body}>
-                        <div className={styles.cta_body_left}>
-                            <GreenCircle />
-                            <div className={styles.cta_image}>
-                                <Image
-                                    src={'/pics/Mascot.png'}
-                                    width={474.386}
-                                    height={474.386}
-                                />
-                            </div>
-                        </div>
-                        <div className={styles.cta_body_right}>
-                            <p>
-                                Meet <span>Grimmy</span>, a lone skeleton
-                                wandering the Abyss, where whispers of forgotten
-                                souls linger. In this realm of shadows and
-                                echoes, he unravels haunting secrets, braving
-                                eerie landscapes and unseen terrors. Join Grimmy
-                                as he dares to uncover the mysteries buried in
-                                the depths of the Abyss!
-                                <br />
-                                <br />
-                                Join Grimmy on this fun adventure and let your
-                                imagination soar beyond the ordinary!
-                            </p>
-
-                            <div className={styles.cta_button}>
+                            <div className={styles.events_button}>
                                 <button
                                     className={cn(
                                         styles.sexy_button,
                                         styles.sexy_button_small
                                     )}
                                     onClick={() => {
-                                        router.push('/userRegister')
+                                        router.push('/events')
                                     }}
                                 >
-                                    REGISTER
+                                    VIEW MORE
                                 </button>
                             </div>
-                        </div>
-                    </div>
-                </section>
+                        </section>
+                    )}
 
-                {/* Sponsors */}
+                    {/* Special Events */}
+                    {specialEvents.length > 0 && (
+    <SpecialEventFeature
+        event={specialEvents[0]}
+        posterUrl={makePosterUrl(
+            specialEvents[0].poster_url ||
+            specialEvents[0].poster_file ||
+            specialEvents[0].poster
+        )}
+    />
+)}
 
-                <section section className={styles.sponsors}>
-                    <div className={styles.sponsors_title}>
-                        <h2>Our Proud Sponsors</h2>
-                        <h3>Strengthening the Vision Together</h3>
-                    </div>
-                    <div className={styles.sponsors_images_slider}>
-                        <SponsorsSlider images={sponsorImages} />
-                    </div>
-                </section>
-
-                {/* NewsLetter */}
-                <section section className={styles.newsletter}>
-                    <p style={{ color: 'white' }}>
-                        Subscribe to our newsletter
-                    </p>
-                    <iframe
-                        src="https://embeds.beehiiv.com/255bda27-7d9d-4f91-9f9c-edca5ce5d90a?slim=true"
-                        data-test-id="beehiiv-embed"
-                        height="52"
-                        frameborder="0"
-                        scrolling="no"
-                        // style="margin: 0; border-radius: 0px !important; background-color: transparent;"
+                    <AccommodationModal
+                        isOpen={showAccommodationModal}
+                        onClose={() => setShowAccommodationModal(false)}
                     />
-                </section>
-                {loadimg && (
-                    <img width={200} src="/pics/jump.gif" alt="Scary GIF" />
-                )}
-                {loadimg && (
-                    <img width={50} src="/pics/final_h.gif" alt="Scary GIF" />
-                )}
+
+                    {/* MERCH */}
+                    <section className={styles.merch} id="merch">
+                        <div className={styles.merch_body}>
+                            <div>
+                                <h2 className={dmSerif.className}>
+                                    Anwesha 2027 Official Merchandise
+                                </h2>
+                                <h3>Own the Unforgettable Experience</h3>
+                            </div>
+                            <p>
+                                The designs are a fusion of elegance and
+                                innovation, capturing the true spirit of
+                                Anwesha. T-shirts are made of supreme quality
+                                with GSM 200 and 100% cotton, ensuring maximum
+                                comfort and durability. Hoodies are made from
+                                Premium Quality Woven Cotton with 350+ GSM
+                                cloth.
+                            </p>
+                        </div>
+                        <div className={styles.merch_hero}>
+                            <div className={styles.merch_background} />
+                            <div className={styles.merch_hero_fix}>
+                                <div className={styles.merch_tshirts}></div>
+                                <div className={styles.merch_button}>
+                                    <button
+                                        className={cn(
+                                            styles.sexy_button,
+                                            styles.merch_grab_button
+                                        )}
+                                        onClick={() =>
+                                            window.open(
+                                                'https://docs.google.com/forms/d/e/1FAIpQLSduNP0wbd7_7VZQJn8QARluerDm3HjO1lXw7gYwupdx9wt5_Q/viewform?usp=send_form'
+                                            )
+                                        }
+                                        disabled
+
+                                        // onClick={() => router.push('/merch')}
+                                    >
+                                        GRAB NOW
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Anwesha Through the Lens */}
+                    <section className={styles.moments}>
+                        <div className={styles.sexy_title}>
+                            <h2 className={dmSerif.className}>
+                                Anwesha Through the Lens
+                            </h2>
+                            <h3>Relive the Moments That Defined Us</h3>
+                        </div>
+                        <div className={styles.moments_images_parent}>
+                            <div
+                                className={cn(
+                                    styles.moments_images_top_curve,
+                                    styles.moments_images_curve
+                                )}
+                            />
+                            <ImagesSlider
+                                images={pseudoMomentImage}
+                                currIndex={momentsActiveImageIndex}
+                                nextMomentImage={nextMomentImage}
+                                previouseMomentImage={previouseMomentImage}
+                            />
+                            <div
+                                className={cn(
+                                    styles.moments_images_bottom_curve,
+                                    styles.moments_images_curve
+                                )}
+                            />
+                        </div>
+                        <br />
+                        <div className={styles.moments_button}>
+                            <button
+                                className={styles.bat_scroll_button}
+                                onClick={nextMomentImage}
+                            >
+                                <BatLeft width={80} height={90} />
+                            </button>
+                            <button
+                                className={cn(
+                                    styles.sexy_button,
+                                    styles.sexy_button_small
+                                )}
+                                onClick={() => {
+                                    router.push('/gallery')
+                                }}
+                            >
+                                VIEW MORE
+                            </button>
+                            <button
+                                className={styles.bat_scroll_button}
+                                onClick={previouseMomentImage}
+                            >
+                                <BatRight width={80} height={90} />
+                            </button>
+                        </div>
+                    </section>
+
+                    {/* The Aftermovie */}
+                    <section className={styles.aftermovie}>
+                        <div className={styles.sexy_title}>
+                            <h2 className={dmSerif.className}>
+                                Anwesha 2025: The Aftermovie
+                            </h2>
+                            <h3>Last Year&apos;s Magic in 3 Minutes</h3>
+                        </div>
+
+                        <div className={styles.aftermovie_video}>
+                            <iframe
+                                width="1226"
+                                height="607"
+                                src="https://www.youtube.com/embed/WLTo_hYLc1A?autoplay=1&mute=1&loop=1&playlist=WLTo_hYLc1A&controls=1"
+                                title="A Glimpse into Anwesha 2025"
+                                frameBorder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerPolicy="strict-origin-when-cross-origin"
+                                allowFullScreen
+                                style={{ borderRadius: '10px' }} // Optional: Adds rounded corners like modern players
+                            ></iframe>
+                        </div>
+                    </section>
+
+                    {/* CTA or This was Our Theme */}
+                    <section className={styles.cta}>
+                            <div className={styles.sexy_title}>
+                                <h2 className={dmSerif.className}>
+                                    This was Our Theme
+                                </h2>
+                                <h3>Palingenesis reverie</h3>
+                        </div>
+                        <div className={styles.cta_body}>
+                            <div className={styles.cta_body_left}>
+                                <Image
+                                    src={'/home/circle.png'}
+                                    width={450}
+                                    height={450}
+                                    alt="Theme Circle"
+                                    className={styles.theme_circle}
+                                />
+                                <div className={styles.cta_image}>
+                                    <Image
+                                        src="/home/mascott.png"
+                                        alt="Mascot"
+                                        width={320}
+                                        height={320}
+                                    />
+                                </div>
+                            </div>
+                            <div className={styles.cta_body_right}>
+                                <p>
+                                    From the hush of winter’s wane, Anwesha
+                                    blooms when all seemed finished. Rising from
+                                    the abyss, broken threads come together, and
+                                    what once fractured begins to heal. Where
+                                    the dark once called us, we now move toward
+                                    the light, dreaming of becoming again.
+                                    <br />
+                                    <br />
+                                    Anwesha returns not as an ending, but as a
+                                    rebirth. This is Palingenesis Reverie, a
+                                    quiet renewal, a sacred remembering, and a
+                                    promise that even after everything, we rise
+                                    again.
+                                </p>
+
+                                <div className={styles.cta_button}>
+                                    <button
+                                        className={cn(
+                                            styles.sexy_button,
+                                            styles.sexy_button_small
+                                        )}
+                                        onClick={() => {
+                                            router.push('/userRegister')
+                                        }}
+                                    >
+                                        REGISTER
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Accommodation Section */}
+                    <AccommodationSection
+                        onRequestAccommodation={() => {
+                            router.push('/accommodation')
+                        }}
+                    />
+
+                    {/* Sponsors */}
+
+                    <section className={styles.sponsors}>
+                        <div className={styles.sponsors_title}>
+                            <h2 className={dmSerif.className}>
+                                Our Proud Sponsors
+                            </h2>
+                            <h3>Strengthening the Vision Together</h3>
+                        </div>
+                        <div className={styles.sponsors_images_slider}>
+                            <SponsorsSlider images={sponsorImages} />
+                        </div>
+                    </section>
+
+                    {loadimg && (
+                        <img width={200} src="/pics/jump.gif" alt="Scary GIF" />
+                    )}
+                    {loadimg && (
+                        <img
+                            width={50}
+                            src="/pics/final_h.gif"
+                            alt="Scary GIF"
+                        />
+                    )}
+                </div>
             </div>
         </>
     )
 }
-
-export default index
+export default IndexPage

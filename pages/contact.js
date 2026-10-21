@@ -5,6 +5,8 @@ import { ToastContainer, toast } from 'react-toastify'
 // import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 
+const dmSerif = { className: 'font-dm-serif' }
+
 const Contact = () => {
     const form = useRef()
 
@@ -44,7 +46,7 @@ const Contact = () => {
                     <div className={styles.leftcontainer}>
                         <div className={styles.leftinnercontainer}>
                             <div className={styles.titleBox}>
-                                <div className={styles.title}>Contact Us</div>
+                                <div className={`${styles.title} ${dmSerif.className}`}>CONTACT US</div>
                                 <div className={styles.description}>
                                     Not sure about something? The team at Anwesha,
                                     IIT Patna is here to listen and help you out.
@@ -63,7 +65,7 @@ const Contact = () => {
                         <div className={styles.rightinnercontainer}>
                             <div className={styles.formtitlebox}>
                                 <div className={styles.formtitle}>
-                                    We'd Love to Hear from You!
+                                    We&#39;d Love to Hear from You!
                                 </div>
                                 <div className={styles.formdescription}>
                                     Fill out the form below
@@ -124,9 +126,9 @@ const Contact = () => {
                                     />
                                 </div>
                             </div> */}
-                            <div className={styles.buttonbox}>
+                            <div className={styles.register_btn_box}>
                                 <input
-                                    className={styles.button}
+                                    className={styles.register_button}
                                     type="button"
                                     onClick={() => window.open("https://forms.gle/MVtBKRRqqWEtkFag7", "_blank")}
                                     value="Google Form"

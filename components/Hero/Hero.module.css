@@ -15,11 +15,11 @@
     width: 767.308px;
     height: 675.457px;
     flex-shrink: 0;
-    background-image: radial-gradient(52.44% 42.58% at 50% 50%, rgba(0, 0, 0, 0.00) 29.61%, #000 100%), url("/pics/circle_full.png");
-    animation: rotateAnimation 15s linear infinite;
-    background-position: -116.259px -0.04px;
-    background-size: 127.85% 96.835%;
-    background-repeat: no-repeat;
+    /* background-image: radial-gradient(52.44% 42.58% at 50% 50%, rgba(0, 0, 0, 0.00) 29.61%, #000 100%), url("/pics/circle_full.png"); */
+    /* animation: rotateAnimation 15s linear infinite; */
+    /* background-position: -116.259px -0.04px; */
+    /* background-size: 127.85% 96.835%; */
+    /* background-repeat: no-repeat; */
     mix-blend-mode: screen;
     mask-image: linear-gradient(
         to right,

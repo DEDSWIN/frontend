@@ -1,61 +1,85 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+@font-face {
+    font-family: 'Cormorant Garamond';
+    src: url('/font/CormorantGaramond-Regular.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
 
 @font-face {
-    font-family: 'SF Ironside';
-    src: url('/font/SF_Ironsides.ttf') format('truetype');
+    font-family: 'Cormorant Garamond';
+    src: url('/font/CormorantGaramond-Italic.ttf') format('truetype');
+    /* font-weight: 400; */
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Cormorant Garamond';
+    src: url('/font/CormorantGaramond-Bold.ttf') format('truetype');
+    /* font-weight: 700; */
+    font-style: normal;
+}
+
+@import url('https://fonts.cdnfonts.com/css/wasted-vindey');
+
+@font-face {
+    font-family: 'Wasted Vindey';
+    src: url('/font/wasted-vindey.regular.ttf') format('truetype');
+    font-weight: bolder;
+    font-style: normal;
+    font-display: swap;
 }
 
 .hero_button {
     z-index: 1;
 }
+
 .sexy_button {
-    /* USE TAILWIND I struggle to name classes :) */
-    all: unset;
-    width: 127.338px;
-    height: 42.135px;
+    /* Layout & Dimensions from Figma */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 128px;
+    height: 48px;
+    margin-inline: 10px;
 
-    /* flex-shrink: 0; */
-    background-image: url('/pics/Subtract.svg');
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-clip: border-box;
-    background-position: center;
-    fill: #000;
-    filter: drop-shadow(0px -3.623px 3.623px #55a826);
+    /* Colors from "Selection Colors" in image */
+    background-color: #370f58;
+    color: #b8a947;
 
-    color: var(--Color-Primary500, #50ff00);
-    text-align: center;
+    /* Border and Glow Effect */
+    border: 1.5px solid #370461;
+    /* Purple border to match the "Profile" box */
+    box-shadow: 0px 0px 12px rgba(15, 3, 24, 0.6);
+    /* Purple outer glow */
 
-    /* SF/SF - 36 REG */
-    font-family: 'SF Ironside';
+    /* Typography */
+    font-family: 'Wasted Vindey', sans-serif;
+    /* Keeping your font as requested */
     font-size: 20px;
-    font-weight: 400;
-    line-height: normal;
-    text-transform: uppercase;
+    font-weight: 900;
+    letter-spacing: 0.1rem;
 
     cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-.sexy_button_small {
-    width: 127.338px;
-    height: 42.135px;
-
-    font-size: 20px;
-    filter: drop-shadow(0px -2.996px 2.996px #55a826);
-}
-/* .sexy_button:focus{
-    filter: drop-shadow(0px -1px 1px white);
-} */
 .sexy_button:hover {
-    filter: drop-shadow(0px -3.623px 3.623px #03fa24);
-    color: var(--Color-Primary500, #00ff26);
-}
-.sexy_button:active {
-    filter: drop-shadow(1px 1px 1px white);
+    /* Slight brightening on hover */
+    /* background-color: #352b3e; */
+    transform: scale(1.07);
+    font-family: 'Wasted Vindey', sans-serif;
+    box-shadow: 0px 0px 18px rgba(178, 83, 255, 0.9);
+    color: #d4c564;
+    /* Brighter gold */
 }
 
-.mainNav {
+.sexy_button:active {
+    transform: scale(0.96);
+    font-family: 'Wasted Vindey', sans-serif;
+    filter: brightness(1.2);
+}
+
+/* .mainNav {
     background: #000000;
     color: #000;
     text-align: center;
@@ -73,6 +97,32 @@
     align-items: center;
     justify-content: space-between;
     padding: 7px 20px;
+} */
+/* --- Main Navigation Bar --- */
+.mainNav {
+    /* Starry Background & Dark Gradient */
+    background: url('/assets/parth&harish.png');
+    background-size: cover;
+    background-position: center;
+
+    color: #ffffff;
+    font-family: 'Wasted Vindey', sans-serif;
+    /* Cleaner font for the nav links */
+    font-size: 1rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    /* Increased height for better spacing */
+    z-index: 100;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 4rem;
+    /* Wide padding as seen in Figma */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .mobile_nav {
@@ -82,10 +132,11 @@
 .navLinks a {
     color: #fff;
     text-decoration: none;
-    padding: 9px 15px;
+    padding: 9px 20px;
     display: inline-block;
     white-space: nowrap;
-    /* font-weight: bold; */
+    font-size: 1.2rem;
+    font-weight: 300;
 }
 
 .linknav {
@@ -93,9 +144,10 @@
 }
 
 .linknav:hover {
-    border: #fff 1px solid;
+    /* border: #fff 1px solid; */
     border-radius: 5px;
 }
+
 .fancyButton {
     position: relative;
     display: inline-block;
@@ -115,9 +167,9 @@
     top: 50%;
     white-space: nowrap;
     transform: translate(-50%, -50%);
-    color: rgb(80, 255, 0);
+    color: #b8a947;
     font-size: 1.25rem;
-    font-family: 'SF Ironside';
+    font-family: 'Wasted Vindey', cursive;
     letter-spacing: 0.15rem;
 }
 
@@ -130,8 +182,9 @@
     margin: 0;
     padding: 0;
 }
+
 .getcardsbutton {
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Wasted Vindey', sans-serif;
     font-optical-sizing: auto;
     font-weight: 500;
     font-style: normal;
@@ -145,6 +198,7 @@
     padding-bottom: 6px;
     border: none;
 }
+
 .mobile_only {
     display: none;
 }
@@ -156,15 +210,16 @@
     top: 65px;
     width: 100vw;
     max-height: 65vh;
-    font-family: 'SF Ironside', sans-serif;
+    font-family: 'Wasted Vindey', sans-serif;
     transition: all 0.3s ease;
     z-index: 15;
-    border-bottom: 3px solid rgb(80, 255, 0);
+    border-bottom: 3px solid #b8a947;
     overflow-y: scroll;
     background: rgb(0, 0, 0);
 }
 
 .nav_drawer ul {
+    margin-top: 15px;
     display: flex;
     flex-direction: column;
     /* background: rgb(0, 0, 0); */
@@ -244,6 +299,7 @@
     left: 10px;
     display: none !important;
 }
+
 .navEnds {
     display: none;
 }
@@ -260,6 +316,7 @@
     .navLinks {
         display: none;
     }
+
     .mainNav {
         justify-content: center;
     }
@@ -268,12 +325,15 @@
         display: block;
         margin-left: 20px;
     }
+
     .mobile_only {
         display: block;
     }
+
     .user_name {
         color: #000;
     }
+
     .hamburger {
         display: block !important;
     }
